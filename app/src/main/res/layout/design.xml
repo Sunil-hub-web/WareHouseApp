@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/twenty"
+        android:layout_marginTop="@dimen/twenty"
+        android:layout_marginRight="@dimen/twenty"
+        android:orientation="vertical">
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ten"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Categories"
+                android:textColor="@color/black"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text"
+                android:layout_marginLeft="@dimen/ten"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Sub - Categories"
+                android:textColor="#333333"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/edit_OrderId"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/fifty"
+                android:layout_margin="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/ten"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/edit_VendorId"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/fifty"
+                android:layout_margin="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/ten"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ten"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Product Name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text"
+                android:layout_marginLeft="@dimen/ten"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Product Type"
+                android:textColor="#333333"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/edit_ProductName"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/fifty"
+                android:layout_margin="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/ten"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/edit_ProductType"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/fifty"
+                android:layout_margin="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/ten"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fifteen"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Upload Product Image"
+            android:textColor="@color/black"
+            android:textSize="@dimen/edittextsize">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/hundred"
+                android:layout_margin="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback">
+
+            </ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/hundred"
+                android:layout_margin="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback">
+
+            </ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/hundred"
+                android:layout_margin="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback">
+
+            </ImageView>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_Addpickup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty"
+            android:background="@drawable/button_back"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Add Product "
+            android:textColor="@color/white"
+            android:textSize="@dimen/edittextsize"></Button>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/twenty"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Back"
+            android:textColor="#000000"
+            android:textSize="@dimen/textsize">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

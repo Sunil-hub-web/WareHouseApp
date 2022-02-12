@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+       <!-- <fragment
+            android:id="@+id/geofence_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true">
+
+        </fragment>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/three_hundred"
+            android:background="@drawable/address_bg"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/twenty"
+                android:orientation="vertical"
+                android:layout_toRightOf="@id/addnam"
+                android:layout_marginLeft="@dimen/twenty_five"
+                android:layout_marginTop="@dimen/fifty">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:button="@xml/custom_check_box"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:layout_marginTop="@dimen/ten">
+
+                </CheckBox>
+
+                <TextView
+                    android:id="@+id/SetDefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set Default"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/ten"
+                    android:textSize="@dimen/textsize">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/thirty"
+                android:orientation="vertical"
+                android:id="@+id/addnam">
+
+
+                <TextView
+                    android:id="@+id/newaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Address"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:textSize="@dimen/twenty_five">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/adressname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address Name"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:layout_below="@id/newaddress"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <EditText
+                    android:layout_width="@dimen/two_hundred_fifty"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/adressname"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:text="Warehouse 02">
+
+
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/addnam"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/thirty"
+                android:layout_marginRight="@dimen/twenty">
+
+                <TextView
+                    android:id="@+id/aAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:layout_marginTop="@dimen/ten"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/aAddress"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:text="C-9, Street , Kolkata 56820">
+
+
+                </EditText>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="@dimen/fifty"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Cancle"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Save"
+                        android:textColor="#0A22A1"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+</RelativeLayout>

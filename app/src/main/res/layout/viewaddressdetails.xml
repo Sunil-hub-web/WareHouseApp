@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextback"
+        android:layout_margin="@dimen/ten">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/ten"
+            android:layout_toLeftOf="@+id/check">
+
+            <TextView
+                android:id="@+id/adressname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Warehouse 01"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:layout_below="@id/newaddress"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+            <TextView
+                android:id="@+id/adress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C-9, Street , Kolkata 56820"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:layout_below="@id/newaddress"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:button="@xml/custom_check_box"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_marginRight="@dimen/twenty">
+
+        </CheckBox>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

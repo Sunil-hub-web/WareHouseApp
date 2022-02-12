@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">WareHouseApp</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="topproduct">Top Product </string>
+    <string name="originalPrice">₹59.00</string>
+    <string name="salesPrice">₹55.00</string>
+    <string name="myorderPrice">₹ 68.00</string>
+    <string name="myordersavePrice">Saved ₹0.8</string>
+
+    <string name="OrderRequest">Order Request</string>
+    <string name="PaymentRequest">Payment Request</string>
+    <string name="Supplier">Supplier</string>
+    <string name="Allusers">All Users</string>
+    <string name="CreateProfile">Create Profile</string>
+    <string name="Product">Product</string>
+    <string name="CreateProduct">Create Product</string>
+    <string name="MyProfile">My Profile</string>
+
+
+
+    <string name="category">Category</string>
+
+    <string name="Orders">Orders</string>
+    <string name="ProductListing">Product Listing</string>
+
+    <string name="Chat">Chat</string>
+    <string name="LogOut">Log Out</string>
+    <string name="Myfavourite">My Favourite</string>
+    <string name="Dashboard">Dashboard</string>
+    <string name="entername">Enter You Nmae</string>
+    <string name="entercontact">Enter Your Mobile No</string>
+    <string name="enteremail">Enter Your Email</string>
+    <string name="enterpassword">Enter Your Password</string>
+
+    <string name="api_key">AIzaSyAlkeMUimRynoWVCZXB17UuC0UjsZYtw2w</string>
+
+</resources>

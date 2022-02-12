@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:id="@+id/rel_1">
+
+        <RelativeLayout
+            android:id="@+id/serach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty"
+            android:layout_marginLeft="@dimen/fifteen"
+            android:layout_marginRight="@dimen/fifteen">
+
+            <EditText
+                android:id="@+id/edit_UserName"
+                android:layout_width="@dimen/two_hundred_fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:hint="Serach"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/edit_Filter"
+                android:layout_width="@dimen/hundred_twenty"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:background="@drawable/edittextback"
+                android:ems="10"
+                android:text="Filter"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage Your Orders"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/serach"
+            android:textSize="@dimen/twenty"
+            android:layout_marginTop="@dimen/twenty"
+            android:layout_marginBottom="@dimen/ten">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/serach"
+            android:textSize="@dimen/textsize"
+            android:layout_marginRight="@dimen/twenty"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/twenty"
+            android:layout_marginBottom="@dimen/ten">
+
+        </TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rel_1"
+        android:background="#FFFFFF"
+        android:layout_marginTop="@dimen/ten">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/showorderRecycler">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

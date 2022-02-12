@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hundred"
+        android:id="@+id/first"
+        android:layout_margin="@dimen/ten"
+        android:background="#FFFFFF"
+        android:elevation="@dimen/ten">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="@dimen/eighty"
+            android:layout_height="@dimen/eighty"
+            android:background="@drawable/edittextback"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"></ImageView>
+
+        <TextView
+            android:id="@+id/product_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_marginLeft="@dimen/fifteen"
+            android:text="Product Name"
+            android:layout_toRightOf="@id/productImage"
+            android:textColor="@color/black"
+            android:textSize="@dimen/edittextsize"
+            android:textStyle="bold"></TextView>
+
+        <RelativeLayout
+            android:id="@+id/quentity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_Name"
+            android:layout_toRightOf="@id/productImage"
+            android:layout_marginLeft="@dimen/fifteen"
+            android:layout_marginTop="@dimen/five">
+
+            <TextView
+                android:id="@+id/totalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#686867"
+                android:textSize="@dimen/textsize"
+                android:text="1x"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/forty"></TextView>
+
+            <TextView
+                android:id="@+id/priceSymbol5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QTY."
+                android:textColor="#686867"
+                android:textSize="@dimen/textsize"
+                android:textStyle="bold"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/quentity"
+            android:layout_toRightOf="@id/productImage"
+            android:layout_marginLeft="@dimen/twenty"
+            android:layout_marginTop="@dimen/five">
+
+            <TextView
+                android:id="@+id/symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#4A4A4A"
+                android:textSize="@dimen/edittextsize"
+                android:text="59.00"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/twenty"></TextView>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹"
+                android:textColor="#4A4A4A"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="bold"></TextView>
+
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/staues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_marginLeft="@dimen/fifteen"
+            android:fontFamily="@font/poppins_regular"
+            android:text="On Dispatch"
+            android:textColor="@color/purple_700"
+            android:textSize="@dimen/twelve_size"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/ten"
+            android:textStyle="bold"></TextView>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

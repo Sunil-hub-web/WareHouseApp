@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chatbot_back"
+    tools:context="activity.RegisterPage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/hundred"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/undraw_deliverie">
+
+        </ImageView>
+
+        <LinearLayout
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/twenty"
+            android:layout_marginTop="@dimen/twenty_five"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Register"
+                android:textColor="#000000"
+                android:textSize="@dimen/twenty_five">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Now"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_five">
+
+            </TextView>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/thirty"
+            android:layout_marginTop="@dimen/twenty"
+            android:layout_marginRight="@dimen/thirty"
+            android:background="@drawable/button_back"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/ten"
+            android:text="Continue with MobileNo"
+            android:textColor="@color/white"
+            android:textSize="@dimen/edittextsize"></Button>
+
+        <RelativeLayout
+            android:id="@+id/sociallogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty">
+
+            <RelativeLayout
+                android:id="@+id/facebooksignInButton"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/twenty"
+                android:layout_marginRight="@dimen/seventy"
+                android:background="@drawable/textcountshape1">
+
+                <ImageView
+                    android:layout_width="@dimen/forty"
+                    android:layout_height="@dimen/forty"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/facebook_logo"></ImageView>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/signInButton"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginLeft="@dimen/seventy"
+                android:layout_marginTop="@dimen/twenty"
+                android:background="@drawable/textcountshape1">
+
+                <ImageView
+                    android:layout_width="@dimen/thirty_five"
+                    android:layout_height="@dimen/thirty_five"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/google"></ImageView>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/r"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/police"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five"
+                    android:layout_marginBottom="@dimen/forty"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="I already have an account ?"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/textsize">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/text_signUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five"
+                    android:layout_marginBottom="@dimen/fifty"
+                    android:layout_toRightOf="@id/police"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text=" Log In"
+                    android:textColor="#0A22A1"
+                    android:textSize="@dimen/textsize"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

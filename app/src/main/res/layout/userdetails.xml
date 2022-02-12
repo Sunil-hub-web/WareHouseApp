@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ninety"
+        android:layout_margin="@dimen/ten"
+        android:background="#FFFFFF"
+        android:elevation="@dimen/ten">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="@dimen/fifty"
+            android:layout_height="@dimen/forty"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/ten"
+            android:scaleType="fitXY"
+            android:src="@drawable/seller"></ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/productImage"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/viewUserDetails">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+               <!-- <TextView
+                    android:id="@+id/VehicalID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ten"
+                    android:text="Vehical ID :"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize"
+                    android:textStyle="bold"></TextView>-->
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/five"
+                    android:text="TJAL65986AJBUL63"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize"
+                    android:textStyle="bold"></TextView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/hundred_fifty"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mobno_bg"
+                android:layout_marginTop="@dimen/ten"
+                android:layout_marginLeft="@dimen/five">
+
+              <!--  <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ten"
+                    android:text="status :"
+                    android:textColor="@color/some_color1"
+                    android:textSize="@dimen/textsize"
+                    android:textStyle="bold"></TextView>-->
+
+                <TextView
+                    android:id="@+id/status_Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+91 7894561230"
+                    android:layout_margin="@dimen/six"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize"
+                    android:fontFamily="@font/poppins_bold"></TextView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/viewUserDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/ten"
+            android:text="Details"
+            android:background="@drawable/button_back"
+            android:textColor="@color/white">
+
+        </Button>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

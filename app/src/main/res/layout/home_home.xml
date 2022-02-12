@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/action_bg"
+    android:elevation="@dimen/five">
+
+   <ImageView
+       android:id="@+id/menuimage"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/baseline_menu"
+       android:layout_marginTop="10dp"
+       android:layout_marginLeft="20dp"
+       android:onClick="Clickmenu">
+
+   </ImageView>
+
+   <ImageView
+       android:id="@+id/imagenotification"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/bell"
+       android:layout_alignParentRight="true"
+       android:layout_marginTop="10dp"
+       android:layout_marginRight="30dp">
+
+   </ImageView>
+
+   <ImageView
+       android:id="@+id/imagecart"
+       android:layout_width="30dp"
+       android:layout_height="30dp"
+       android:src="@drawable/cartimage"
+       android:layout_alignParentRight="true"
+       android:layout_marginTop="5dp"
+       android:layout_marginRight="70dp">
+
+   </ImageView>
+
+   <TextView
+       android:id="@+id/name"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textColor="#0A22A1"
+       android:textSize="20dp"
+       android:text="Home"
+       android:layout_toRightOf="@+id/menuimage"
+       android:layout_marginTop="9dp"
+       android:layout_marginLeft="29dp"
+       android:textStyle="bold"></TextView>
+
+</RelativeLayout>

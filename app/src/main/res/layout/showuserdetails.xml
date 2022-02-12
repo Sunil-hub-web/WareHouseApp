@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hundred"
+            android:background="@drawable/side_nav_bar"
+            android:id="@+id/user">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/eighty"
+                android:layout_height="@dimen/eighty"
+                android:src="@drawable/profileimage"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/ten"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/profile_image"
+                android:layout_marginLeft="@dimen/twenty"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/edit_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sunil Kumar Dash"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/twenty_size">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="WareHouse"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/twenty">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mobile No"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/edit_MobileNo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:paddingLeft="@dimen/ten"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email_Id"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/edit_EmailId"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:paddingLeft="@dimen/ten"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/edit_Location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/five"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:padding="@dimen/ten"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btn_PayUser"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty"
+                android:background="@drawable/button_back"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Pay User"
+                android:textColor="@color/white"
+                android:textSize="@dimen/edittextsize"
+                android:layout_margin="@dimen/fifteen"></Button>
+
+            <Button
+                android:id="@+id/btn_DeleteUser"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty"
+                android:background="@drawable/button_back"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Delete User"
+                android:textColor="@color/white"
+                android:textSize="@dimen/edittextsize"
+                android:backgroundTint="#DF1304"
+                android:layout_margin="@dimen/fifteen"></Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

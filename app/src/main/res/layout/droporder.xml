@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/twenty"
+            android:layout_marginRight="@dimen/twenty"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fifteen">
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Drop Order"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/twenty_five">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Add a transport to drop order"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/textsize">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/twenty"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Pick order"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/textsize">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/twenty"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Order Id"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text"
+                    android:layout_marginLeft="@dimen/twenty"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Vendor Id"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/edit_OrderId"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/fifty"
+                    android:layout_margin="@dimen/five"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittextback"
+                    android:drawablePadding="@dimen/ten"
+                    android:ems="10"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/edittextsize"
+                    android:textStyle="normal" />
+
+                <EditText
+                    android:id="@+id/edit_VendorId"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/fifty"
+                    android:layout_margin="@dimen/five"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittextback"
+                    android:drawablePadding="@dimen/ten"
+                    android:ems="10"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/edittextsize"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ten"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Collection Center ID"
+                android:textColor="@color/black"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_CollectionCenterID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:hint="Name"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/thirteen"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ten"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Vendor Id"
+                android:textColor="@color/black"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_Vendor_Id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:hint="Name"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/thirteen"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/twenty"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Vehical type"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text"
+                    android:layout_marginLeft="@dimen/twenty"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Vehical ID"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <Spinner
+                    android:id="@+id/areaspinner"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/forty_five"
+                    android:layout_marginTop="@dimen/five"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittextback"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_down_black_24dp"
+                    android:drawableTint="@color/black"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/two"
+                    android:paddingRight="@dimen/two"
+                    android:spinnerMode="dropdown"
+                    android:text="Please Select Your Area"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fifteen" />
+
+                <EditText
+                    android:id="@+id/edit_VehicalID"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/fifty"
+                    android:layout_margin="@dimen/five"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittextback"
+                    android:drawablePadding="@dimen/ten"
+                    android:ems="10"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="@dimen/ten"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/edittextsize"
+                    android:textStyle="normal" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/twenty"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Labour Used"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text"
+                    android:layout_marginLeft="@dimen/twenty"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Order Qty"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <Spinner
+                    android:id="@+id/LabourUsedSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/forty_five"
+                    android:layout_marginTop="@dimen/five"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittextback"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_down_black_24dp"
+                    android:drawableTint="@color/black"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/two"
+                    android:paddingRight="@dimen/two"
+                    android:spinnerMode="dropdown"
+                    android:text="Please Select Your Area"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fifteen" />
+
+                <EditText
+                    android:id="@+id/edit_OrderQty"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/fifty"
+                    android:layout_margin="@dimen/five"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittextback"
+                    android:drawablePadding="@dimen/ten"
+                    android:ems="10"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="@dimen/ten"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/edittextsize"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_Addpickup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty"
+                android:background="@drawable/button_back"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Add Drop"
+                android:textColor="@color/white"
+                android:textSize="@dimen/edittextsize"></Button>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/twenty"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Back"
+                android:textColor="#000000"
+                android:textSize="@dimen/textsize">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ViewUserProfile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hundred_eighty"
+        android:background="@drawable/side_nav_bar"
+        android:id="@+id/user">
+
+        <ImageView
+            android:id="@+id/menuimage"
+            android:layout_width="@dimen/fifty"
+            android:layout_height="@dimen/forty"
+            android:src="@drawable/arrow_back"
+            android:layout_marginLeft="@dimen/twenty"
+            android:layout_marginTop="@dimen/fifteen">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Account"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/edittextsize"
+            android:layout_marginTop="@dimen/fifteen"
+            android:layout_centerHorizontal="true">
+
+        </TextView>
+
+        <RelativeLayout
+            android:id="@+id/pic"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/twenty"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/twenty">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/eighty"
+                android:layout_height="@dimen/eighty"
+                android:src="@drawable/profileimage"/>
+
+            <!-- <ImageView
+                 android:id="@+id/imageview"
+                 android:layout_alignParentRight="true"
+                 android:layout_below="@+id/profile_image"
+                 android:layout_width="@dimen/thirty"
+                 android:layout_height="@dimen/thirty"
+                 android:src="@drawable/camera"
+                 android:layout_marginTop="-40dp"
+                 android:layout_marginLeft="@dimen/ten"/>-->
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/pic"
+            android:layout_marginLeft="@dimen/twenty"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/thirty">
+
+            <TextView
+                android:id="@+id/edit_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sunil Kumar Dash"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twenty_size">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WareHouse"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/edittextsize">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_EditUserdata"
+        android:layout_width="@dimen/sixty"
+        android:layout_height="@dimen/sixty"
+        android:layout_marginTop="-30dp"
+        android:textColor="#000000"
+        android:textSize="@dimen/textsize"
+        android:drawableLeft="@drawable/vector_editor"
+        android:paddingLeft="@dimen/twenty"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:elevation="@dimen/fifty"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/ten"
+        android:layout_below="@+id/user"
+        android:background="@drawable/textcountshape"/>
+
+    <RelativeLayout
+        android:id="@+id/details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user"
+        android:layout_marginTop="@dimen/twenty"
+        android:layout_marginLeft="@dimen/ten">
+
+        <TextView
+            android:id="@+id/mydetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Details"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize">
+
+        </TextView>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_toRightOf="@id/mydetails"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_marginRight="@dimen/ten"
+            android:background="#000000"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_below="@id/details">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/details"
+            android:layout_margin="@dimen/twenty">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_UserName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:focusable="false"
+                android:clickable="false"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mobile No"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_MobileNo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:focusable="false"
+                android:clickable="false"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email_Id"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_EmailId"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:focusable="false"
+                android:clickable="false"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_Password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:focusable="false"
+                android:clickable="false"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_Location"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Locality"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_Locality"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="State"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_State"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="City"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_City"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Zip Code"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_ZipCode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pan Number"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_PanNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gst Number"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_GstNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Number"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_AccNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bank Name"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_BankName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ifc Code"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_IfcCode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/btn_UpdateAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty"
+                android:background="@drawable/button_back"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Update Address"
+                android:textColor="@color/white"
+                android:textSize="@dimen/edittextsize"></Button>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/twenty"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Back"
+                android:textColor="#000000"
+                android:textSize="@dimen/textsize">
+
+            </TextView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

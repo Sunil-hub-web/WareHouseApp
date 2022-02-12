@@ -1,0 +1,271 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chatbot_back">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/home_home"
+        android:layout_alignParentTop="true"
+        android:layout_height="40dp"
+        android:layout_width="match_parent"></include>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:id="@+id/r1"
+        android:layout_below="@id/include">
+
+        <TextView
+            android:id="@+id/tt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose your"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/tt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Payment method"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"
+            android:textSize="25dp"
+            android:layout_below="@id/tt"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/tt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="Select desired payment mode."
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_below="@id/tt2"
+            android:textStyle="bold"></TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/r4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hundred"
+        android:layout_below="@+id/r1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="15dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/image2"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"></ImageView>
+        <TextView
+            android:id="@+id/t8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="**** **** 1234"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/img3"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/t9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expires 09/25"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img3"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/t8"></TextView>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"></CheckBox>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/r6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hundred"
+        android:layout_below="@+id/r4"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:elevation="15dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/img5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/image3"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"></ImageView>
+        <TextView
+            android:id="@+id/t10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="**** **** 1234"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/img5"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/t11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expires 09/25"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img5"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/t10"></TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/r7"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hundred"
+        android:layout_below="@+id/r6"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:elevation="15dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/phonepay"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/image4"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"></ImageView>
+        <TextView
+            android:id="@+id/t4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username@ylb"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/phonepay"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/t5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phonepe UPI Id"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/phonepay"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/t4"></TextView>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:text="Current Method"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:layout_above="@+id/r5"></TextView>
+
+    <RelativeLayout
+        android:id="@+id/r5"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_margin="20dp"
+        android:elevation="15dp"
+        android:background="@color/white"
+        android:layout_above="@+id/paymentAdd">
+
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/money"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"></ImageView>
+        <TextView
+            android:id="@+id/t6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash On Delivery"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img2"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/t7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Default Method"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img2"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/t6"></TextView>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp">
+
+        </CheckBox>
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/paymentAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_back"
+        android:layout_alignParentBottom="true"
+        android:text="Add Payment Method"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"></Button>
+
+</RelativeLayout>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="activity.UserLogin">
+
+    <ImageView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/undraw_welcome"
+        android:layout_marginTop="@dimen/thirty">
+
+    </ImageView>
+
+    <LinearLayout
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/banner"
+        android:layout_marginLeft="@dimen/twenty"
+        android:layout_marginTop="@dimen/twenty">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome "
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty_five">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty_five">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <!-- <ImageView
+         android:id="@+id/backArrow"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:src="@drawable/arrow_fram"
+         android:layout_marginTop="@dimen/thirty"
+         android:layout_below="@id/banner"
+         android:layout_alignParentRight="true"
+         android:layout_marginRight="@dimen/twenty">
+
+     </ImageView>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/back"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/twenty">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Id"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty_size">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/eidt_mobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fifty"
+            android:layout_marginTop="@dimen/five"
+            android:layout_weight="1"
+            android:background="@drawable/edittextback"
+            android:drawablePadding="@dimen/twenty"
+            android:ems="10"
+            android:hint="Enter Email Id"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="20dp"
+            android:textColor="#000000"
+            android:textSize="@dimen/edittextsize"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty_size"
+            android:layout_marginTop="@dimen/fifteen">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/edit_Password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fifty"
+            android:layout_marginTop="@dimen/five"
+            android:layout_weight="1"
+            android:background="@drawable/edittextback"
+            android:drawablePadding="@dimen/twenty"
+            android:ems="10"
+            android:hint="password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/eighteen"
+            android:textColor="#000000"
+            android:textSize="@dimen/edittextsize"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot password ?"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize"
+            android:layout_marginTop="@dimen/twenty"
+            android:layout_marginRight="@dimen/ten"
+            android:layout_gravity="right">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/btn_Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_back"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/edittextsize"></Button>
+
+        <RelativeLayout
+            android:id="@+id/r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/fifteen"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/police"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/five"
+                android:text="You Don't have an account ?"
+                android:textSize="@dimen/textsize"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/text_signUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/police"
+                android:text=" Sign Up"
+                android:layout_marginTop="@dimen/five"
+                android:textColor="#0A22A1"
+                android:textSize="@dimen/textsize"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

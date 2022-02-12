@@ -1,0 +1,1137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/transport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:layout_marginBottom="@dimen/ten"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Transport Details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:layout_marginRight="@dimen/thirty"
+                    android:layout_toLeftOf="@id/warning">
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/twenty"
+                        android:layout_marginBottom="@dimen/five"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Status"
+                        android:textColor="#0A22A1"
+                        android:textSize="@dimen/textsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/status"
+                        android:layout_marginLeft="@dimen/twenty"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="On Delivery"
+                        android:textColor="#0A22A1"
+                        android:textSize="@dimen/textsize">
+
+                    </TextView>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/warning"
+                    android:layout_width="@dimen/thirty"
+                    android:layout_height="@dimen/thirty"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/thirty"
+                    android:src="@drawable/warningcircle">
+
+
+                </ImageView>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/fifteen"
+                android:layout_marginRight="@dimen/fifteen">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.50dp"
+                    android:layout_below="@+id/text1"
+                    android:layout_marginTop="@dimen/ten"
+                    android:background="#757474" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:layout_marginBottom="@dimen/ten"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Vehical Details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Transport ID"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Vehical ID."
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="ADKN5486AKJ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Vehical Reg no."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Vehical type"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="ADKN5486AKJ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Vehical Age"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Vehical Capacity"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="ADKN5486AKJ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.50dp"
+                    android:layout_below="@+id/text1"
+                    android:layout_marginTop="@dimen/ten"
+                    android:background="#757474" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/fifteen"
+                android:layout_marginRight="@dimen/fifteen">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.50dp"
+                    android:layout_below="@+id/text1"
+                    android:layout_marginTop="@dimen/ten"
+                    android:background="#757474" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:layout_marginBottom="@dimen/ten"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Driver’s Details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Driver"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="DOB"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="ADKN5486AKJ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Contact No"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Driver’s DL"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="ADKN5486AKJ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <!--<TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Vehical ID."
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>-->
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices nunc sit dui tortor donec lorem tincidunt imperdiet quam. Luctus."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <!--<TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>-->
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.50dp"
+                    android:layout_below="@+id/text1"
+                    android:layout_marginTop="@dimen/ten"
+                    android:background="#757474" />
+
+
+            </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_marginLeft="@dimen/fifteen"
+               android:layout_marginRight="@dimen/fifteen">
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="0.50dp"
+                   android:layout_below="@+id/text1"
+                   android:layout_marginTop="@dimen/ten"
+                   android:background="#757474" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="20dp"
+                   android:layout_marginTop="@dimen/twenty"
+                   android:layout_marginBottom="@dimen/ten"
+                   android:fontFamily="@font/poppins_semibold"
+                   android:text="Transport Details"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/edittextsize">
+
+               </TextView>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/twenty"
+                   android:weightSum="2">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_semibold"
+                       android:text="Deliver ID"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@id/text"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_semibold"
+                       android:text="Depot Location"
+                       android:textColor="#333333"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/ten"
+                   android:weightSum="2">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_regular"
+                       android:text="ADKN5486AKJ"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@id/text"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_regular"
+                       android:text="TN 25 MH 9653"
+                       android:textColor="#333333"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/twenty"
+                   android:weightSum="2">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_semibold"
+                       android:text="Shift"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@id/text"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_semibold"
+                       android:text="No of Orders"
+                       android:textColor="#333333"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/ten"
+                   android:weightSum="2">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_regular"
+                       android:text="ADKN5486AKJ"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@id/text"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_regular"
+                       android:text="TN 25 MH 9653"
+                       android:textColor="#333333"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/twenty"
+                   android:weightSum="2">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_semibold"
+                       android:text="Vehical Type "
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@id/text"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_semibold"
+                       android:text="Labor used"
+                       android:textColor="#333333"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/ten"
+                   android:weightSum="2">
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_regular"
+                       android:text="ADKN5486AKJ"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@id/text"
+                       android:layout_marginLeft="@dimen/ten"
+                       android:layout_weight="1"
+                       android:fontFamily="@font/poppins_regular"
+                       android:text="TN 25 MH 9653"
+                       android:textColor="#333333"
+                       android:textSize="@dimen/edittextsize">
+
+                   </TextView>
+
+
+               </LinearLayout>
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="0.50dp"
+                   android:layout_below="@+id/text1"
+                   android:layout_marginTop="@dimen/ten"
+                   android:background="#757474" />
+
+           </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/fifteen"
+                android:layout_marginRight="@dimen/fifteen">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.50dp"
+                    android:layout_below="@+id/text1"
+                    android:layout_marginTop="@dimen/ten"
+                    android:background="#757474" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:layout_marginBottom="@dimen/ten"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Labour Details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/edittextsize">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Labour ID"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Labour Post"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="ADKN5486AKJ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Labour Name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Contact No"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="ADKN5486AKJ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Shift"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <!--<TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Vehical ID."
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>-->
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices nunc sit dui tortor donec lorem tincidunt imperdiet quam. Luctus."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <!--<TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>-->
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <!--<TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Vehical ID."
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>-->
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices nunc sit dui tortor donec lorem tincidunt imperdiet quam. Luctus."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>
+
+                    <!--<TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="TN 25 MH 9653"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/edittextsize">
+
+                    </TextView>-->
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.50dp"
+                    android:layout_below="@+id/text1"
+                    android:layout_marginTop="@dimen/ten"
+                    android:background="#757474" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_Addpickup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty_five"
+                android:background="@drawable/button_back"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Contact Driver"
+                android:textColor="@color/white"
+                android:textSize="@dimen/edittextsize"
+                android:layout_marginLeft="@dimen/twenty"
+                android:layout_marginRight="@dimen/twenty"></Button>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/twenty"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Back"
+                android:textColor="#000000"
+                android:textSize="@dimen/textsize">
+
+            </TextView>
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>
