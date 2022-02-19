@@ -12,42 +12,44 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.warehouseapp.R;
-import com.example.warehouseapp.modelclass.PaymentHistory_ModelClass;
+import com.example.warehouseapp.modelclass.OrderRequest_ModelClass;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PaymentRequestAdapter extends RecyclerView.Adapter<PaymentRequestAdapter.ViewHolder> {
+public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<PaymentHistory_ModelClass> payment;
+    ArrayList<OrderRequest_ModelClass> orderRequest;
 
-    public PaymentRequestAdapter(ArrayList<PaymentHistory_ModelClass> payment, FragmentActivity activity) {
+    public OrderRequestAdapter(FragmentActivity activity, ArrayList<OrderRequest_ModelClass> orderrequest) {
 
         this.context = activity;
-        this.payment = payment;
-
+        this.orderRequest = orderrequest;
     }
 
     @NonNull
     @Override
-    public PaymentRequestAdapter.ViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
+    public OrderRequestAdapter.ViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.payment_request,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.orderrequest,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  PaymentRequestAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull  OrderRequestAdapter.ViewHolder holder, int position) {
 
-        PaymentHistory_ModelClass payment_request = payment.get(position);
+        OrderRequest_ModelClass order_request = orderRequest.get(position);
 
-        holder.idname.setText(payment_request.getOrderId());
-        holder.text_Price.setText(payment_request.getAmount());
+        holder.customerName.setText(order_request.getCoustomerName());
+        holder.orderId.setText(order_request.getOrderId());
+        holder.paymentStatues.setText(order_request.getPaymentStatus());
+        holder.status.setText(order_request.getStatus());
+        holder.totalAmount.setText(order_request.getTotalAmount());
 
-        String utcDateString = payment_request.getDatetime();
+        String utcDateString = order_request.getOrderDate();
 
         try {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -61,31 +63,34 @@ public class PaymentRequestAdapter extends RecyclerView.Adapter<PaymentRequestAd
 
                 Log.d("dateStr", dateStr + "  "+dateStr1);
 
-                holder.time.setText(dateStr+"("+dateStr1+")");
+                holder.datetime.setText(dateStr+"("+dateStr1+")");
             }
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
     public int getItemCount() {
-        return payment.size();
+
+        return orderRequest.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView text_Price,idname,time;
+        TextView orderId,customerName,datetime,paymentStatues,status,totalAmount;
 
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
 
-            time = itemView.findViewById(R.id.time);
-            text_Price = itemView.findViewById(R.id.text_Price);
-            idname = itemView.findViewById(R.id.idname);
+            totalAmount = itemView.findViewById(R.id.totalAmount);
+            orderId = itemView.findViewById(R.id.orderId);
+            customerName = itemView.findViewById(R.id.customerName);
+            datetime = itemView.findViewById(R.id.datetime);
+            paymentStatues = itemView.findViewById(R.id.paymentStatues);
+            status = itemView.findViewById(R.id.status);
         }
     }
 }

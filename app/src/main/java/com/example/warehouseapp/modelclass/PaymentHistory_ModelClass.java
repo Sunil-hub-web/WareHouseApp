@@ -2,12 +2,13 @@ package com.example.warehouseapp.modelclass;
 
 public class PaymentHistory_ModelClass {
 
-    String amount,orderId,datetime;
+    String amount,orderId,datetime,createdAt;
 
-    public PaymentHistory_ModelClass(String amount, String orderId, String datetime) {
+    public PaymentHistory_ModelClass(String amount, String orderId, String datetime,String createdAt) {
         this.amount = amount;
         this.orderId = orderId;
         this.datetime = datetime;
+        this.createdAt = createdAt;
     }
 
     public String getAmount() {
@@ -32,5 +33,13 @@ public class PaymentHistory_ModelClass {
 
     public void setDatetime(String datetime) {
         this.datetime = datetime;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }

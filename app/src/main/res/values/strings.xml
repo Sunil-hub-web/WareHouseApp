@@ -18,7 +18,6 @@
     <string name="MyProfile">My Profile</string>
 
 
-
     <string name="category">Category</string>
 
     <string name="Orders">Orders</string>
@@ -29,6 +28,10 @@
     <string name="Myfavourite">My Favourite</string>
     <string name="Dashboard">Dashboard</string>
     <string name="entername">Enter You Nmae</string>
+    <string name="enterbankaccno">Enter Valide Bank AccNo</string>
+    <string name="enterzipcode">Enter Valide Zip Code</string>
+    <string name="fillthedetails">Fill The details</string>
+    <string name="enterifccode">Enter Valide IFC Code</string>
     <string name="entercontact">Enter Your Mobile No</string>
     <string name="enteremail">Enter Your Email</string>
     <string name="enterpassword">Enter Your Password</string>

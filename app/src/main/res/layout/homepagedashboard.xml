@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +23,7 @@
                 android:layout_marginLeft="@dimen/fifteen"
                 android:layout_marginRight="@dimen/fifteen"
                 android:elevation="@dimen/five"
-                android:src="@drawable/splash_image"/>
+                android:src="@drawable/wharehouseimage"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -55,6 +54,7 @@
                             android:text="Order Details"
                             android:textAppearance="@style/order_detai"
                             android:elevation="@dimen/five"
+                            android:textSize="@dimen/textsize"
                             android:gravity="top"
                             android:fontFamily="@font/poppins_bold"/>
 
@@ -294,7 +294,7 @@
                 android:textColor="#0A22A1"
                 android:layout_marginTop="@dimen/ten"
                 android:layout_marginLeft="@dimen/fifteen"
-                android:textSize="@dimen/twenty">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -380,7 +380,7 @@
                     android:backgroundTint="#ED0707">
 
                     <TextView
-                        android:id="@+id/bottomoutofstock"
+                        android:id="@+id/bottompending"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
@@ -401,7 +401,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/hundred_twenty"
+                android:layout_height="@dimen/hundred"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/fifteen"
                 android:layout_marginRight="@dimen/fifteen"
@@ -410,7 +410,7 @@
                 android:layout_marginTop="@dimen/ten">
 
                 <TextView
-                    android:id="@+id/number"
+                    android:id="@+id/complaints_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
@@ -418,11 +418,12 @@
                     android:layout_marginLeft="@dimen/twenty"
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/forty">
+                    android:textSize="@dimen/edittextsize">
 
                 </TextView>
 
                 <TextView
+                    android:id="@+id/complaints"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
@@ -431,7 +432,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/fifty"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/twenty_five">
+                    android:textSize="@dimen/edittextsize">
 
                 </TextView>
 

@@ -78,12 +78,14 @@ public class PaymentRequest extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, AppUrl.paymenthistorys, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 progressDialog.dismiss();
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
 
                     String err = jsonObject.getString("err");
+
                     if(err.equals("false")){
 
                         String message = jsonObject.getString("msg");
@@ -100,6 +102,7 @@ public class PaymentRequest extends Fragment {
                             String user_id = jsonObject_data.getString("user_id");
                             String cart_id = jsonObject_data.getString("cart_id");
                             String amount = jsonObject_data.getString("amount");
+                            String createdAt = jsonObject_data.getString("createdAt");
                             //String success = jsonObject_data.getString("success");
                             //String payment_status = jsonObject_data.getString("payment_status");
 
@@ -119,7 +122,7 @@ public class PaymentRequest extends Fragment {
                             String description = jsonObject_payment_status.getString("description");*/
 
                             PaymentHistory_ModelClass paymentHistory_modelClass = new PaymentHistory_ModelClass(
-                                     amount,user_id,"08-02-2022 : 19:45"
+                                     amount,user_id,createdAt,""
                             );
 
                             payment.add(paymentHistory_modelClass);
@@ -128,10 +131,12 @@ public class PaymentRequest extends Fragment {
                         }
 
                         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-                        //recyclerPaymentRequest.setItemAnimator(new DefaultItemAnimator());
+                        linearLayoutManager.setReverseLayout(true);
+                        linearLayoutManager.setStackFromEnd(true);
                         paymentRequestAdapter = new PaymentRequestAdapter(payment,getActivity());
                         recyclerPaymentRequest.setLayoutManager(linearLayoutManager);
                         recyclerPaymentRequest.setHasFixedSize(true);
+                        recyclerPaymentRequest.setItemAnimator(new DefaultItemAnimator());
                         recyclerPaymentRequest.setAdapter(paymentRequestAdapter);
 
                     }

@@ -35,6 +35,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.warehouseapp.R;
 import com.example.warehouseapp.SharedPrefManager;
 import com.example.warehouseapp.url.AppUrl;
@@ -53,14 +55,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ViewUserProfile extends AppCompatActivity {
 
     EditText edit_UserName,edit_MobileNo,edit_EmailId,edit_Password,edit_Location,edit_Locality,edit_State,
-            edit_ZipCode,edit_PanNumber,edit_GstNumber,edit_AccNumber,edit_BankName,edit_IfcCode,edit_City;
+            edit_ZipCode,edit_GstNumber,edit_AccNumber,edit_BankName,edit_IfcCode,edit_City;
 
     String str_UserName,str_MobileNo,str_EmailId,str_Password,str_Location,str_Locality,str_State,
-            str_ZipCode,str_PanNumber,str_GstNumber,str_AccNumber,str_BankName,str_IfcCode,str_City;
+            str_ZipCode,str_GstNumber,str_AccNumber,str_BankName,str_IfcCode,str_City;
 
-    TextView text_EditUserdata,edit_username;
-    String token,user_password,ImageDecode;
-    File f;
+    TextView text_EditUserdata,edit_username,back_button;
     ImageView menuimage;
     Button btn_UpdateAddress;
     Long int_AccNumber;
@@ -69,6 +69,9 @@ public class ViewUserProfile extends AppCompatActivity {
     public static final int IMAGE_CODE = 1;
     Uri imageUri,selectedImageUri;
     Bitmap bitmap;
+    File f;
+    String token,user_password,ImageDecode;
+    AwesomeValidation awesomeValidation;
 
 
     @Override
@@ -88,7 +91,6 @@ public class ViewUserProfile extends AppCompatActivity {
         edit_Locality = findViewById(R.id.edit_Locality);
         edit_State = findViewById(R.id.edit_State);
         edit_ZipCode = findViewById(R.id.edit_ZipCode);
-        edit_PanNumber = findViewById(R.id.edit_PanNumber);
         edit_GstNumber = findViewById(R.id.edit_GstNumber);
         edit_AccNumber = findViewById(R.id.edit_AccNumber);
         edit_BankName = findViewById(R.id.edit_BankName);
@@ -96,7 +98,18 @@ public class ViewUserProfile extends AppCompatActivity {
         edit_City = findViewById(R.id.edit_City);
         btn_UpdateAddress = findViewById(R.id.btn_UpdateAddress);
         profile_image = findViewById(R.id.profile_image);
+        back_button = findViewById(R.id.back_button);
 
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_BankName, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_State, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_City, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_Location, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_Locality, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_AccNumber, "^[0-9]{9,18}$", R.string.enterbankaccno);
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_ZipCode, "^[0-9]{6}$", R.string.enterzipcode);
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_IfcCode, "^[A-Za-z]{4,}0[A-Za-z0-9]{6,}$", R.string.enterifccode);
 
 
        /* edit_EmailId.setFocusable(false);
@@ -124,27 +137,31 @@ public class ViewUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(awesomeValidation.validate()){
 
+                    str_UserName = edit_UserName.getText().toString().trim();
+                    str_MobileNo = edit_MobileNo.getText().toString().trim();
+                    str_EmailId = edit_EmailId.getText().toString().trim();
+                    str_Password = edit_Password.getText().toString().trim();
+                    str_Location = edit_Location.getText().toString().trim();
+                    str_Locality = edit_Locality.getText().toString().trim();
+                    str_State = edit_State.getText().toString().trim();
+                    str_ZipCode = edit_ZipCode.getText().toString().trim();
+                    str_GstNumber = edit_GstNumber.getText().toString().trim();
+                    str_AccNumber = edit_AccNumber.getText().toString().trim();
+                    int_AccNumber = Long.valueOf(str_AccNumber);
+                    str_BankName = edit_BankName.getText().toString().trim();
+                    str_IfcCode = edit_IfcCode.getText().toString().trim();
+                    str_City = edit_City.getText().toString().trim();
 
-                str_UserName = edit_UserName.getText().toString().trim();
-                str_MobileNo = edit_MobileNo.getText().toString().trim();
-                str_EmailId = edit_EmailId.getText().toString().trim();
-                str_Password = edit_Password.getText().toString().trim();
-                str_Location = edit_Location.getText().toString().trim();
-                str_Locality = edit_Locality.getText().toString().trim();
-                str_State = edit_State.getText().toString().trim();
-                str_ZipCode = edit_ZipCode.getText().toString().trim();
-                str_PanNumber = edit_PanNumber.getText().toString().trim();
-                str_GstNumber = edit_GstNumber.getText().toString().trim();
-                str_AccNumber = edit_AccNumber.getText().toString().trim();
-                int_AccNumber = Long.valueOf(str_AccNumber);
-                str_BankName = edit_BankName.getText().toString().trim();
-                str_IfcCode = edit_IfcCode.getText().toString().trim();
-                str_City = edit_City.getText().toString().trim();
+                    updateUserProfile(str_UserName,str_MobileNo,str_EmailId,91,int_AccNumber,str_IfcCode,str_BankName,"123",
+                            str_GstNumber,"123",str_Location,str_Locality,str_City,str_State,str_ZipCode);
 
-                updateUserProfile(str_UserName,str_MobileNo,str_EmailId,91,int_AccNumber,str_IfcCode,str_BankName,"123",
-                        str_GstNumber,"123",str_Location,str_Locality,str_City,str_State,str_ZipCode);
+                }else{
 
+                    Toast.makeText(ViewUserProfile.this, "Enter validate data", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -171,9 +188,35 @@ public class ViewUserProfile extends AppCompatActivity {
             }
         });
 
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ViewUserProfile.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void viewUserDetails(String token){
+
+        edit_UserName.setText("");
+        edit_username.setText("");
+        edit_MobileNo.setText("");
+        edit_EmailId.setText("");
+        edit_Password.setText("");
+        edit_GstNumber.setText("");
+
+        edit_Location.setText("");
+        edit_Locality.setText("");
+        edit_City.setText("");
+        edit_State.setText("");
+        edit_ZipCode.setText("");
+
+        edit_AccNumber.setText("");
+        edit_BankName.setText("");
+        edit_IfcCode.setText("");
 
         ProgressDialog progressDialog = new ProgressDialog(ViewUserProfile.this);
         progressDialog.show();
@@ -196,47 +239,69 @@ public class ViewUserProfile extends AppCompatActivity {
 
                     JSONObject jsonObject_Data = new JSONObject(userData);
 
-                    String name = jsonObject_Data.getString("name");
-                    String email = jsonObject_Data.getString("emailID");
-                    String mobile = jsonObject_Data.getString("mobile");
-                    String countryCode = jsonObject_Data.getString("countryCode");
-                    String password = jsonObject_Data.getString("password");
+                    if(jsonObject_Data.has("location")) {
 
-                    String location = jsonObject_Data.getString("location");
-                    String accountDetails = jsonObject_Data.getString("accountDetails");
+                        String _id = jsonObject_Data.getString("_id");
+                        String name = jsonObject_Data.getString("name");
+                        String email = jsonObject_Data.getString("emailID");
+                        String mobile = jsonObject_Data.getString("mobile");
+                        String countryCode = jsonObject_Data.getString("countryCode");
+                        String password = jsonObject_Data.getString("password");
+                        // String gstImage = jsonObject_Data.getString("gstImage");
+                        String gstNumber = jsonObject_Data.getString("gstNumber");
 
-                    JSONObject jsonObject_location = new JSONObject(location);
+                        String location = jsonObject_Data.getString("location");
+                        String accountDetails = jsonObject_Data.getString("accountDetails");
 
-                    String address = jsonObject_location.getString("address");
-                    String locality = jsonObject_location.getString("locality");
-                    String city = jsonObject_location.getString("city");
-                    String state = jsonObject_location.getString("state");
-                    String zip = jsonObject_location.getString("zip");
-                    //String gstImage = jsonObject_location.getString("gstImage");
-                    //String gstNumber = jsonObject_location.getString("gstNumber");
+                        JSONObject jsonObject_location = new JSONObject(location);
 
-                    JSONObject jsonObject_accountDetails = new JSONObject(accountDetails);
+                        String address = jsonObject_location.getString("address");
+                        String locality = jsonObject_location.getString("locality");
+                        String city = jsonObject_location.getString("city");
+                        String state = jsonObject_location.getString("state");
+                        String zip = jsonObject_location.getString("zip");
 
-                    String accountNumber = jsonObject_accountDetails.getString("accountNumber");
-                    String bankName = jsonObject_accountDetails.getString("bankName");
-                    String ifscCode = jsonObject_accountDetails.getString("ifscCode");
 
-                    edit_UserName.setText(name);
-                    edit_username.setText(name);
-                    edit_MobileNo.setText(mobile);
-                    edit_EmailId.setText(email);
-                    edit_Password.setText(password);
-                    //edit_GstNumber.setText(gstNumber);
+                        JSONObject jsonObject_accountDetails = new JSONObject(accountDetails);
 
-                    edit_Location.setText(address);
-                    edit_Locality.setText(locality);
-                    edit_City.setText(city);
-                    edit_State.setText(state);
-                    edit_ZipCode.setText(zip);
+                        String accountNumber = jsonObject_accountDetails.getString("accountNumber");
+                        String bankName = jsonObject_accountDetails.getString("bankName");
+                        String ifscCode = jsonObject_accountDetails.getString("ifscCode");
 
-                    edit_AccNumber.setText(accountNumber);
-                    edit_BankName.setText(bankName);
-                    edit_IfcCode.setText(ifscCode);
+
+                        edit_UserName.setText(name);
+                        edit_username.setText(name);
+                        edit_MobileNo.setText(mobile);
+                        edit_EmailId.setText(email);
+                        edit_Password.setText(password);
+                        edit_GstNumber.setText(gstNumber);
+
+                        edit_Location.setText(address);
+                        edit_Locality.setText(locality);
+                        edit_City.setText(city);
+                        edit_State.setText(state);
+                        edit_ZipCode.setText(zip);
+
+                        edit_AccNumber.setText(accountNumber);
+                        edit_BankName.setText(bankName);
+                        edit_IfcCode.setText(ifscCode);
+                    }else{
+
+                        String _id = jsonObject_Data.getString("_id");
+                        String name = jsonObject_Data.getString("name");
+                        String email = jsonObject_Data.getString("emailID");
+                        String mobile = jsonObject_Data.getString("mobile");
+                        String countryCode = jsonObject_Data.getString("countryCode");
+                        String password = jsonObject_Data.getString("password");
+
+                        edit_UserName.setText(name);
+                        edit_username.setText(name);
+                        edit_MobileNo.setText(mobile);
+                        edit_EmailId.setText(email);
+                        edit_Password.setText(password);
+                    }
+
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -316,6 +381,8 @@ public class ViewUserProfile extends AppCompatActivity {
                     if(code.equals("200")){
                         String message = response.getString("msg");
                         Toast.makeText(ViewUserProfile.this, message, Toast.LENGTH_SHORT).show();
+
+                        viewUserDetails(token);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -535,12 +602,11 @@ public class ViewUserProfile extends AppCompatActivity {
             }
 
             @Override
-            protected Map<String, DataPart> getByteData() {
+            protected Map<String, DataPart> getByteData() throws AuthFailureError {
 
-                Map<String, DataPart> params = new HashMap<>();
-
+                Map<String,DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-                params.put("photo", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                params.put("photo",new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
                 return params;
             }
         };
@@ -602,4 +668,6 @@ public class ViewUserProfile extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);*/
 
     }
+
+
 }

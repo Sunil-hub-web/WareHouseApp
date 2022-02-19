@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/first"
@@ -13,12 +13,12 @@
 
         <ImageView
             android:id="@+id/productImage"
-            android:layout_width="@dimen/eighty"
-            android:layout_height="@dimen/forty"
+            android:layout_width="@dimen/fifty"
+            android:layout_height="@dimen/fifty"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/ten"
             android:scaleType="fitXY"
-            android:src="@drawable/vector1"></ImageView>
+            android:src="@drawable/order_icon"></ImageView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:textStyle="bold"></TextView>
 
                 <TextView
-                    android:id="@+id/idname"
+                    android:id="@+id/order_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/five"

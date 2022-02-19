@@ -26,6 +26,22 @@ public class AppUrl {
 
     public static final String getAllProduct = "https://kisaanandfactory.com/api/v1/userapp/product/all";
 
+    public static final String getAllOrder = "https://kisaanandfactory.com/api/v1/adminapp/order/all";
+
+    public static final String getAllpacked = "https://kisaanandfactory.com/api/v1/adminapp/order/packed";
+
+    public static final String getAllshipped = "https://kisaanandfactory.com/api/v1/adminapp/order/shipped";
+
+    public static final String getAllcomplaints = "https://kisaanandfactory.com/api/v1/adminapp/complaint/all-complaints";
+
+    public static final String getHomeDetailsZip = "https://kisaanandfactory.com/api/v1/warehouseapp/main/get-home-data?zipcode=";
+
+    public static final String getHomeDetails = "https://kisaanandfactory.com/api/v1/warehouseapp/main/get-home-data";
+
+    public static final String addProduct = "https://kisaanandfactory.com/api/v1/adminapp/product/add";
+
+    public static final String addVender = "https://kisaanandfactory.com/api/v1/adminapp/user/vendor/add";
+
 
 
 

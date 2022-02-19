@@ -62,7 +62,7 @@ public class UserRegister extends AppCompatActivity {
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-        awesomeValidation.addValidation(UserRegister.this, R.id.edit_UserName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
+        awesomeValidation.addValidation(UserRegister.this, R.id.edit_UserName, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
         awesomeValidation.addValidation(UserRegister.this, R.id.edit_MobileNumber, "^[0-9]{10}$", R.string.entercontact);
         awesomeValidation.addValidation(UserRegister.this, R.id.edit_EMail, Patterns.EMAIL_ADDRESS, R.string.enteremail);
         //awesomeValidation.addValidation (UserSignUpPage.this,R.id.edit_Password,"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$",R.string.enterpassword);

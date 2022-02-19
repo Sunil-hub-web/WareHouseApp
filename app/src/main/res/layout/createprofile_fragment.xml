@@ -16,11 +16,57 @@
 
     </TextView>
 
+    <LinearLayout
+        android:id="@+id/usertype"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_below="@+id/text"
+        android:layout_marginLeft="@dimen/twenty"
+        android:layout_marginRight="@dimen/twenty"
+        android:layout_marginTop="@dimen/twenty_size">
+
+        <TextView
+            android:id="@+id/text_Delivery"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/forty"
+            android:layout_margin="@dimen/five"
+            android:background="@drawable/edittextback"
+            android:ems="10"
+            android:text="Delivery"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/edittextsize"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/text_Vender"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/forty"
+            android:layout_margin="@dimen/five"
+            android:background="@drawable/edittextback"
+            android:ems="10"
+            android:text="Vender"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/edittextsize"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
-        android:layout_below="@id/text">
+        android:layout_below="@id/usertype">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +86,7 @@
             </TextView>
 
             <Spinner
-                android:id="@+id/field"
+                android:id="@+id/profileFor"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/fifty"
                 android:layout_marginTop="@dimen/five"
@@ -102,6 +148,7 @@
                 android:background="@drawable/edittextback"
                 android:drawablePadding="@dimen/twenty"
                 android:ems="10"
+                android:maxLength="10"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:paddingLeft="20dp"
@@ -220,6 +267,33 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Street"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_Street"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="State"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
@@ -230,6 +304,33 @@
 
             <EditText
                 android:id="@+id/edit_State"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/five"
+                android:layout_weight="1"
+                android:background="@drawable/edittextback"
+                android:drawablePadding="@dimen/twenty"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="City"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize"
+                android:layout_marginTop="@dimen/ten">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edit_City"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/fifty"
                 android:layout_marginTop="@dimen/five"
@@ -264,8 +365,9 @@
                 android:background="@drawable/edittextback"
                 android:drawablePadding="@dimen/twenty"
                 android:ems="10"
+                android:maxLength="6"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="number"
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
@@ -346,7 +448,7 @@
                 android:drawablePadding="@dimen/twenty"
                 android:ems="10"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="number"
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
@@ -433,9 +535,55 @@
                 android:textSize="@dimen/edittextsize"
                 android:textStyle="normal"/>
 
+            <LinearLayout
+                android:id="@+id/usertype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_below="@+id/text"
+                android:layout_marginLeft="@dimen/twenty"
+                android:layout_marginRight="@dimen/twenty"
+                android:layout_marginTop="@dimen/twenty_size">
+
+                <TextView
+                    android:id="@+id/text_panImage"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/forty"
+                    android:layout_margin="@dimen/five"
+                    android:background="@drawable/edittextback"
+                    android:ems="10"
+                    android:text="Upload panImage"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:layout_alignParentRight="true"
+                    android:textSize="@dimen/textsize"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/text_gstImage"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/forty"
+                    android:layout_margin="@dimen/five"
+                    android:background="@drawable/edittextback"
+                    android:ems="10"
+                    android:text="Upload GstImage"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:layout_alignParentRight="true"
+                    android:textSize="@dimen/textsize"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
 
             <Button
-                android:id="@+id/btn_UpdateAddress"
+                android:id="@+id/btn_AddVender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/twenty"
@@ -447,6 +595,7 @@
 
 
             <TextView
+                android:id="@+id/button_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

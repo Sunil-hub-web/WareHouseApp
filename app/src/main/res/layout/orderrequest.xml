@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_userDetails"
@@ -30,7 +30,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.8"
                     android:layout_height="wrap_content"
                     android:text="Order Id"
                     android:textColor="#5F5E5E"
@@ -40,9 +40,9 @@
                     android:layout_marginLeft="@dimen/fifteen"></TextView>
 
                 <TextView
-                    android:id="@+id/book_id"
+                    android:id="@+id/orderId"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:layout_height="wrap_content"
                     android:text="Sunil Dash"
                     android:textColor="#5F5E5E"
@@ -61,7 +61,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.8"
                     android:layout_height="wrap_content"
                     android:text="Customer Name"
                     android:textColor="#5F5E5E"
@@ -71,9 +71,9 @@
                     android:layout_marginLeft="@dimen/fifteen"></TextView>
 
                 <TextView
-                    android:id="@+id/service_catagory"
+                    android:id="@+id/customerName"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:layout_height="wrap_content"
                     android:text="Payment Status"
                     android:textColor="#5F5E5E"
@@ -92,7 +92,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.8"
                     android:layout_height="wrap_content"
                     android:text="date/time"
                     android:textColor="#5F5E5E"
@@ -104,7 +104,7 @@
                 <TextView
                     android:id="@+id/datetime"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:layout_height="wrap_content"
                     android:text="Sunil Dash"
                     android:textColor="#5F5E5E"
@@ -123,7 +123,38 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.8"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Statues"
+                    android:textColor="#5F5E5E"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/textsize"
+                    android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                <TextView
+                    android:id="@+id/paymentStatues"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.1"
+                    android:layout_height="wrap_content"
+                    android:text="Sunil Dash"
+                    android:textColor="#5F5E5E"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/textsize"
+                    android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_margin="@dimen/five">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.8"
                     android:layout_height="wrap_content"
                     android:text="Status"
                     android:textColor="#5F5E5E"
@@ -133,9 +164,9 @@
                     android:layout_marginLeft="@dimen/fifteen"></TextView>
 
                 <TextView
-                    android:id="@+id/service_subcatagory"
+                    android:id="@+id/status"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:layout_height="wrap_content"
                     android:text="Sunil Dash"
                     android:textColor="#5F5E5E"
@@ -150,11 +181,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:weightSum="2"
-                android:layout_margin="@dimen/five">
+                android:layout_margin="@dimen/five"
+                android:layout_marginBottom="@dimen/ten">
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.8"
                     android:layout_height="wrap_content"
                     android:text="Total Amount"
                     android:textColor="#5F5E5E"
@@ -164,9 +196,9 @@
                     android:layout_marginLeft="@dimen/fifteen"></TextView>
 
                 <TextView
-                    android:id="@+id/ServiceTypeDesc"
+                    android:id="@+id/totalAmount"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:layout_height="wrap_content"
                     android:text="Sunil Dash"
                     android:textColor="#5F5E5E"
@@ -177,10 +209,7 @@
 
             </LinearLayout>
 
-
-
         </LinearLayout>
-
 
     </androidx.cardview.widget.CardView>
 

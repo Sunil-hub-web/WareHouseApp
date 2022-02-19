@@ -62,7 +62,7 @@
             android:fontFamily="@font/poppins_regular"
             android:gravity="center_horizontal"
             android:padding="@dimen/ten"
-            android:text="Continue with MobileNo"
+            android:text="Continue with Email Id"
             android:textColor="@color/white"
             android:textSize="@dimen/edittextsize"></Button>
 

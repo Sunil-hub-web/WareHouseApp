@@ -46,7 +46,7 @@
                 android:id="@+id/profile_image"
                 android:layout_width="@dimen/eighty"
                 android:layout_height="@dimen/eighty"
-                android:src="@drawable/profileimage"/>
+                android:src="@drawable/wharehouseimage"/>
 
             <!-- <ImageView
                  android:id="@+id/imageview"
@@ -144,7 +144,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scrollbars="none"
         android:layout_below="@id/details">
 
@@ -404,7 +404,7 @@
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
                 android:textStyle="normal"/>
-
+<!--
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -430,7 +430,7 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal"/>-->
 
             <TextView
                 android:layout_width="match_parent"
@@ -553,6 +553,7 @@
 
 
             <TextView
+                android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
