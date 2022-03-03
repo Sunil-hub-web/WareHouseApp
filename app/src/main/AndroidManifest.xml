@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.warehouseapp">
+    package="com.kisaanandfactory.warehouseapp">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -16,7 +16,7 @@
         android:theme="@style/Theme.WareHouseApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.SplashScreen"
+            android:name="com.kisaanandfactory.warehouseapp.activity.SplashScreen"
             android:theme="@style/Theme.WareHouseApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,28 +25,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ViewUserProfile"
+            android:name="com.kisaanandfactory.warehouseapp.activity.ViewUserProfile"
             android:theme="@style/Theme.WareHouseApp.NoActionBar" />
         <activity
-            android:name=".activity.ChangePassword"
+            android:name="com.kisaanandfactory.warehouseapp.activity.ChangePassword"
             android:theme="@style/Theme.WareHouseApp.NoActionBar" />
         <activity
-            android:name=".activity.ForgotPassword"
+            android:name="com.kisaanandfactory.warehouseapp.activity.ForgotPassword"
             android:theme="@style/Theme.WareHouseApp.NoActionBar" />
         <activity
-            android:name=".activity.OtpVerification"
+            android:name="com.kisaanandfactory.warehouseapp.activity.OtpVerification"
             android:theme="@style/Theme.WareHouseApp.NoActionBar" />
         <activity
-            android:name=".activity.UserRegister"
+            android:name="com.kisaanandfactory.warehouseapp.activity.UserRegister"
             android:theme="@style/Theme.WareHouseApp.NoActionBar" />
         <activity
-            android:name=".activity.UserLogin"
+            android:name="com.kisaanandfactory.warehouseapp.activity.UserLogin"
             android:theme="@style/Theme.WareHouseApp.NoActionBar"></activity>
         <activity
-            android:name=".activity.RegisterPage"
+            android:name="com.kisaanandfactory.warehouseapp.activity.RegisterPage"
             android:theme="@style/Theme.WareHouseApp.NoActionBar"></activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.kisaanandfactory.warehouseapp.activity.MainActivity"
             android:theme="@style/Theme.WareHouseApp.NoActionBar" />
     </application>
 
