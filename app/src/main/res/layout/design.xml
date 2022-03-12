@@ -4,229 +4,176 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/expandableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/twenty"
-        android:layout_marginTop="@dimen/twenty"
-        android:layout_marginRight="@dimen/twenty"
-        android:orientation="vertical">
-
-
-
-
+        android:orientation="vertical"
+        android:background="@drawable/edittextback">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/twenty"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:layout_margin="@dimen/five">
 
             <TextView
                 android:layout_width="0dp"
+                android:layout_weight="0.8"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ten"
-                android:layout_weight="1"
+                android:text="customer Name"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Categories"
-                android:textColor="@color/black"
-                android:textSize="@dimen/edittextsize">
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
 
-            </TextView>
+            <TextView
+                android:id="@+id/customerName"
+                android:layout_width="0dp"
+                android:layout_weight="1.1"
+                android:layout_height="wrap_content"
+                android:text="Sunil Dash"
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_margin="@dimen/five">
 
             <TextView
                 android:layout_width="0dp"
+                android:layout_weight="0.8"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/text"
-                android:layout_marginLeft="@dimen/ten"
-                android:layout_weight="1"
+                android:text="Ph.no"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Sub - Categories"
-                android:textColor="#333333"
-                android:textSize="@dimen/edittextsize">
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
 
-            </TextView>
-
+            <TextView
+                android:id="@+id/phoneNo"
+                android:layout_width="0dp"
+                android:layout_weight="1.1"
+                android:layout_height="wrap_content"
+                android:text="Payment Status"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2">
-
-            <EditText
-                android:id="@+id/edit_OrderId"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/fifty"
-                android:layout_margin="@dimen/five"
-                android:layout_weight="1"
-                android:background="@drawable/edittextback"
-                android:drawablePadding="@dimen/ten"
-                android:ems="10"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:textColor="#000000"
-                android:textSize="@dimen/edittextsize"
-                android:textStyle="normal" />
-
-            <EditText
-                android:id="@+id/edit_VendorId"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/fifty"
-                android:layout_margin="@dimen/five"
-                android:layout_weight="1"
-                android:background="@drawable/edittextback"
-                android:drawablePadding="@dimen/ten"
-                android:ems="10"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:textColor="#000000"
-                android:textSize="@dimen/edittextsize"
-                android:textStyle="normal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/twenty"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:layout_margin="@dimen/five">
 
             <TextView
                 android:layout_width="0dp"
+                android:layout_weight="0.8"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ten"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Product Name"
-                android:textColor="@color/black"
-                android:textSize="@dimen/edittextsize">
+                android:text="Delivery Address"
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
 
-            </TextView>
+            <TextView
+                android:id="@+id/datetime"
+                android:layout_width="0dp"
+                android:layout_weight="1.1"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus suspendisse in."
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_margin="@dimen/five">
 
             <TextView
                 android:layout_width="0dp"
+                android:layout_weight="0.8"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/text"
-                android:layout_marginLeft="@dimen/ten"
-                android:layout_weight="1"
+                android:text="Payment Method"
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Product Type"
-                android:textColor="#333333"
-                android:textSize="@dimen/edittextsize">
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
 
-            </TextView>
-
+            <TextView
+                android:id="@+id/paymentStatues"
+                android:layout_width="0dp"
+                android:layout_weight="1.1"
+                android:layout_height="wrap_content"
+                android:text="Sunil Dash"
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
 
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:layout_margin="@dimen/five"
+            android:layout_marginBottom="@dimen/ten">
 
-            <EditText
-                android:id="@+id/edit_ProductName"
+            <TextView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/fifty"
-                android:layout_margin="@dimen/five"
-                android:layout_weight="1"
-                android:background="@drawable/edittextback"
-                android:drawablePadding="@dimen/ten"
-                android:ems="10"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:textColor="#000000"
-                android:textSize="@dimen/edittextsize"
-                android:textStyle="normal" />
+                android:layout_weight="0.8"
+                android:layout_height="wrap_content"
+                android:text="Total Amount"
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
 
-            <EditText
-                android:id="@+id/edit_ProductType"
+            <TextView
+                android:id="@+id/totalAmount"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/fifty"
-                android:layout_margin="@dimen/five"
-                android:layout_weight="1"
-                android:background="@drawable/edittextback"
-                android:drawablePadding="@dimen/ten"
-                android:ems="10"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:textColor="#000000"
-                android:textSize="@dimen/edittextsize"
-                android:textStyle="normal" />
-        </LinearLayout>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fifteen"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Upload Product Image"
-            android:textColor="@color/black"
-            android:textSize="@dimen/edittextsize">
-
-        </TextView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="@dimen/hundred"
-                android:layout_margin="@dimen/five"
-                android:layout_weight="1"
-                android:background="@drawable/edittextback">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="@dimen/hundred"
-                android:layout_margin="@dimen/five"
-                android:layout_weight="1"
-                android:background="@drawable/edittextback">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="@dimen/hundred"
-                android:layout_margin="@dimen/five"
-                android:layout_weight="1"
-                android:background="@drawable/edittextback">
-
-            </ImageView>
-
+                android:layout_weight="1.1"
+                android:layout_height="wrap_content"
+                android:text="Sunil Dash"
+                android:textColor="#5F5E5E"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textsize"
+                android:layout_marginLeft="@dimen/fifteen"></TextView>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_Addpickup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/twenty"
-            android:background="@drawable/button_back"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Add Product "
-            android:textColor="@color/white"
-            android:textSize="@dimen/edittextsize"></Button>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/twenty"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Back"
-            android:textColor="#000000"
-            android:textSize="@dimen/textsize">
-
-        </TextView>
-
 
     </LinearLayout>
 

@@ -13,203 +13,328 @@
         android:layout_marginTop="@dimen/twenty"
         android:layout_marginRight="@dimen/fifteen"
         android:layout_marginBottom="@dimen/ten"
-        app:cardCornerRadius="@dimen/ten"
-        app:cardElevation="@dimen/five">
+        app:cardCornerRadius="@dimen/five"
+        app:cardElevation="@dimen/five"
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/edittextback">
+            android:orientation="vertical">
 
-            <LinearLayout
+
+            <RelativeLayout
+                android:id="@+id/rel_orderdetails"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_margin="@dimen/five">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.8"
-                    android:layout_height="wrap_content"
-                    android:text="Order Id"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-                <TextView
-                    android:id="@+id/orderId"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.1"
-                    android:layout_height="wrap_content"
-                    android:text="Sunil Dash"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_margin="@dimen/five">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.8"
-                    android:layout_height="wrap_content"
-                    android:text="Customer Name"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-                <TextView
-                    android:id="@+id/customerName"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.1"
-                    android:layout_height="wrap_content"
-                    android:text="Payment Status"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_margin="@dimen/five">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.8"
-                    android:layout_height="wrap_content"
-                    android:text="date/time"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-                <TextView
-                    android:id="@+id/datetime"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.1"
-                    android:layout_height="wrap_content"
-                    android:text="Sunil Dash"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_margin="@dimen/five">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.8"
-                    android:layout_height="wrap_content"
-                    android:text="Payment Statues"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-                <TextView
-                    android:id="@+id/paymentStatues"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.1"
-                    android:layout_height="wrap_content"
-                    android:text="Sunil Dash"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_margin="@dimen/five">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.8"
-                    android:layout_height="wrap_content"
-                    android:text="Status"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.1"
-                    android:layout_height="wrap_content"
-                    android:text="Sunil Dash"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
+                android:layout_height="@dimen/ninety"
                 android:layout_margin="@dimen/five"
-                android:layout_marginBottom="@dimen/ten">
+                android:background="#FFFFFF"
+                android:elevation="@dimen/five">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.8"
-                    android:layout_height="wrap_content"
-                    android:text="Total Amount"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="@dimen/sixty"
+                    android:layout_height="@dimen/seventy"
                     android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
+                    android:layout_margin="@dimen/five"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/order_icon"></ImageView>
 
-                <TextView
-                    android:id="@+id/totalAmount"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.1"
+                <LinearLayout
+                    android:id="@+id/lin_order"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sunil Dash"
-                    android:textColor="#5F5E5E"
-                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/productImage"
+                    android:orientation="vertical"
                     android:layout_centerVertical="true"
-                    android:textSize="@dimen/textsize"
-                    android:layout_marginLeft="@dimen/fifteen"></TextView>
+                    android:layout_toLeftOf="@+id/lin_staues">
+
+                    <TextView
+                        android:id="@+id/productName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fifteen"
+                        android:text="Vehical ID"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize"
+                        android:fontFamily="@font/poppins_bold"
+                        android:maxEms="10"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:scrollHorizontally="true"></TextView>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/productQTY"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/fifteen"
+                            android:text="QTY"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_light"
+                            android:textSize="@dimen/textsize"></TextView>
+
+                        <TextView
+                            android:id="@+id/producr_qty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/five"
+                            android:text="2 X"
+                            android:layout_toRightOf="@+id/productQTY"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize"
+                            android:fontFamily="@font/poppins_light"></TextView>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/fifteen"
+                            android:text="Rs "
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize"
+                            android:fontFamily="@font/poppins_regular"></TextView>
+
+                        <TextView
+                            android:id="@+id/total_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/five"
+                            android:text="Delivered"
+                            android:layout_toRightOf="@+id/status"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize"
+                            android:fontFamily="@font/poppins_regular"></TextView>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_staues"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <!--  <TextView
+                          android:id="@+id/staues"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="@dimen/fifteen"
+                          android:layout_marginTop="@dimen/ten"
+                          android:layout_marginRight="@dimen/ten"
+                          android:fontFamily="@font/poppins_regular"
+                          android:text="Status"
+                          android:textColor="@color/purple_700"
+                          android:textSize="@dimen/twelve_size"
+                          android:textStyle="bold"></TextView>-->
+
+                    <TextView
+                        android:id="@+id/stauesName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fifteen"
+                        android:layout_marginRight="@dimen/ten"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="On Delivery"
+                        android:textColor="@color/purple_700"
+                        android:textSize="@dimen/twelve_size"
+                        android:textStyle="bold"></TextView>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/expandableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/edittextback">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_margin="@dimen/five">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:text="customer Name"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                    <TextView
+                        android:id="@+id/customerName"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.1"
+                        android:layout_height="wrap_content"
+                        android:text="Sunil Dash"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_margin="@dimen/five">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:text="Ph.no"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                    <TextView
+                        android:id="@+id/phoneNo"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.1"
+                        android:layout_height="wrap_content"
+                        android:text="Payment Status"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_margin="@dimen/five">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:text="Delivery Address"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                    <TextView
+                        android:id="@+id/deliveryAddress"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.1"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus suspendisse in."
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_margin="@dimen/five">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:text="Payment Method"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                    <TextView
+                        android:id="@+id/paymentStatues"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.1"
+                        android:layout_height="wrap_content"
+                        android:text="Sunil Dash"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_margin="@dimen/five"
+                    android:layout_marginBottom="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:text="Total Amount"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                    <TextView
+                        android:id="@+id/totalAmount"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.1"
+                        android:layout_height="wrap_content"
+                        android:text="Sunil Dash"
+                        android:textColor="#5F5E5E"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/fifteen"></TextView>
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
+
+
 
     </androidx.cardview.widget.CardView>
 

@@ -53,6 +53,8 @@ public class OrderRequest extends Fragment {
     ArrayList<Image_ModelClass> productimage;
     ArrayList<Weight_ModelClass> productweight;
 
+    String productQuantity,title;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull  LayoutInflater inflater,
@@ -129,9 +131,24 @@ public class OrderRequest extends Fragment {
                             JSONObject jsonObject_shippingDetails = new JSONObject(shippingDetails);
 
                             String name = jsonObject_shippingDetails.getString("name");
+                            String addressID = jsonObject_shippingDetails.getString("addressID");
+                            String contacts = jsonObject_shippingDetails.getString("contacts");
                             String address_details = jsonObject_shippingDetails.getString("address_details");
 
                             JSONObject jsonObject_address_details = new JSONObject(address_details);
+
+                            String default1 = jsonObject_address_details.getString("default");
+                            String id1 = jsonObject_address_details.getString("_id");
+                            String userID = jsonObject_address_details.getString("userID");
+                            String house = jsonObject_address_details.getString("house");
+                            String street = jsonObject_address_details.getString("street");
+                            String locality = jsonObject_address_details.getString("locality");
+                            String city = jsonObject_address_details.getString("city");
+                            String state = jsonObject_address_details.getString("state");
+                            String country = jsonObject_address_details.getString("country");
+                            String zip = jsonObject_address_details.getString("zip");
+                            String longitude = jsonObject_address_details.getString("longitude");
+                            String latitude = jsonObject_address_details.getString("latitude");
 
                             product = new ArrayList<>();
 
@@ -143,7 +160,7 @@ public class OrderRequest extends Fragment {
 
                                 String proid = jsonObject_product.getString("_id");
                                 String productId = jsonObject_product.getString("productId");
-                                String productQuantity = jsonObject_product.getString("productQuantity");
+                                productQuantity = jsonObject_product.getString("productQuantity");
                                 String product_pro = jsonObject_product.getString("product");
 
                                 JSONObject jsonObject_product_pro = new JSONObject(product_pro);
@@ -151,7 +168,7 @@ public class OrderRequest extends Fragment {
 
                                 String discount = jsonObject_product_pro.getString("discount");
                                 String productid = jsonObject_product_pro.getString("_id");
-                                String title = jsonObject_product_pro.getString("title");
+                                title = jsonObject_product_pro.getString("title");
                                 String price = jsonObject_product_pro.getString("price");
                                 String type = jsonObject_product_pro.getString("type");
                                 String description = jsonObject_product_pro.getString("description");
@@ -222,7 +239,9 @@ public class OrderRequest extends Fragment {
                             }
 
                             OrderRequest_ModelClass orderRequest_modelClass = new OrderRequest_ModelClass(
-                                    oderedBy,name,ordered,paymentStatus,orderStatus,totalAmount
+                                    oderedBy,name,ordered,paymentStatus,orderStatus,totalAmount,productQuantity,title,
+                                    contacts,userID,house,street,locality,city,state,country,zip,paymentMethod,productimage
+
                             );
 
                             orderrequest.add(orderRequest_modelClass);
