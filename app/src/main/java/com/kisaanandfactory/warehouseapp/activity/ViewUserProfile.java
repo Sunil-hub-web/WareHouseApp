@@ -132,6 +132,27 @@ public class ViewUserProfile extends AppCompatActivity {
             }
         });
 
+        text_EditUserdata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                edit_UserName.setEnabled(true);
+                edit_username.setEnabled(true);
+                edit_MobileNo.setEnabled(true);
+                edit_EmailId.setEnabled(true);
+                edit_Password.setEnabled(true);
+                edit_GstNumber.setEnabled(true);
+                edit_Location.setEnabled(true);
+                edit_Locality.setEnabled(true);
+                edit_City.setEnabled(true);
+                edit_State.setEnabled(true);
+                edit_ZipCode.setEnabled(true);
+                edit_AccNumber.setEnabled(true);
+                edit_BankName.setEnabled(true);
+                edit_IfcCode.setEnabled(true);
+            }
+        });
+
         btn_UpdateAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -284,6 +305,23 @@ public class ViewUserProfile extends AppCompatActivity {
                         edit_AccNumber.setText(accountNumber);
                         edit_BankName.setText(bankName);
                         edit_IfcCode.setText(ifscCode);
+
+                        edit_UserName.setEnabled(false);
+                        edit_username.setEnabled(false);
+                        edit_MobileNo.setEnabled(false);
+                        edit_EmailId.setEnabled(false);
+                        edit_Password.setEnabled(false);
+                        edit_GstNumber.setEnabled(false);
+                        edit_Location.setEnabled(false);
+                        edit_Locality.setEnabled(false);
+                        edit_City.setEnabled(false);
+                        edit_State.setEnabled(false);
+                        edit_ZipCode.setEnabled(false);
+                        edit_AccNumber.setEnabled(false);
+                        edit_BankName.setEnabled(false);
+                        edit_IfcCode.setEnabled(false);
+
+
                     }else{
 
                         String _id = jsonObject_Data.getString("_id");

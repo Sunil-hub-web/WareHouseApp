@@ -29,6 +29,8 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
     Context context;
     ArrayList<OrderRequest_ModelClass> orderRequest;
 
+    int index;
+
     public OrderRequestAdapter(FragmentActivity activity, ArrayList<OrderRequest_ModelClass> orderrequest) {
 
         this.context = activity;
@@ -66,8 +68,27 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
         holder.deliveryAddress.setText(order_request.getHouse()+","+order_request.getStreet()+","+order_request.getLocality()
                 +","+order_request.getCity()+","+order_request.getState()+","+order_request.getCountry()+","+order_request.getZip());
 
-        boolean isExpand = order_request.isExpanded();
-        holder.expandableLayout.setVisibility(isExpand ? View.VISIBLE : View.GONE);
+      /*  boolean isExpand = order_request.isExpanded();
+        holder.expandableLayout.setVisibility(isExpand ? View.VISIBLE : View.GONE);*/
+
+        holder.rel_orderdetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                index = position;
+                notifyDataSetChanged();
+            }
+        });
+
+        if(index == position){
+
+            holder.expandableLayout.setVisibility(View.VISIBLE);
+
+        }else{
+
+            holder.expandableLayout.setVisibility(View.GONE);
+        }
+        
 
         String utcDateString = order_request.getOrderDate();
 
@@ -123,7 +144,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
 
 
-            rel_orderdetails.setOnClickListener(new View.OnClickListener() {
+           /* rel_orderdetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -131,7 +152,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
                     order_request.setExpanded(!order_request.isExpanded());
                     notifyItemChanged(getAdapterPosition());
                 }
-            });
+            });*/
 
         }
 

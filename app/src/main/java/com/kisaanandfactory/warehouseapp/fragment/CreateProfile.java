@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.icu.number.CompactNotation;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +43,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.kisaanandfactory.warehouseapp.R;
 import com.kisaanandfactory.warehouseapp.SharedPrefManager;
+import com.kisaanandfactory.warehouseapp.activity.MainActivity;
 import com.kisaanandfactory.warehouseapp.url.AppUrl;
 
 import org.json.JSONException;
@@ -57,7 +60,8 @@ import static android.app.Activity.RESULT_OK;
 public class CreateProfile extends Fragment {
 
     Spinner profileFor;
-    TextView button_back,text_Delivery,text_Vender,text_panImage,text_gstImage;
+    TextView button_back,text_Delivery,text_Vender;
+    ImageView text_panImage,text_gstImage;
     String [] profiletype = {"-Profile For-","Vendor","Delivery"};
     EditText edit_UserName,edit_MobileNo,edit_EmailId,edit_Password,edit_Location,edit_Locality,edit_State,
             edit_ZipCode,edit_PanNumber,edit_GstNumber,edit_AccNumber,edit_BankName,edit_IfcCode,edit_DrlinNumber,
@@ -88,7 +92,7 @@ public class CreateProfile extends Fragment {
         text_Delivery = view.findViewById(R.id.text_Delivery);
         edit_State = view.findViewById(R.id.edit_State);
         text_Vender = view.findViewById(R.id.text_Vender);
-        btn_AddVender = view.findViewById(R.id.btn_AddVender);
+        btn_AddVender = view.findViewById(R.id.btn_AddVenderDetails);
         edit_EmailId = view.findViewById(R.id.edit_EmailId);
         edit_Password = view.findViewById(R.id.edit_Password);
         edit_Location = view.findViewById(R.id.edit_Location);
@@ -110,6 +114,32 @@ public class CreateProfile extends Fragment {
 
         token = SharedPrefManager.getInstance(getActivity()).getUser().getToken();
 
+        text_Vender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                text_Vender.setBackgroundResource(R.drawable.button_back);
+                text_Vender.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+
+                text_Delivery.setBackgroundResource(R.drawable.edittextback);
+                text_Delivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+
+
+            }
+        });
+
+        text_Delivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                text_Vender.setBackgroundResource(R.drawable.edittextback);
+                text_Vender.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+
+                text_Delivery.setBackgroundResource(R.drawable.button_back);
+                text_Delivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+            }
+        });
+
         text_panImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +158,15 @@ public class CreateProfile extends Fragment {
             }
         });
 
+        button_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btn_AddVender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,81 +175,97 @@ public class CreateProfile extends Fragment {
 
                     edit_UserName.setError("Fill The Field");
                     edit_UserName.setFocusable(true);
+                    edit_UserName.requestFocus();
 
                 }else if(!isValidUserName(edit_UserName.getText().toString().trim())){
 
                     edit_UserName.setError("Fill The Field");
                     edit_UserName.setFocusable(true);
+                    edit_UserName.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_MobileNo.getText())){
 
                     edit_MobileNo.setError("Fill The Field");
                     edit_MobileNo.setFocusable(true);
+                    edit_MobileNo.requestFocus();
 
                 }else if(!isValidMobile(edit_MobileNo.getText().toString().trim())){
 
                     edit_MobileNo.setError("Fill The Field");
                     edit_MobileNo.setFocusable(true);
+                    edit_MobileNo.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_EmailId.getText())){
 
                     edit_EmailId.setError("Fill The Field");
                     edit_EmailId.setFocusable(true);
+                    edit_EmailId.requestFocus();
 
                 }else if(!isValidEmail(edit_EmailId.getText().toString().trim())){
 
                     edit_EmailId.setError("Fill The Field");
                     edit_EmailId.setFocusable(true);
+                    edit_EmailId.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_Location.getText())){
 
                     edit_Location.setError("Fill The Field");
                     edit_Location.setFocusable(true);
+                    edit_Location.requestFocus();
 
                 }else if(!isValidUserName(edit_Location.getText().toString().trim())){
 
                     edit_Location.setError("Fill The Field");
                     edit_Location.setFocusable(true);
+                    edit_Location.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_Locality.getText())){
 
                     edit_Locality.setError("Fill The Field");
                     edit_Locality.setFocusable(true);
+                    edit_Locality.requestFocus();
 
                 }else if(!isValidUserName(edit_Locality.getText().toString().trim())){
 
                     edit_Locality.setError("Fill The Field");
                     edit_Locality.setFocusable(true);
+                    edit_Locality.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_Street.getText())){
 
                     edit_Street.setError("Fill The Field");
                     edit_Street.setFocusable(true);
+                    edit_Street.requestFocus();
 
                 }else if(!isValidUserName(edit_Street.getText().toString().trim())){
 
                     edit_Street.setError("Fill The Field");
                     edit_Street.setFocusable(true);
+                    edit_Street.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_State.getText())){
 
                     edit_State.setError("Fill The Field");
                     edit_State.setFocusable(true);
+                    edit_State.requestFocus();
 
                 }else if(!isValidUserName(edit_State.getText().toString().trim())){
 
                     edit_State.setError("Fill The Field");
                     edit_State.setFocusable(true);
+                    edit_State.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_City.getText())){
 
                     edit_City.setError("Fill The Field");
                     edit_City.setFocusable(true);
+                    edit_City.requestFocus();
 
                 }else if(!isValidUserName(edit_City.getText().toString().trim())){
 
                     edit_City.setError("Fill The Field");
                     edit_City.setFocusable(true);
+                    edit_City.requestFocus();
 
                 }else if(edit_ZipCode.getText().toString().trim().length()==0){
 
@@ -224,12 +279,12 @@ public class CreateProfile extends Fragment {
 
                 }else if(TextUtils.isEmpty(edit_BankName.getText())){
 
-                    edit_BankName.setError("enter name");
+                    edit_BankName.setError("enter BankName");
                     edit_BankName.requestFocus();
 
                 }else if(!isValidUserName(edit_BankName.getText().toString().trim())){
 
-                    edit_BankName.setError("enter name");
+                    edit_BankName.setError("enter BankName");
                     edit_BankName.requestFocus();
 
                 }else if(edit_AccNumber.getText().toString().trim().equals("")){
@@ -250,7 +305,7 @@ public class CreateProfile extends Fragment {
 
                 }else if(!isValidIfcCode(edit_IfcCode.getText().toString().trim())){
 
-                    edit_IfcCode.setError("enter name");
+                    edit_IfcCode.setError("enter IFSC code");
                     edit_IfcCode.requestFocus();
 
                 }else if(panImage.equals("") || gstImage.equals("")){
@@ -285,6 +340,8 @@ public class CreateProfile extends Fragment {
 
             }
         });
+
+
 
         return view;
     }
@@ -467,9 +524,11 @@ public class CreateProfile extends Fragment {
                     Log.d("selectedImageUri", selectedImageUri.toString());
                     bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImageUri);
 
-                    text_panImage.setText("Image Slected");
+                    text_panImage.setImageURI(imageUri);
 
                     cursor.close();
+
+
 
                 }else if(user_password.equals("2")){
 
@@ -492,7 +551,7 @@ public class CreateProfile extends Fragment {
                     Log.d("selectedImageUri", selectedImageUri1.toString());
                     bitmap1 = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImageUri1);
 
-                    text_gstImage.setText("Image Slected");
+                    text_gstImage.setImageURI(imageUri);
 
                     cursor.close();
 
@@ -509,8 +568,8 @@ public class CreateProfile extends Fragment {
 
             }
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "Please try again", Toast.LENGTH_LONG)
-                    .show();
+
+            Toast.makeText(getActivity(), "Please try again"+e, Toast.LENGTH_LONG).show();
         }
 
     }

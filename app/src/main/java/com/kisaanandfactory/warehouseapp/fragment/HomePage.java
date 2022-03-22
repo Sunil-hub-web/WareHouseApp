@@ -34,7 +34,7 @@ import java.util.Map;
 public class HomePage extends Fragment {
 
     TextView complaints_number,complaints,bottomtotalproduct,bottominstock,bottompending,
-            totalordertxt,pendingorderstxt,dispatchedordertxt;
+            totalordertxt,pendingorderstxt,dispatchedordertxt,totalcounttxt,pendingcounttxt,dispatchcounttxt;
 
     String token;
     ProgressBar totalordersprogressbar,pendingordersprogressbar,dispatchedordersprogressbar;
@@ -58,6 +58,10 @@ public class HomePage extends Fragment {
         dispatchedordersprogressbar = view.findViewById(R.id.dispatchedordersprogressbar);
         pendingordersprogressbar = view.findViewById(R.id.pendingordersprogressbar);
         totalordersprogressbar = view.findViewById(R.id.totalordersprogressbar);
+        totalcounttxt = view.findViewById(R.id.totalcounttxt);
+        pendingcounttxt = view.findViewById(R.id.pendingcounttxt);
+        dispatchcounttxt = view.findViewById(R.id.dispatchcounttxt);
+
 
         token = SharedPrefManager.getInstance(getActivity()).getUser().getToken();
         getHomeDetails(token);
@@ -145,6 +149,9 @@ public class HomePage extends Fragment {
                         //bottominstock.setText(totalOrder);
                         bottompending.setText(Pending);
 
+                        totalordertxt.setText(totalOrder);
+                        pendingorderstxt.setText(Pending);
+                        dispatchedordertxt.setText(Dispatched);
 
                         float toto = Float.valueOf(totalOrder);
                         float peno = Float.valueOf(Pending);
@@ -171,9 +178,10 @@ public class HomePage extends Fragment {
                        /* penavg1 = (int)penavg;
                         disavg1 = (int)disavg;*/
 
-                        totalordertxt.setText("100%");
-                        pendingorderstxt.setText(penavg1+"%");
-                        dispatchedordertxt.setText(disavg1+"%");
+
+                        totalcounttxt.setText("100%");
+                        pendingcounttxt.setText(penavg1+"%");
+                        dispatchcounttxt.setText(disavg1+"%");
 
                         pendingordersprogressbar.setProgress(penavg1);
                         dispatchedordersprogressbar.setProgress(disavg1);

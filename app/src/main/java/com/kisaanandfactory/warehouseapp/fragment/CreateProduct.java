@@ -82,7 +82,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class CreateProduct extends Fragment {
 
-    Spinner Categories,SubCategories,ProductType,edit_GST,edit_VenderName;
+    Spinner Categories,SubCategories,ProductType,edit_VenderName;
     ArrayList<Category_ModelClass> categories = new ArrayList<>();
     ArrayList<SubCategory_ModelClass> subcategories = new ArrayList<>();
     String cate_Name,cate_Id,subcate_Name,subcate_Id;
@@ -98,7 +98,7 @@ public class CreateProduct extends Fragment {
     String photoSelection,photostr1 = "",photostr2 = "",photostr3 = "";
     ArrayList<String> imageArray = new ArrayList<>();
 
-    EditText edit_ProductName,edit_ProductDescription,edit_Price,edit_Discount,edit_inStock,edit_Weight;
+    EditText edit_ProductName,edit_ProductDescription,edit_Price,edit_Discount,edit_inStock,edit_Weight,edit_GST;
     String str_ProductName,str_ProductDescription,str_Price,str_Discount,str_inStock,str_Weight,str_type;
     Button btn_AddProduct;
     boolean photoselected = false;
@@ -130,7 +130,7 @@ public class CreateProduct extends Fragment {
         edit_inStock = view.findViewById(R.id.edit_inStock);
         edit_Weight = view.findViewById(R.id.edit_Weight);
         edit_GST = view.findViewById(R.id.edit_GST);
-        edit_VenderName = view.findViewById(R.id.edit_VenderName);
+        //edit_VenderName = view.findViewById(R.id.edit_VenderName);
 
         token = SharedPrefManager.getInstance(getActivity()).getUser().getToken();
 
@@ -189,61 +189,73 @@ public class CreateProduct extends Fragment {
 
                     edit_ProductName.setError("Fill The Details");
                     edit_ProductName.setFocusable(true);
+                    edit_ProductName.requestFocus();
 
                 }else if(!isValidUserName(edit_ProductName.getText().toString().trim())){
 
                     edit_ProductName.setError("Fill The Details");
                     edit_ProductName.setFocusable(true);
+                    edit_ProductName.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_ProductDescription.getText())){
 
                     edit_ProductDescription.setError("Fill The Details");
                     edit_ProductDescription.setFocusable(true);
+                    edit_ProductDescription.requestFocus();
 
-                }else if(!isValidUserName(edit_ProductDescription.getText().toString().trim())){
+                }/*else if(!isValidUserName(edit_ProductDescription.getText().toString().trim())){
 
                     edit_ProductDescription.setError("Fill The Details");
                     edit_ProductDescription.setFocusable(true);
+                    edit_ProductDescription.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_Price.getText())){
+                }*/else if(TextUtils.isEmpty(edit_Price.getText())){
 
                     edit_Price.setError("Fill The Details");
                     edit_Price.setFocusable(true);
+                    edit_Price.requestFocus();
 
                 }else if(!isValidMobile(edit_Price.getText().toString().trim())){
 
                     edit_Price.setError("Fill The Details");
                     edit_Price.setFocusable(true);
+                    edit_Price.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_Discount.getText())){
 
                     edit_Discount.setError("Fill The Details");
                     edit_Discount.setFocusable(true);
+                    edit_Discount.requestFocus();
 
                 }else if(!isValidMobile(edit_Discount.getText().toString().trim())){
 
                     edit_Discount.setError("Fill The Details");
                     edit_Discount.setFocusable(true);
+                    edit_Discount.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_inStock.getText())){
 
                     edit_inStock.setError("Fill The Details");
                     edit_inStock.setFocusable(true);
+                    edit_inStock.requestFocus();
 
                 }else if(!isValidMobile(edit_inStock.getText().toString().trim())){
 
                     edit_inStock.setError("Fill The Details");
                     edit_inStock.setFocusable(true);
+                    edit_inStock.requestFocus();
 
                 }else if(TextUtils.isEmpty(edit_Weight.getText())){
 
                     edit_Weight.setError("Fill The Details");
                     edit_Weight.setFocusable(true);
+                    edit_Weight.requestFocus();
 
                 }else if(!isValidMobile(edit_Weight.getText().toString().trim())){
 
                     edit_Weight.setError("Fill The Details");
                     edit_Weight.setFocusable(true);
+                    edit_Weight.requestFocus();
 
                 }else if(photostr1.equals("") || photostr2.equals("") || photostr3.equals("")){
 
@@ -708,6 +720,9 @@ public class CreateProduct extends Fragment {
 
                         String message = response.getString("msg");
                         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getActivity(),MainActivity.class);
+                        startActivity(intent);
                     }
 
 

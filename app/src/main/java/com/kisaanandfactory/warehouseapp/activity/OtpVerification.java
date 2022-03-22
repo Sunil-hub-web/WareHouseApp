@@ -110,11 +110,21 @@ public class OtpVerification extends AppCompatActivity {
 
                 try {
 
-                    String message = response.getString("msg");
-                    Toast.makeText(OtpVerification.this, message, Toast.LENGTH_SHORT).show();
+                    String code = response.getString("code");
 
-                    Intent intent = new Intent(OtpVerification.this, UserLogin.class);
-                    startActivity(intent);
+                    if(code.equals("200")){
+
+                        String message = response.getString("msg");
+                        Toast.makeText(OtpVerification.this, message, Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(OtpVerification.this, UserLogin.class);
+                        startActivity(intent);
+
+                    }else if(code.equals("400")){
+
+                        String message = response.getString("msg");
+                        Toast.makeText(OtpVerification.this, message, Toast.LENGTH_SHORT).show();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace ( );
@@ -200,6 +210,7 @@ public class OtpVerification extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
 
                 text_timer.setText(millisUntilFinished/1000+"s");
+                ResendtOtp(str_MobileNumber);
                 //here you can have your logic to set text to edittext
             }
 

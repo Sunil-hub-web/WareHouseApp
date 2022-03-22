@@ -200,7 +200,7 @@
                     android:textSize="@dimen/edittextsize"
                     android:textStyle="normal" />
 
-                <Spinner
+                <EditText
                     android:id="@+id/edit_GST"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/fifty"
@@ -356,7 +356,7 @@
 
             </TextView>
 
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/edit_VenderName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/fifty"
@@ -367,7 +367,7 @@
                 android:drawablePadding="@dimen/ten"
                 android:ems="10"
                 android:imeOptions="actionDone"
-                android:inputType="text"/>
+                android:inputType="text"/>-->
 
             <TextView
                 android:layout_width="match_parent"
