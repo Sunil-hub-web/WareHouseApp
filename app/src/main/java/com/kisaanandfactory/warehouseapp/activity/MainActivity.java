@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
 
     TextView nav_OrderRequest,nav_Logout,text_name,nav_Supplier,nav_PaymentRequest,nav_CreateProfile,nav_CreateProduct,
-            nav_AllUsers,nav_MyProfile,nav_Product,nav_userAddress,nav_userName;
+            nav_AllUsers,nav_MyProfile,nav_Product,nav_userAddress,nav_userName,text_Close;
     ImageView image_Notification;
 
     private Boolean exit = false;
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_Product = header.findViewById(R.id.nav_Product);
         nav_userAddress = header.findViewById(R.id.nav_userAddress);
         nav_userName = header.findViewById(R.id.nav_userName);
+        text_Close = header.findViewById(R.id.text_Close);
 
         str_Token = SharedPrefManager.getInstance(MainActivity.this).getUser().getToken();
 
@@ -103,6 +104,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         HomePage home = new HomePage();
         ft.replace(R.id.frame, home,"HomePage");
         ft.commit();
+
+        text_Close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mydrawer.closeDrawer(GravityCompat.START);
+            }
+        });
 
 
         nav_Logout.setOnClickListener(new View.OnClickListener() {

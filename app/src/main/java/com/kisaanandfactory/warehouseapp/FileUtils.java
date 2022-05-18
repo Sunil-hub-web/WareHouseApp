@@ -7,19 +7,26 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.loader.content.CursorLoader;
+
+import java.io.File;
 
 public class FileUtils {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static String getRealPathFromURI_API19(Context context, Uri uri){
         String filePath = "";
-        String wholeID = DocumentsContract.getDocumentId(uri);
+        File file = new File(uri.getPath());//create path from uri
+        final String[] split = file.getPath().split(":");//split the path.
+        filePath = split[1];
+
+        Log.d("imagesunil",filePath);
 
         // Split at colon, use second item in the array
-        String id = wholeID.split(":")[1];
+        String id = filePath;
 
         String[] column = { MediaStore.Images.Media.DATA };
 

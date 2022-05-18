@@ -15,6 +15,7 @@ import com.kisaanandfactory.warehouseapp.R;
 import com.kisaanandfactory.warehouseapp.modelclass.AllProduct_ModelClass;
 import com.kisaanandfactory.warehouseapp.modelclass.Image_ModelClass;
 import com.kisaanandfactory.warehouseapp.modelclass.Weight_ModelClass;
+import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -53,6 +54,13 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
         holder.productName.setText(allProduct.getTitle());
         holder.stock.setText(allProduct.getInStock());
         holder.productType.setText(allProduct.getType());
+
+        ArrayList<Image_ModelClass> image_modelClass = allProduct.getImage_modelClasses();
+        String image = "https://kisaanandfactory.com/static_file/"+image_modelClass.get(0);
+        Log.d("ranj_adapter_image",image);
+        Log.d("ranj_adapter_image",image_modelClass.get(0)+"");
+        Picasso.with(context).load(image).into(holder.productImage);
+
 
         String utcDateString = allProduct.getCreatedAt();
 

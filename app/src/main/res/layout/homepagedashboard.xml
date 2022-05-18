@@ -18,12 +18,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/hundred_fifty"
                 android:background="@drawable/edittextback"
-                android:padding="@dimen/fifteen"
                 android:layout_marginTop="@dimen/fifteen"
                 android:layout_marginLeft="@dimen/fifteen"
                 android:layout_marginRight="@dimen/fifteen"
                 android:elevation="@dimen/five"
-                android:src="@drawable/wharehouseimage"/>
+                android:scaleType="centerInside"
+                android:src="@drawable/finallogo"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

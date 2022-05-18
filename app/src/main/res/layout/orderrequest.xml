@@ -44,24 +44,24 @@
                     android:id="@+id/lin_order"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/productImage"
-                    android:orientation="vertical"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/lin_staues">
+                    android:layout_toLeftOf="@+id/lin_staues"
+                    android:layout_toRightOf="@id/productImage"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/productName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/fifteen"
-                        android:text="Vehical ID"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/textsize"
+                        android:ellipsize="end"
                         android:fontFamily="@font/poppins_bold"
                         android:maxEms="10"
-                        android:ellipsize="end"
+                        android:scrollHorizontally="true"
                         android:singleLine="true"
-                        android:scrollHorizontally="true"></TextView>
+                        android:text="Vehical ID"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize"></TextView>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -73,9 +73,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/fifteen"
+                            android:fontFamily="@font/poppins_light"
                             android:text="QTY"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/poppins_light"
                             android:textSize="@dimen/textsize"></TextView>
 
                         <TextView
@@ -83,11 +83,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/five"
-                            android:text="2 X"
                             android:layout_toRightOf="@+id/productQTY"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="2 X"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/textsize"
-                            android:fontFamily="@font/poppins_light"></TextView>
+                            android:textSize="@dimen/textsize"></TextView>
 
                     </RelativeLayout>
 
@@ -97,25 +97,36 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/status"
+                            android:id="@+id/text_weight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/fifteen"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="40 "
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize"></TextView>
+
+                        <TextView
+                            android:id="@+id/status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/ten"
+                            android:layout_toRightOf="@+id/text_weight"
+                            android:fontFamily="@font/poppins_regular"
                             android:text="Rs "
                             android:textColor="@color/black"
-                            android:textSize="@dimen/textsize"
-                            android:fontFamily="@font/poppins_regular"></TextView>
+                            android:textSize="@dimen/textsize"></TextView>
 
                         <TextView
                             android:id="@+id/total_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/five"
-                            android:text="Delivered"
                             android:layout_toRightOf="@+id/status"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="40 "
                             android:textColor="@color/black"
-                            android:textSize="@dimen/textsize"
-                            android:fontFamily="@font/poppins_regular"></TextView>
+                            android:textSize="@dimen/textsize"></TextView>
 
                     </RelativeLayout>
 

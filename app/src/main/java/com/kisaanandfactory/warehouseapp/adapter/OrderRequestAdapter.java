@@ -54,6 +54,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
         holder.producr_qty.setText(order_request.getProductQuantity());
         holder.total_price.setText(order_request.getTotalAmount());
         holder.stauesName.setText(order_request.getStatus());
+        holder.text_weight.setText(order_request.getStr_weight());
 
         ArrayList<Image_ModelClass> image_modelClass = order_request.getImage_modelClasses();
         String image = "https://kisaanandfactory.com/static_file/"+image_modelClass.get(0);
@@ -68,19 +69,19 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
         holder.deliveryAddress.setText(order_request.getHouse()+","+order_request.getStreet()+","+order_request.getLocality()
                 +","+order_request.getCity()+","+order_request.getState()+","+order_request.getCountry()+","+order_request.getZip());
 
-      /*  boolean isExpand = order_request.isExpanded();
-        holder.expandableLayout.setVisibility(isExpand ? View.VISIBLE : View.GONE);*/
+        boolean isExpand = order_request.isExpanded();
+        holder.expandableLayout.setVisibility(isExpand ? View.VISIBLE : View.GONE);
 
-        holder.rel_orderdetails.setOnClickListener(new View.OnClickListener() {
+        /*holder.rel_orderdetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 index = position;
                 notifyDataSetChanged();
             }
-        });
+        });*/
 
-        if(index == position){
+       /* if(index == position){
 
             holder.expandableLayout.setVisibility(View.VISIBLE);
 
@@ -88,7 +89,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
 
             holder.expandableLayout.setVisibility(View.GONE);
         }
-        
+        */
 
         String utcDateString = order_request.getOrderDate();
 
@@ -122,7 +123,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView productName,producr_qty,total_price,stauesName,customerName,phoneNo,deliveryAddress,
-                paymentStatues,totalAmount;
+                paymentStatues,totalAmount,text_weight;
         ImageView productImage;
         RelativeLayout rel_orderdetails;
         LinearLayout expandableLayout;
@@ -142,9 +143,10 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
             productImage = itemView.findViewById(R.id.productImage);
             rel_orderdetails = itemView.findViewById(R.id.rel_orderdetails);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
+            text_weight = itemView.findViewById(R.id.text_weight);
 
 
-           /* rel_orderdetails.setOnClickListener(new View.OnClickListener() {
+            rel_orderdetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -152,7 +154,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
                     order_request.setExpanded(!order_request.isExpanded());
                     notifyItemChanged(getAdapterPosition());
                 }
-            });*/
+            });
 
         }
 

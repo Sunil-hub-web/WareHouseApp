@@ -1,14 +1,18 @@
 package com.kisaanandfactory.warehouseapp.fragment;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,9 +29,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.loader.content.CursorLoader;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -42,19 +48,23 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.google.android.material.snackbar.Snackbar;
 import com.kisaanandfactory.warehouseapp.ApiResponse;
 import com.kisaanandfactory.warehouseapp.ApiToJsonHandler;
 import com.kisaanandfactory.warehouseapp.FileUtils;
 import com.kisaanandfactory.warehouseapp.ImageResponse;
 import com.kisaanandfactory.warehouseapp.R;
+import com.kisaanandfactory.warehouseapp.RealPathUtil;
 import com.kisaanandfactory.warehouseapp.SharedPrefManager;
 import com.kisaanandfactory.warehouseapp.activity.MainActivity;
+import com.kisaanandfactory.warehouseapp.activity.UserLogin;
 import com.kisaanandfactory.warehouseapp.adapter.CategoriesAdapter;
 import com.kisaanandfactory.warehouseapp.adapter.SubCategoriesAdapter;
 import com.kisaanandfactory.warehouseapp.modelclass.Category_ModelClass;
 import com.kisaanandfactory.warehouseapp.modelclass.SubCategory_ModelClass;
 import com.kisaanandfactory.warehouseapp.url.AppUrl;
 import com.google.gson.Gson;
+import com.kisaanandfactory.warehouseapp.url.VolleyMultipartRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,6 +85,7 @@ import java.util.regex.Pattern;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -82,24 +93,25 @@ import static android.app.Activity.RESULT_OK;
 
 public class CreateProduct extends Fragment {
 
-    Spinner Categories,SubCategories,ProductType,edit_VenderName;
+    Spinner Categories, SubCategories, ProductType, edit_VenderName;
     ArrayList<Category_ModelClass> categories = new ArrayList<>();
     ArrayList<SubCategory_ModelClass> subcategories = new ArrayList<>();
-    String cate_Name,cate_Id,subcate_Name,subcate_Id;
-    ImageView productimage1,productimage2,productimage3;
-    String[] Product_Type = {"--Select ProductType--", "Goods", "Service",};
+    String cate_Name, cate_Id, subcate_Name, subcate_Id;
+    ImageView productimage1, productimage2, productimage3;
+    String[] Product_Type = {"--Select ProductType--", "Product", "Service",};
     private static final int REQUEST_PERMISSIONS = 100;
-    public static final int IMAGE_CODE = 1;
-    Uri imageUri,selectedImageUri;
+    public static final int IMAGE_CODE = 4;
+    Uri selectedImage, selectedImageUri;
     Bitmap bitmap;
     File f;
-    String ImageDecode,token;
+    String imagePath, token;
     TextView back_button;
-    String photoSelection,photostr1 = "",photostr2 = "",photostr3 = "";
+    String photoSelection, photostr1 = "", photostr2 = "", photostr3 = "";
+    private String userChoosenTask;
     ArrayList<String> imageArray = new ArrayList<>();
 
-    EditText edit_ProductName,edit_ProductDescription,edit_Price,edit_Discount,edit_inStock,edit_Weight,edit_GST;
-    String str_ProductName,str_ProductDescription,str_Price,str_Discount,str_inStock,str_Weight,str_type;
+    EditText edit_ProductName, edit_ProductDescription, edit_Price, edit_Discount, edit_inStock, edit_Weight, edit_GST;
+    String str_ProductName, str_ProductDescription, str_Price, str_Discount, str_inStock, str_Weight, str_type;
     Button btn_AddProduct;
     boolean photoselected = false;
 
@@ -107,11 +119,11 @@ public class CreateProduct extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull  LayoutInflater inflater,
+    public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.addnewproduct,container,false);
+        View view = inflater.inflate(R.layout.addnewproduct, container, false);
 
         Categories = view.findViewById(R.id.Categories);
         SubCategories = view.findViewById(R.id.SubCategories);
@@ -156,7 +168,6 @@ public class CreateProduct extends Fragment {
             public void onClick(View v) {
 
                 photoSelection = "2";
-
                 imageupload();
 
             }
@@ -185,19 +196,19 @@ public class CreateProduct extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(TextUtils.isEmpty(edit_ProductName.getText())){
+                if (TextUtils.isEmpty(edit_ProductName.getText())) {
 
                     edit_ProductName.setError("Fill The Details");
                     edit_ProductName.setFocusable(true);
                     edit_ProductName.requestFocus();
 
-                }else if(!isValidUserName(edit_ProductName.getText().toString().trim())){
+                } else if (!isValidUserName(edit_ProductName.getText().toString().trim())) {
 
                     edit_ProductName.setError("Fill The Details");
                     edit_ProductName.setFocusable(true);
                     edit_ProductName.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_ProductDescription.getText())){
+                } else if (TextUtils.isEmpty(edit_ProductDescription.getText())) {
 
                     edit_ProductDescription.setError("Fill The Details");
                     edit_ProductDescription.setFocusable(true);
@@ -209,70 +220,70 @@ public class CreateProduct extends Fragment {
                     edit_ProductDescription.setFocusable(true);
                     edit_ProductDescription.requestFocus();
 
-                }*/else if(TextUtils.isEmpty(edit_Price.getText())){
+                }*/ else if (TextUtils.isEmpty(edit_Price.getText())) {
 
                     edit_Price.setError("Fill The Details");
                     edit_Price.setFocusable(true);
                     edit_Price.requestFocus();
 
-                }else if(!isValidMobile(edit_Price.getText().toString().trim())){
+                } else if (!isValidMobile(edit_Price.getText().toString().trim())) {
 
                     edit_Price.setError("Fill The Details");
                     edit_Price.setFocusable(true);
                     edit_Price.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_Discount.getText())){
+                } else if (TextUtils.isEmpty(edit_Discount.getText())) {
 
                     edit_Discount.setError("Fill The Details");
                     edit_Discount.setFocusable(true);
                     edit_Discount.requestFocus();
 
-                }else if(!isValidMobile(edit_Discount.getText().toString().trim())){
+                } else if (!isValidMobile(edit_Discount.getText().toString().trim())) {
 
                     edit_Discount.setError("Fill The Details");
                     edit_Discount.setFocusable(true);
                     edit_Discount.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_inStock.getText())){
+                } else if (TextUtils.isEmpty(edit_inStock.getText())) {
 
                     edit_inStock.setError("Fill The Details");
                     edit_inStock.setFocusable(true);
                     edit_inStock.requestFocus();
 
-                }else if(!isValidMobile(edit_inStock.getText().toString().trim())){
+                } else if (!isValidMobile(edit_inStock.getText().toString().trim())) {
 
                     edit_inStock.setError("Fill The Details");
                     edit_inStock.setFocusable(true);
                     edit_inStock.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_Weight.getText())){
+                } else if (TextUtils.isEmpty(edit_Weight.getText())) {
 
                     edit_Weight.setError("Fill The Details");
                     edit_Weight.setFocusable(true);
                     edit_Weight.requestFocus();
 
-                }else if(!isValidMobile(edit_Weight.getText().toString().trim())){
+                } else if (!isValidWeightProduct(edit_Weight.getText().toString().trim())) {
 
                     edit_Weight.setError("Fill The Details");
                     edit_Weight.setFocusable(true);
                     edit_Weight.requestFocus();
 
-                }else if(photostr1.equals("") || photostr2.equals("") || photostr3.equals("")){
+                } else if (photostr1.equals("") || photostr2.equals("") || photostr3.equals("")) {
 
                     Toast.makeText(getActivity(), "Select The image", Toast.LENGTH_SHORT).show();
 
-                }else{
+                } else {
 
                     //Toast.makeText(getActivity(), "Success fully", Toast.LENGTH_SHORT).show();
 
                     imageArray = new ArrayList<>();
-                    if(photostr1.length()!=0){
+                    if (photostr1.length() != 0) {
                         imageArray.add(photostr1);
                     }
-                    if(photostr2.length()!=0){
+                    if (photostr2.length() != 0) {
                         imageArray.add(photostr2);
                     }
-                    if(photostr3.length()!=0){
+                    if (photostr3.length() != 0) {
                         imageArray.add(photostr3);
                     }
 
@@ -286,8 +297,8 @@ public class CreateProduct extends Fragment {
                     str_Weight = edit_Weight.getText().toString().trim();
                     str_type = ProductType.getSelectedItem().toString();
 
-                    addProduct(str_ProductName,int_Price,str_type,str_Discount,str_ProductDescription,
-                            "61704b03d2cc8624d02ebf62",int_inStock,"10",str_Weight,cate_Id,subcate_Id);
+                    addProduct(str_ProductName, int_Price, str_type, str_Discount, str_ProductDescription,
+                            "61704b03d2cc8624d02ebf62", int_inStock, "10", str_Weight, cate_Id, subcate_Id);
                 }
 
             }
@@ -297,7 +308,7 @@ public class CreateProduct extends Fragment {
         return view;
     }
 
-    public void getCategoryDetails(String token){
+    public void getCategoryDetails(String token) {
 
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.show();
@@ -320,13 +331,13 @@ public class CreateProduct extends Fragment {
                     String err = jsonObject.getString("err");
                     String data = jsonObject.getString("data");
 
-                    if(err.equals("false")){
+                    if (err.equals("false")) {
 
                         String message = jsonObject.getString("msg");
 
                         JSONArray jsonArray_data = new JSONArray(data);
 
-                        for (int i=0;i<jsonArray_data.length();i++){
+                        for (int i = 0; i < jsonArray_data.length(); i++) {
 
                             JSONObject jsonObject_data = jsonArray_data.getJSONObject(i);
 
@@ -336,13 +347,13 @@ public class CreateProduct extends Fragment {
                             String productType = jsonObject_data.getString("productType");
 
                             Category_ModelClass category_modelClass = new Category_ModelClass(
-                                    catid,"",name,productType
+                                    catid, "", name, productType
                             );
 
                             categories.add(category_modelClass);
                         }
 
-                        CategoriesAdapter adapterCategories = new CategoriesAdapter(getActivity(),R.layout.spinneritem,categories);
+                        CategoriesAdapter adapterCategories = new CategoriesAdapter(getActivity(), R.layout.spinneritem, categories);
                         adapterCategories.setDropDownViewResource(R.layout.spinnerdropdownitem);
                         Categories.setAdapter(adapterCategories);
 
@@ -365,9 +376,9 @@ public class CreateProduct extends Fragment {
                             cate_Name = mystate.getCatname();
                             cate_Id = mystate.getCatId();
 
-                            Log.d("cate_Name", cate_Id+"  "+cate_Name);
+                            Log.d("cate_Name", cate_Id + "  " + cate_Name);
 
-                            GetSubCategories(cate_Id,token);
+                            GetSubCategories(cate_Id, token);
 
 
                         } catch (Exception e) {
@@ -382,7 +393,6 @@ public class CreateProduct extends Fragment {
                 });
 
 
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -390,27 +400,27 @@ public class CreateProduct extends Fragment {
 
                 progressDialog.dismiss();
                 error.printStackTrace();
-                Toast.makeText(getActivity(), ""+error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "" + error, Toast.LENGTH_SHORT).show();
             }
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
 
-                Map<String,String> header = new HashMap<>();
-                header.put("auth-token",token);
+                Map<String, String> header = new HashMap<>();
+                header.put("auth-token", token);
                 return header;
             }
         };
 
 
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
     }
 
 
-    public void GetSubCategories(String cateid,String token){
+    public void GetSubCategories(String cateid, String token) {
 
         subcategories.clear();
 
@@ -424,7 +434,7 @@ public class CreateProduct extends Fragment {
 
         String url = AppUrl.getSubCategory + cateid;
 
-        Log.d("url",url);
+        Log.d("url", url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -436,14 +446,14 @@ public class CreateProduct extends Fragment {
                     JSONObject jsonObject = new JSONObject(response);
 
                     String err = jsonObject.getString("err");
-                    if(err.equals("false")){
+                    if (err.equals("false")) {
 
                         String message = jsonObject.getString("msg");
                         String data = jsonObject.getString("data");
 
                         JSONArray jsonArray_data = new JSONArray(data);
 
-                        for (int i=0;i<jsonArray_data.length();i++){
+                        for (int i = 0; i < jsonArray_data.length(); i++) {
 
                             JSONObject jsonObject_data = jsonArray_data.getJSONObject(i);
 
@@ -453,13 +463,13 @@ public class CreateProduct extends Fragment {
 
 
                             SubCategory_ModelClass subCategory_modelClass = new SubCategory_ModelClass(
-                                    catid,name,CategoryId
+                                    catid, name, CategoryId
                             );
 
                             subcategories.add(subCategory_modelClass);
                         }
 
-                        SubCategoriesAdapter adapterSubCategories = new SubCategoriesAdapter(getActivity(),R.layout.spinnerdropdownitem,subcategories);
+                        SubCategoriesAdapter adapterSubCategories = new SubCategoriesAdapter(getActivity(), R.layout.spinnerdropdownitem, subcategories);
                         adapterSubCategories.setDropDownViewResource(R.layout.spinnerdropdownitem);
                         SubCategories.setAdapter(adapterSubCategories);
 
@@ -479,7 +489,7 @@ public class CreateProduct extends Fragment {
 
                             subcate_Name = mystate.getSubcatName();
                             subcate_Id = mystate.getSubcatId();
-                            Log.d("R_Pincode", subcate_Id+"  "+subcate_Name);
+                            Log.d("R_Pincode", subcate_Id + "  " + subcate_Name);
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -493,7 +503,6 @@ public class CreateProduct extends Fragment {
                 });
 
 
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -501,25 +510,26 @@ public class CreateProduct extends Fragment {
 
                 progressDialog.dismiss();
                 error.printStackTrace();
-                Toast.makeText(getActivity(), ""+error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "" + error, Toast.LENGTH_SHORT).show();
             }
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
 
-                Map<String,String> header = new HashMap<>();
-                header.put("auth-token",token);
+                Map<String, String> header = new HashMap<>();
+                header.put("auth-token", token);
                 return header;
-            }};
+            }
+        };
 
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
 
     }
 
-    public void imageupload(){
+    public void imageupload() {
 
         if ((ContextCompat.checkSelfPermission(getContext(),
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) && (ContextCompat.checkSelfPermission(getContext(),
@@ -536,17 +546,41 @@ public class CreateProduct extends Fragment {
         } else {
             Log.e("Else", "Else");
 
-            showFileChooser();
+            selectImg();
         }
     }
 
-    public void showFileChooser() {
+    public void selectImg() {
+        final CharSequence[] items = {"Choose from Library",
+                "Cancel"};
 
-        /*Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "title"), IMAGE_CODE);*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Add Photo!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
 
+                /*if (items[item].equals("Take Photo")) {
+                    userChoosenTask = "Take Photo";
+
+                    cameraIntent();
+
+                } else*/
+
+                if (items[item].equals("Choose from Library")) {
+                    userChoosenTask = "Choose from Library";
+
+                    galleryIntent();
+
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private void galleryIntent() {
         try {
             final String[] ACCEPT_MIME_TYPES = {
                     "image/*"
@@ -564,91 +598,62 @@ public class CreateProduct extends Fragment {
 
     }
 
+    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        try{
+        try {
 
-            if(requestCode == IMAGE_CODE && resultCode == RESULT_OK &&
-                    data != null && data.getData() != null){
+            if (requestCode == IMAGE_CODE && resultCode == RESULT_OK &&
+                    data != null && data.getData() != null) {
 
-                imageUri = data.getData();
+                selectedImage = data.getData();
 
-                InputStream imageStream = null;
+                Toast.makeText(getActivity(), ""+selectedImage.toString(), Toast.LENGTH_SHORT).show();
+                //profile_image.setImageURI(imageUri);
 
                 try {
 
-                    imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                    InputStream imageStream = getContext().getContentResolver().openInputStream(selectedImage);
+
+                    bitmap = BitmapFactory.decodeStream(imageStream);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                    photoselected = true;
+
+                    upload(bitmap);
+
                 } catch (FileNotFoundException e) {
 
                     e.printStackTrace();
                     Log.d("plih", String.valueOf(e));
+
                 }
-                bitmap = BitmapFactory.decodeStream(imageStream);
+
+               /* String path = RealPathUtil.getRealPath(getActivity(),selectedImage);
+                bitmap = BitmapFactory.decodeFile(path);
+                productimage1.setImageBitmap(bitmap);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                photoselected = true;
-
-                upload(bitmap);
-
-                Log.d("bitmap",bitmap.toString());
-
-                //profile_image.setImageURI(imageUri);
-
-                /*String[] FILE = {MediaStore.Images.Media.DATA};
-
-
-                Cursor cursor = getActivity().getContentResolver().query(imageUri,
-                        FILE, null, null, null);
-
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(FILE[0]);
-                ImageDecode = cursor.getString(columnIndex);
-                f = new File(ImageDecode);
-                selectedImageUri = Uri.fromFile(f);
-                Log.d("selectedImageUri", selectedImageUri.toString());
-                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImageUri);
-
-                upload(bitmap);
-
-                *//*if(photoSelection.equals("1")){
-
-                    productimage1.setImageBitmap(bitmap);
-                    //imageArray.add(ImageDecode);
-
-                }else if(photoSelection.equals("2")){
-
-                    productimage2.setImageBitmap(bitmap);
-                    //imageArray.add(ImageDecode);
-
-                }else if(photoSelection.equals("3")){
-
-                    productimage3.setImageBitmap(bitmap);
-                    //imageArray.add(ImageDecode);
-                }else{
-                }*//*
-
-                //profile_image.setImageURI(selectedImageUri);
-
-                Log.d("ImageDecode", ImageDecode);
-                Log.d("ImageDecode1", f.toString());
-                Log.d("ImageDecode2", selectedImageUri.toString());
-                Log.d("bitmap", bitmap.toString());
-                Log.d("imageArray", imageArray.toString());
-
-                cursor.close();*/
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                upload(path);
+*/
             }
-
-        }catch(Exception e){
-
-            e.printStackTrace();
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Please try again", Toast.LENGTH_LONG)
+                    .show();
         }
 
     }
 
     private File createFile(Uri uri) {
+
         String path = "";
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 10);
@@ -659,15 +664,15 @@ public class CreateProduct extends Fragment {
             path = FileUtils.getRealPathFromURI_API11to18(getActivity(), uri);
         } else {
             path = FileUtils.getRealPathFromURI_API19(getActivity(), uri);
-            Log.d("path",path);
+            Log.d("path", path);
         }
 
         File image = new File(path);
         return image;
     }
 
-    public void addProduct(String title,int price,String type,String discount,String description,String soldBy,
-                           int inStock,String experience,String weight,String categoryId,String subcategoryId){
+    public void addProduct(String title, int price, String type, String discount, String description, String soldBy,
+                           int inStock, String experience, String weight, String categoryId, String subcategoryId) {
 
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.show();
@@ -680,30 +685,30 @@ public class CreateProduct extends Fragment {
         JSONObject jsonObject = new JSONObject();
         JSONArray image_Array = new JSONArray();
 
-        for (int i=0;i<imageArray.size();i++){
+        for (int i = 0; i < imageArray.size(); i++) {
 
             image_Array.put(imageArray.get(i));
         }
 
-        Log.d("imageArray",image_Array.toString());
+        Log.d("imageArray", image_Array.toString());
 
-        try{
+        try {
 
-            jsonObject.put("title",title);
-            jsonObject.put("price",price);
-            jsonObject.put("type",type);
-            jsonObject.put("discount",discount);
-            jsonObject.put("description",description);
-            jsonObject.put("soldBy",soldBy);
-            jsonObject.put("inStock",inStock);
-            jsonObject.put("experience",experience);
-            jsonObject.put("images",image_Array);
-            jsonObject.put("weight",weight);
-            jsonObject.put("categoryId",categoryId);
-            jsonObject.put("subcategoryId",subcategoryId);
+            jsonObject.put("title", title);
+            jsonObject.put("price", price);
+            jsonObject.put("type", type);
+            jsonObject.put("discount", discount);
+            jsonObject.put("description", description);
+            jsonObject.put("soldBy", soldBy);
+            jsonObject.put("inStock", inStock);
+            jsonObject.put("experience", experience);
+            jsonObject.put("images", image_Array);
+            jsonObject.put("weight", weight);
+            jsonObject.put("categoryId", categoryId);
+            jsonObject.put("subcategoryId", subcategoryId);
 
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             e.printStackTrace();
         }
@@ -716,12 +721,12 @@ public class CreateProduct extends Fragment {
 
                 try {
                     String err = response.getString("err");
-                    if(err.equals("false")){
+                    if (err.equals("false")) {
 
                         String message = response.getString("msg");
                         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(getActivity(),MainActivity.class);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                     }
 
@@ -735,7 +740,7 @@ public class CreateProduct extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                progressDialog.dismiss ();
+                progressDialog.dismiss();
 
                 /*error.printStackTrace();
                 Log.d("Ranj_Login_error",error.toString());
@@ -745,7 +750,7 @@ public class CreateProduct extends Fragment {
 
                     Toast.makeText(getActivity(), "Please check Internet Connection", Toast.LENGTH_SHORT).show();
 
-                }else {
+                } else {
 
                     Log.d("successresponceVolley", "" + error.networkResponse);
                     NetworkResponse networkResponse = error.networkResponse;
@@ -772,18 +777,18 @@ public class CreateProduct extends Fragment {
                 }
 
             }
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
 
-                Map<String,String> header = new HashMap<>();
-                header.put("auth-token",token);
+                Map<String, String> header = new HashMap<>();
+                header.put("auth-token", token);
                 return header;
             }
         };
 
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(jsonObjectRequest);
 
@@ -795,80 +800,82 @@ public class CreateProduct extends Fragment {
         progressDialog.setMessage("Upload Image Please Wait..");
         progressDialog.show();
 
-        RequestBody imageBode = RequestBody.create(MediaType.parse(getContext().getContentResolver().getType(imageUri)), createFile(imageUri));
+        String path = RealPathUtil.getRealPath(getContext(),selectedImage);
+        File file = new File(path);
+
+        RequestBody imageBode = RequestBody.create(MediaType.parse(getContext().getContentResolver().getType(selectedImage)), file);
         MultipartBody.Part partImage = MultipartBody.Part.createFormData("photo", "productimage.png", imageBode);
 
+        Log.d("fvsdz", "" + imageBode);
 
         Call<ImageResponse> call = new ApiToJsonHandler().uploadImage(token, partImage);
         call.enqueue(new Callback<ImageResponse>() {
             @Override
             public void onResponse(Call<ImageResponse> call, retrofit2.Response<ImageResponse> response) {
 
-                progressDialog.dismiss();
-
                 if (response.isSuccessful()) {
 
-                    // get the path and save it to images array
-                    Log.d("fvsdzfvfc", ""+response.body().getMsg().getFilename());
-                    Log.d("fvsdzfvfc", ""+response.body().getMsg().getPath());
+                    progressDialog.dismiss();
 
-                    if(photoSelection.equalsIgnoreCase("1")){
+                    Toast.makeText(getActivity(), "Upload success", Toast.LENGTH_SHORT).show();
+
+                    // get the path and save it to images array
+                    Log.d("fvsdzfvfc", "" + response.body().getMsg().getFilename());
+                    Log.d("fvsdzfvfc", "" + response.body().getMsg().getPath());
+
+                    if (photoSelection.equalsIgnoreCase("1")) {
                         productimage1.setImageBitmap(bitmap);
                         photostr1 = response.body().getMsg().getFilename();
 
-                    }else if(photoSelection.equalsIgnoreCase("2")){
+                    } else if (photoSelection.equalsIgnoreCase("2")) {
                         productimage2.setImageBitmap(bitmap);
                         photostr2 = response.body().getMsg().getFilename();
 
-                    }else if(photoSelection.equalsIgnoreCase("3")){
+                    } else if (photoSelection.equalsIgnoreCase("3")) {
                         productimage3.setImageBitmap(bitmap);
                         photostr3 = response.body().getMsg().getFilename();
 
                     }
 
                 } else {
+
+                    progressDialog.dismiss();
                     Gson gson = new Gson();
                     ApiResponse message = gson.fromJson(response.errorBody().charStream(), ApiResponse.class);
-                    Toast.makeText(getActivity(), message.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), message.getMsg(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ImageResponse> call, Throwable error) {
-
+            public void onFailure(Call<ImageResponse> call, Throwable t) {
                 progressDialog.dismiss();
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("getMessage", t.getMessage());
 
-                if (error instanceof SocketTimeoutException)
-                {
+                if (t instanceof SocketTimeoutException) {
                     // "Connection Timeout";
 
                     Toast.makeText(getActivity(), "Connection Timeout", Toast.LENGTH_SHORT).show();
-                }
-                else if (error instanceof IOException)
-                {
+                } else if (t instanceof IOException) {
                     // "Timeout";
 
                     Toast.makeText(getActivity(), "Timeout", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else {
                     //Call was cancelled by user
-                    if(call.isCanceled())
-                    {
+                    if (call.isCanceled()) {
                         //System.out.println("Call was cancelled forcefully");
 
                         Toast.makeText(getActivity(), "Call was cancelled forcefully", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                    } else {
                         //Generic error handling
                         //System.out.println("Network Error :: " + error.getLocalizedMessage());
 
-                        Toast.makeText(getActivity(), "Network Error :: " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Network Error :: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
+
     }
 
     public boolean isValidUserName(final String userName) {
@@ -876,12 +883,12 @@ public class CreateProduct extends Fragment {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN =  "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
+        final String PASSWORD_PATTERN = "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
 
-        pattern =  Pattern.compile (PASSWORD_PATTERN);
-        matcher = pattern.matcher (userName);
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(userName);
 
-        return matcher.matches ( );
+        return matcher.matches();
 
     }
 
@@ -890,12 +897,40 @@ public class CreateProduct extends Fragment {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN =  "^[0-9]{1,}$";
+        final String PASSWORD_PATTERN = "^[0-9]{1,}$";
 
-        pattern =  Pattern.compile (PASSWORD_PATTERN);
-        matcher = pattern.matcher (mobile);
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(mobile);
 
-        return matcher.matches ( );
+        return matcher.matches();
 
+    }
+
+    public boolean isValidWeightProduct(final String mobile) {
+
+        Pattern pattern;
+        Matcher matcher;
+
+        final String PASSWORD_PATTERN = "^[0-9a-zA-Z]{1,}$";
+
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(mobile);
+
+        return matcher.matches();
+
+    }
+
+    public byte[] getBytes(InputStream is) throws IOException {
+        ByteArrayOutputStream byteBuff = new ByteArrayOutputStream();
+
+        int buffSize = 512;
+        byte[] buff = new byte[buffSize];
+
+        int len = 0;
+        while ((len = is.read(buff)) != -1) {
+            byteBuff.write(buff, 0, len);
+        }
+
+        return byteBuff.toByteArray();
     }
 }

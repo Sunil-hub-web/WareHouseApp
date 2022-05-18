@@ -5,72 +5,67 @@
     android:background="@drawable/chatbot_back">
 
 
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hundred_fifty"
+        android:background="@drawable/side_nav_bar">
+
+        <TextView
+            android:id="@+id/text_Close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_marginRight="@dimen/twenty"
+            android:fontFamily="@font/poppins_bold"
+            android:text="X"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twenty">
+
+        </TextView>
+
         <RelativeLayout
-            android:id="@+id/r1"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/two_hundred"
-            android:background="@drawable/side_nav_bar">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_marginBottom="@dimen/ten"
+            android:layout_toLeftOf="@+id/text_Close">
 
-            <LinearLayout
-                android:id="@+id/ln1"
-                android:layout_width="165dp"
-                android:layout_height="94dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:background="#132BA6">
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/seventy"
+                android:layout_height="@dimen/seventy"
+                android:src="@drawable/finallogo" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/wharehouseimage"
-                    android:scaleType="fitXY">
-
-                </ImageView>
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/nav_userName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ln1"
-                android:layout_marginBottom="@dimen/ten"
                 android:layout_marginLeft="@dimen/ten"
-                android:layout_marginTop="17dp">
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/profile_image"
+                android:text="Nakul Kumar"
+                android:textColor="@color/white"
+                android:textSize="@dimen/edittextsize"
+                android:textStyle="bold"></TextView>
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/profile_image"
-                    android:layout_width="@dimen/seventy"
-                    android:layout_height="@dimen/seventy"
-                    android:src="@drawable/wharehouseimage" />
-
-                <TextView
-                    android:id="@+id/nav_userName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@id/profile_image"
-                    android:text="Nakul Kumar"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/twenty_size"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:id="@+id/nav_userAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/nav_userName"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_toRightOf="@id/profile_image"
-                    android:text="Bangalore, India"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/edittextsize"
-                    android:textStyle="bold"></TextView>
-
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/nav_userAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nav_userName"
+                android:layout_marginLeft="@dimen/ten"
+                android:layout_toRightOf="@id/profile_image"
+                android:text="Bangalore, India"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize"
+                android:textStyle="bold"></TextView>
 
         </RelativeLayout>
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"

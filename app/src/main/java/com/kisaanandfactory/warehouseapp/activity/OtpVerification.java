@@ -211,12 +211,14 @@ public class OtpVerification extends AppCompatActivity {
 
                 text_timer.setText(millisUntilFinished/1000+"s");
                 ResendtOtp(str_MobileNumber);
+                text_resend.setFocusable(false);
                 //here you can have your logic to set text to edittext
             }
 
             public void onFinish() {
 
                 text_timer.setText("00");
+                text_resend.setFocusable(true);
             }
 
         }.start();

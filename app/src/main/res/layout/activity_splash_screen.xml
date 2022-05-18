@@ -8,10 +8,10 @@
 
     <ImageView
         android:layout_width="@dimen/two_hundred"
-        android:layout_height="@dimen/hundred_fifty"
-        android:src="@drawable/wharehouseimage"
+        android:layout_height="@dimen/two_hundred_fifty"
         android:layout_centerInParent="true"
-        android:scaleType="fitXY">
+        android:scaleType="fitXY"
+        android:src="@drawable/finallogo">
 
     </ImageView>
 

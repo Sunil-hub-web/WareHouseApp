@@ -47,7 +47,7 @@ public class OrderRequest extends Fragment {
     OrderRequestAdapter orderRequestAdapter;
     LinearLayoutManager linearLayoutManager;
     ArrayList<OrderRequest_ModelClass> orderrequest = new ArrayList<>();
-    String token;
+    String token,str_weight;
 
     ArrayList<AllProduct_ModelClass> product;
     ArrayList<Image_ModelClass> productimage;
@@ -211,7 +211,7 @@ public class OrderRequest extends Fragment {
 
                                 for (int l = 0; l < jsonArray_weight.length(); l++) {
 
-                                    String str_weight = jsonArray_weight.get(l).toString();
+                                    str_weight = jsonArray_weight.get(l).toString();
 
 
                                     Weight_ModelClass weight_modelClass = new Weight_ModelClass(
@@ -240,7 +240,7 @@ public class OrderRequest extends Fragment {
 
                             OrderRequest_ModelClass orderRequest_modelClass = new OrderRequest_ModelClass(
                                     oderedBy,name,ordered,paymentStatus,orderStatus,totalAmount,productQuantity,title,
-                                    contacts,userID,house,street,locality,city,state,country,zip,paymentMethod,productimage
+                                    contacts,userID,house,street,locality,city,state,country,zip,paymentMethod,productimage,str_weight
 
                             );
 

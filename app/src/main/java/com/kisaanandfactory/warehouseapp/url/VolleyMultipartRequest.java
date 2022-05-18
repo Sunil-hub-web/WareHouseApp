@@ -169,7 +169,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
         ByteArrayInputStream fileInputStream = new ByteArrayInputStream(dataFile.getContent());
         int bytesAvailable = fileInputStream.available();
 
-        int maxBufferSize = 1024 * 1024;
+        int maxBufferSize = 512 * 512;
         int bufferSize = Math.min(bytesAvailable, maxBufferSize);
         byte[] buffer = new byte[bufferSize];
 

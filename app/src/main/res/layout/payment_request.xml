@@ -10,8 +10,13 @@
         <RelativeLayout
             android:id="@+id/first"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ninety"
-            android:layout_margin="@dimen/ten"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_marginEnd="@dimen/ten"
+            android:layout_marginRight="@dimen/ten"
+            android:layout_marginBottom="@dimen/ten"
             android:background="#FFFFFF"
             android:elevation="@dimen/ten">
 
@@ -27,9 +32,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/ten"
+                android:layout_marginBottom="@dimen/ten"
                 android:layout_toRightOf="@id/productImage"
-                android:orientation="vertical"
-                android:layout_centerVertical="true">
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -51,8 +58,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/five"
-                        android:text="$"
                         android:layout_toRightOf="@+id/paymentsent"
+                        android:text="$"
                         android:textColor="@color/black"
                         android:textSize="@dimen/textsize"
                         android:textStyle="bold"></TextView>
@@ -61,8 +68,8 @@
                         android:id="@+id/text_Price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="50"
                         android:layout_toRightOf="@+id/symbol"
+                        android:text="50"
                         android:textColor="@color/black"
                         android:textSize="@dimen/textsize"
                         android:textStyle="bold"></TextView>
@@ -72,8 +79,8 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/eight">
+                    android:layout_marginTop="@dimen/eight"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/VehicalID"
@@ -90,8 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/five"
-                        android:text="TJAL65986AJBUL63"
                         android:layout_toRightOf="@+id/VehicalID"
+                        android:text="TJAL65986AJBUL63"
                         android:textColor="@color/black"
                         android:textSize="@dimen/textsize"
                         android:textStyle="bold"></TextView>
@@ -101,8 +108,8 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/eight">
+                    android:layout_marginTop="@dimen/eight"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/date"
@@ -119,8 +126,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/five"
-                        android:text="Delivered"
                         android:layout_toRightOf="@+id/date"
+                        android:text="Delivered"
                         android:textColor="@color/some_color1"
                         android:textSize="@dimen/textsize"
                         android:textStyle="bold"></TextView>
@@ -128,8 +135,6 @@
                 </RelativeLayout>
 
             </LinearLayout>
-
-
 
 
             <!-- <LinearLayout

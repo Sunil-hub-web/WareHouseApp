@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class OrderRequest_ModelClass {
 
     String orderId, coustomerName, OrderDate, paymentStatus, status, totalAmount, productQuantity, title,
-            contacts, userID, house, street, locality, city, state, country, zip,paymentMethod;
+            contacts, userID, house, street, locality, city, state, country, zip,paymentMethod,str_weight;
 
     ArrayList<Image_ModelClass> image_modelClasses;
 
@@ -15,7 +15,7 @@ public class OrderRequest_ModelClass {
                                    String status, String totalAmount, String productQuantity, String title,
                                    String contacts, String userID, String house, String street, String locality,
                                    String city, String state, String country, String zip,String paymentMethod,
-                                   ArrayList<Image_ModelClass> image_modelClasses) {
+                                   ArrayList<Image_ModelClass> image_modelClasses,String str_weight) {
         this.orderId = orderId;
         this.coustomerName = coustomerName;
         this.OrderDate = orderDate;
@@ -36,6 +36,7 @@ public class OrderRequest_ModelClass {
         this.paymentMethod = paymentMethod;
         this.image_modelClasses = image_modelClasses;
         this.expanded = false;
+        this.str_weight = str_weight;
     }
 
     public String getOrderId() {
@@ -196,5 +197,13 @@ public class OrderRequest_ModelClass {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public String getStr_weight() {
+        return str_weight;
+    }
+
+    public void setStr_weight(String str_weight) {
+        this.str_weight = str_weight;
     }
 }
