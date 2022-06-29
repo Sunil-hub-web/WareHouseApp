@@ -239,7 +239,7 @@ public class OrderRequest extends Fragment {
                             }
 
                             OrderRequest_ModelClass orderRequest_modelClass = new OrderRequest_ModelClass(
-                                    oderedBy,name,ordered,paymentStatus,orderStatus,totalAmount,productQuantity,title,
+                                    id,name,ordered,paymentStatus,orderStatus,totalAmount,productQuantity,title,
                                     contacts,userID,house,street,locality,city,state,country,zip,paymentMethod,productimage,str_weight
 
                             );

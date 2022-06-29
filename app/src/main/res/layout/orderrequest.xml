@@ -341,7 +341,70 @@
 
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_margin="@dimen/five">
+
+                    <Button
+                        android:id="@+id/btn_Reject"
+                        android:layout_width="@dimen/hundred_twenty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_marginStart="@dimen/five"
+                        android:layout_marginLeft="@dimen/five"
+                        android:layout_marginTop="@dimen/five"
+                        android:layout_marginEnd="@dimen/five"
+                        android:layout_marginRight="@dimen/five"
+                        android:layout_marginBottom="@dimen/five"
+                        android:layout_toRightOf="@id/btn_Accept"
+                        android:background="@drawable/button_back"
+                        android:backgroundTint="#AD3535"
+                        android:text="Reject"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twelve_size">
+
+
+                    </Button>
+
+                    <Button
+                        android:id="@+id/btn_Accept"
+                        android:layout_width="@dimen/hundred_twenty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_marginStart="@dimen/five"
+                        android:layout_marginLeft="@dimen/five"
+                        android:layout_marginTop="@dimen/five"
+                        android:layout_marginEnd="@dimen/five"
+                        android:layout_marginRight="@dimen/five"
+                        android:layout_marginBottom="@dimen/five"
+                        android:background="@drawable/button_back"
+                        android:backgroundTint="#106410"
+                        android:text="Accept"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twelve_size">
+
+
+                    </Button>
+
+                </RelativeLayout>
+
+                <Spinner
+                    android:id="@+id/delivery_Agent"
+                    android:layout_width="@dimen/two_hundred_fifty"
+                    android:layout_height="@dimen/forty_five"
+                    android:layout_margin="@dimen/five"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:background="@drawable/spinner_shape"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/edittextsize"
+                    android:textStyle="normal"
+                    android:layout_gravity="right"
+                    android:visibility="gone"/>
+
             </LinearLayout>
+
+
 
         </LinearLayout>
 

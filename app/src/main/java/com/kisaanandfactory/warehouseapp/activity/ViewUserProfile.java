@@ -37,6 +37,7 @@ import com.android.volley.toolbox.Volley;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.kisaanandfactory.warehouseapp.R;
+import com.kisaanandfactory.warehouseapp.SessionManager;
 import com.kisaanandfactory.warehouseapp.SharedPrefManager;
 import com.kisaanandfactory.warehouseapp.url.AppUrl;
 import com.kisaanandfactory.warehouseapp.url.VolleyMultipartRequest;
@@ -72,12 +73,15 @@ public class ViewUserProfile extends AppCompatActivity {
     String token,user_password,ImageDecode;
     AwesomeValidation awesomeValidation;
 
+    SessionManager sessionManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_user_profile);
 
+        sessionManager = new SessionManager(ViewUserProfile.this);
 
         edit_EmailId = findViewById(R.id.edit_EmailId);
         edit_UserName = findViewById(R.id.edit_UserName);
@@ -321,6 +325,8 @@ public class ViewUserProfile extends AppCompatActivity {
                         edit_BankName.setEnabled(false);
                         edit_IfcCode.setEnabled(false);
 
+                        sessionManager.setZipCode(zip);
+
 
                     }else{
 
@@ -418,6 +424,8 @@ public class ViewUserProfile extends AppCompatActivity {
                     if(code.equals("200")){
                         String message = response.getString("msg");
                         Toast.makeText(ViewUserProfile.this, message, Toast.LENGTH_SHORT).show();
+
+                        sessionManager.setZipCode(zip);
 
                         viewUserDetails(token);
                     }

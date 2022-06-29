@@ -48,7 +48,7 @@ public class RegisterPage extends AppCompatActivity {
         super.onStart();
         if (SharedPrefManager.getInstance(RegisterPage.this).isLoggedIn()) {
 
-            Intent intent = new Intent(RegisterPage.this, MainActivity.class);
+            Intent intent = new Intent(RegisterPage.this, ViewUserProfile.class);
             startActivity(intent);
         }
     }

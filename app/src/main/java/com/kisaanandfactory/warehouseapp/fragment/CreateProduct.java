@@ -27,6 +27,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -57,6 +61,7 @@ import com.kisaanandfactory.warehouseapp.R;
 import com.kisaanandfactory.warehouseapp.RealPathUtil;
 import com.kisaanandfactory.warehouseapp.SharedPrefManager;
 import com.kisaanandfactory.warehouseapp.activity.MainActivity;
+import com.kisaanandfactory.warehouseapp.activity.OtpVerification;
 import com.kisaanandfactory.warehouseapp.activity.UserLogin;
 import com.kisaanandfactory.warehouseapp.adapter.CategoriesAdapter;
 import com.kisaanandfactory.warehouseapp.adapter.SubCategoriesAdapter;
@@ -116,6 +121,8 @@ public class CreateProduct extends Fragment {
     boolean photoselected = false;
 
     AwesomeValidation awesomeValidation;
+
+    ActivityResultLauncher activityResultLauncher;
 
     @Nullable
     @Override
@@ -304,6 +311,39 @@ public class CreateProduct extends Fragment {
             }
         });
 
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+
+                    Intent intent = result.getData();
+
+                    if(intent != null){
+
+                        selectedImage = intent.getData();
+
+                        try {
+
+                            //bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), intent.getData());
+
+                            InputStream imageStream = getContext().getContentResolver().openInputStream(selectedImage);
+                            bitmap = BitmapFactory.decodeStream(imageStream);
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                            photoselected = true;
+
+                            upload(bitmap);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+
+            }
+        });
 
         return view;
     }
@@ -589,7 +629,8 @@ public class CreateProduct extends Fragment {
             intent.setType("*/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             intent.putExtra(Intent.EXTRA_MIME_TYPES, ACCEPT_MIME_TYPES);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_CODE);
+            activityResultLauncher.launch(Intent.createChooser(intent, "title"));
+            //startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_CODE);
         } catch (Exception e) {
             Toast.makeText(getActivity(), "Camera Permission error", Toast.LENGTH_SHORT).show();
             Log.d("rfgrvdcs", String.valueOf(e));
@@ -605,7 +646,7 @@ public class CreateProduct extends Fragment {
     }
 
 
-    @Override
+   /* @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -616,8 +657,6 @@ public class CreateProduct extends Fragment {
 
                 selectedImage = data.getData();
 
-                Toast.makeText(getActivity(), ""+selectedImage.toString(), Toast.LENGTH_SHORT).show();
-                //profile_image.setImageURI(imageUri);
 
                 try {
 
@@ -630,6 +669,7 @@ public class CreateProduct extends Fragment {
 
                     upload(bitmap);
 
+
                 } catch (FileNotFoundException e) {
 
                     e.printStackTrace();
@@ -637,20 +677,20 @@ public class CreateProduct extends Fragment {
 
                 }
 
-               /* String path = RealPathUtil.getRealPath(getActivity(),selectedImage);
+               *//* String path = RealPathUtil.getRealPath(getActivity(),selectedImage);
                 bitmap = BitmapFactory.decodeFile(path);
                 productimage1.setImageBitmap(bitmap);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
                 upload(path);
-*/
+*//*
             }
         } catch (Exception e) {
             Toast.makeText(getContext(), "Please try again", Toast.LENGTH_LONG)
                     .show();
         }
 
-    }
+    }*/
 
     private File createFile(Uri uri) {
 
@@ -796,9 +836,13 @@ public class CreateProduct extends Fragment {
 
     private void upload(final Bitmap bitmap) {
 
-        ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Upload Image Please Wait..");
+        ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        TextView textView = progressDialog.findViewById(R.id.text);
+        textView.setText("Image Upload Please wait...");
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        progressDialog.setCancelable(false);
 
         String path = RealPathUtil.getRealPath(getContext(),selectedImage);
         File file = new File(path);
@@ -806,32 +850,33 @@ public class CreateProduct extends Fragment {
         RequestBody imageBode = RequestBody.create(MediaType.parse(getContext().getContentResolver().getType(selectedImage)), file);
         MultipartBody.Part partImage = MultipartBody.Part.createFormData("photo", "productimage.png", imageBode);
 
-        Log.d("fvsdz", "" + imageBode);
+        Log.d("fvsdz", ""+selectedImage);
+
+
 
         Call<ImageResponse> call = new ApiToJsonHandler().uploadImage(token, partImage);
         call.enqueue(new Callback<ImageResponse>() {
             @Override
             public void onResponse(Call<ImageResponse> call, retrofit2.Response<ImageResponse> response) {
 
+                progressDialog.dismiss();
+
                 if (response.isSuccessful()) {
 
-                    progressDialog.dismiss();
-
-                    Toast.makeText(getActivity(), "Upload success", Toast.LENGTH_SHORT).show();
 
                     // get the path and save it to images array
-                    Log.d("fvsdzfvfc", "" + response.body().getMsg().getFilename());
-                    Log.d("fvsdzfvfc", "" + response.body().getMsg().getPath());
+                    Log.d("fvsdzfvfc", ""+response.body().getMsg().getFilename());
+                    Log.d("fvsdzfvfc", ""+response.body().getMsg().getPath());
 
-                    if (photoSelection.equalsIgnoreCase("1")) {
+                    if(photoSelection.equalsIgnoreCase("1")){
                         productimage1.setImageBitmap(bitmap);
                         photostr1 = response.body().getMsg().getFilename();
 
-                    } else if (photoSelection.equalsIgnoreCase("2")) {
+                    }else if(photoSelection.equalsIgnoreCase("2")){
                         productimage2.setImageBitmap(bitmap);
                         photostr2 = response.body().getMsg().getFilename();
 
-                    } else if (photoSelection.equalsIgnoreCase("3")) {
+                    }else if(photoSelection.equalsIgnoreCase("3")){
                         productimage3.setImageBitmap(bitmap);
                         photostr3 = response.body().getMsg().getFilename();
 
@@ -840,6 +885,7 @@ public class CreateProduct extends Fragment {
                 } else {
 
                     progressDialog.dismiss();
+
                     Gson gson = new Gson();
                     ApiResponse message = gson.fromJson(response.errorBody().charStream(), ApiResponse.class);
                     Toast.makeText(getContext(), message.getMsg(), Toast.LENGTH_SHORT).show();
@@ -848,34 +894,13 @@ public class CreateProduct extends Fragment {
 
             @Override
             public void onFailure(Call<ImageResponse> call, Throwable t) {
+
                 progressDialog.dismiss();
+
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("getMessage", t.getMessage());
-
-                if (t instanceof SocketTimeoutException) {
-                    // "Connection Timeout";
-
-                    Toast.makeText(getActivity(), "Connection Timeout", Toast.LENGTH_SHORT).show();
-                } else if (t instanceof IOException) {
-                    // "Timeout";
-
-                    Toast.makeText(getActivity(), "Timeout", Toast.LENGTH_SHORT).show();
-                } else {
-                    //Call was cancelled by user
-                    if (call.isCanceled()) {
-                        //System.out.println("Call was cancelled forcefully");
-
-                        Toast.makeText(getActivity(), "Call was cancelled forcefully", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //Generic error handling
-                        //System.out.println("Network Error :: " + error.getLocalizedMessage());
-
-                        Toast.makeText(getActivity(), "Network Error :: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                Log.d("getMessage",t.getMessage());
             }
         });
-
     }
 
     public boolean isValidUserName(final String userName) {
@@ -933,4 +958,5 @@ public class CreateProduct extends Fragment {
 
         return byteBuff.toByteArray();
     }
+
 }

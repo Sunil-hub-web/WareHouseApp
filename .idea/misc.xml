@@ -3,15 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/New folder/WareHouseApp/app/src/main/res/drawable/bttonback.xml" value="0.169" />
         <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/activity_otp_verification.xml" value="0.1388888888888889" />
         <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.1388888888888889" />
+        <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/activity_user_login.xml" value="0.18796296296296297" />
+        <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/activity_view_user_profile.xml" value="0.20833333333333334" />
         <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/addnewproduct.xml" value="0.20833333333333334" />
         <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/homepagedashboard.xml" value="0.20833333333333334" />
         <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/nav_header.xml" value="0.2" />
-        <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/orderrequest.xml" value="0.5" />
+        <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/orderrequest.xml" value="0.25" />
         <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/payment_request.xml" value="0.33" />
         <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/product.xml" value="0.1398148148148148" />
+        <entry key="..\:/New folder/WareHouseApp/app/src/main/res/layout/progress_dialog.xml" value="0.22083333333333333" />
         <entry key="..\:/New folder/WareHouseApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1355" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/drawable/edittextback.xml" value="0.1" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/drawable/spinner_shape.xml" value="0.1" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/layout/activity_register_page.xml" value="0.20416666666666666" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/layout/activity_view_user_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/layout/addnewproduct.xml" value="0.20416666666666666" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/layout/createprofile_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/layout/orderrequest.xml" value="0.20416666666666666" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/layout/spinnerdropdownitem.xml" value="0.20416666666666666" />
+        <entry key="..\:/newFolder/WareHouseApp/app/src/main/res/layout/spinneritem.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

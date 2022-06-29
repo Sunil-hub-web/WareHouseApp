@@ -53,26 +53,27 @@
                         android:textSize="@dimen/textsize"
                         android:textStyle="bold"></TextView>
 
-                    <TextView
+                  <!--  <TextView
                         android:id="@+id/symbol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/five"
                         android:layout_toRightOf="@+id/paymentsent"
-                        android:text="$"
                         android:textColor="@color/black"
                         android:textSize="@dimen/textsize"
-                        android:textStyle="bold"></TextView>
+                        android:textStyle="bold"></TextView>-->
 
                     <TextView
                         android:id="@+id/text_Price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/symbol"
+                        android:layout_toRightOf="@+id/paymentsent"
                         android:text="50"
+                        android:layout_marginLeft="@dimen/fifteen"
                         android:textColor="@color/black"
                         android:textSize="@dimen/textsize"
-                        android:textStyle="bold"></TextView>
+                        android:textStyle="bold"
+                        android:drawableLeft="@drawable/rupee"></TextView>
 
                 </RelativeLayout>
 
@@ -100,7 +101,7 @@
                         android:layout_toRightOf="@+id/VehicalID"
                         android:text="TJAL65986AJBUL63"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/textsize"
+                        android:textSize="@dimen/twelve_size"
                         android:textStyle="bold"></TextView>
 
                 </RelativeLayout>

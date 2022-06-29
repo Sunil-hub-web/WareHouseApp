@@ -1,35 +1,65 @@
 package com.kisaanandfactory.warehouseapp.adapter;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.kisaanandfactory.warehouseapp.R;
+import com.kisaanandfactory.warehouseapp.SessionManager;
+import com.kisaanandfactory.warehouseapp.SharedPrefManager;
 import com.kisaanandfactory.warehouseapp.modelclass.Image_ModelClass;
 import com.kisaanandfactory.warehouseapp.modelclass.OrderRequest_ModelClass;
+import com.kisaanandfactory.warehouseapp.url.AppUrl;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapter.ViewHolder> {
 
     Context context;
     ArrayList<OrderRequest_ModelClass> orderRequest;
-
     int index;
+    String token;
+    SessionManager sessionManager;
+    ArrayList<String> delivery_agent = new ArrayList<>();
+    ArrayAdapter deliveryAgentAdapter;
 
     public OrderRequestAdapter(FragmentActivity activity, ArrayList<OrderRequest_ModelClass> orderrequest) {
 
@@ -46,7 +76,11 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  OrderRequestAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull  OrderRequestAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
+        sessionManager = new SessionManager(context);
+
+        token = SharedPrefManager.getInstance(context).getUser().getToken();
 
         OrderRequest_ModelClass order_request = orderRequest.get(position);
 
@@ -69,10 +103,54 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
         holder.deliveryAddress.setText(order_request.getHouse()+","+order_request.getStreet()+","+order_request.getLocality()
                 +","+order_request.getCity()+","+order_request.getState()+","+order_request.getCountry()+","+order_request.getZip());
 
+        if(order_request.getStatus().equals("delivered")){
+
+            holder.btn_Accept.setVisibility(View.GONE);
+            holder.btn_Reject.setText("Delete");
+
+        }else  if(order_request.getStatus().equals("shipped")){
+
+            holder.btn_Reject.setVisibility(View.GONE);
+            holder.btn_Accept.setText("Out For Delivery");
+
+        }else  if(order_request.getStatus().equals("confirmed")){
+
+            holder.btn_Accept.setVisibility(View.GONE);
+            holder.btn_Reject.setText("Delete");
+
+        }else  if(order_request.getStatus().equals("ordered")){
+
+            holder.btn_Accept.setVisibility(View.VISIBLE);
+            holder.btn_Reject.setVisibility(View.VISIBLE);
+
+            holder.btn_Accept.setText("Accept");
+            holder.btn_Reject.setText("Reject");
+
+        }else  if(order_request.getStatus().equals("cancel")){
+
+            holder.btn_Accept.setVisibility(View.VISIBLE);
+            holder.btn_Reject.setVisibility(View.VISIBLE);
+
+            holder.btn_Accept.setText("Accept");
+            holder.btn_Reject.setText("Reject");
+
+        }else  if(order_request.getStatus().equals("return")){
+
+            holder.btn_Accept.setVisibility(View.GONE);
+            holder.btn_Reject.setText("Delete");
+
+        }else  if(order_request.getStatus().equals("out for delivery")){
+
+            holder.btn_Accept.setVisibility(View.GONE);
+            holder.btn_Reject.setText("Delete");
+
+        }
+
+
         boolean isExpand = order_request.isExpanded();
         holder.expandableLayout.setVisibility(isExpand ? View.VISIBLE : View.GONE);
 
-        /*holder.rel_orderdetails.setOnClickListener(new View.OnClickListener() {
+       /* holder.rel_orderdetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -81,15 +159,16 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
             }
         });*/
 
-       /* if(index == position){
+       /* index = position;
+
+        if(index == position){
 
             holder.expandableLayout.setVisibility(View.VISIBLE);
 
         }else{
 
             holder.expandableLayout.setVisibility(View.GONE);
-        }
-        */
+        }*/
 
         String utcDateString = order_request.getOrderDate();
 
@@ -112,6 +191,45 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
         } catch (Exception e) {
             e.printStackTrace();
         }*/
+
+
+
+        holder.btn_Accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String orderId = order_request.getOrderId();
+
+                if(holder.btn_Accept.getText().toString().trim().equals("Accept")){
+
+                    orderStatuesChange(orderId);
+
+                    holder.btn_Accept.setVisibility(View.GONE);
+                    holder.btn_Reject.setText("Delete");
+
+                }else if(holder.btn_Accept.getText().toString().trim().equals("Out For Delivery")){
+
+                    holder.delivery_Agent.setVisibility(View.VISIBLE);
+
+                    String zipcode = sessionManager.getZipCode();
+
+                    getvenderdetails(zipcode);
+
+                    holder.delivery_Agent.setAdapter(deliveryAgentAdapter);
+                    holder.delivery_Agent.setSelection(-1, true);
+
+                }
+            }
+        });
+
+        holder.btn_Reject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String orderId = order_request.getOrderId();
+
+            }
+        });
     }
 
     @Override
@@ -127,6 +245,8 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
         ImageView productImage;
         RelativeLayout rel_orderdetails;
         LinearLayout expandableLayout;
+        Button btn_Accept,btn_Reject;
+        Spinner delivery_Agent;
 
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
@@ -144,6 +264,9 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
             rel_orderdetails = itemView.findViewById(R.id.rel_orderdetails);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
             text_weight = itemView.findViewById(R.id.text_weight);
+            btn_Reject = itemView.findViewById(R.id.btn_Reject);
+            btn_Accept = itemView.findViewById(R.id.btn_Accept);
+            delivery_Agent = itemView.findViewById(R.id.delivery_Agent);
 
 
             rel_orderdetails.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +280,204 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
             });
 
         }
+
+    }
+
+    public void orderStatuesChange(String orderId){
+
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        TextView textView = progressDialog.findViewById(R.id.text);
+        textView.setText("Accept Order Please wait...");
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        progressDialog.setCancelable(false);
+
+        //String url_satus = AppUrl.acceptOrder+orderId;
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+
+            jsonObject.put("orderId",orderId);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, AppUrl.acceptOrder, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    String code = response.getString("code");
+                    String err = response.getString("err");
+                    String OrderStatus = response.getString("OrderStatus");
+
+                    if(code.equals("200")){
+
+                        Toast.makeText(context, OrderStatus, Toast.LENGTH_SHORT).show();
+
+                    }else{
+
+                        Toast.makeText(context, OrderStatus, Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                progressDialog.dismiss();
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(context, "Please check Internet Connection", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    Log.d("successresponceVolley", "" + error.networkResponse.statusCode);
+                    NetworkResponse networkResponse = error.networkResponse;
+                    if (networkResponse != null && networkResponse.data != null) {
+                        try {
+                            String jError = new String(networkResponse.data);
+                            JSONObject jsonError = new JSONObject(jError);
+
+                            String data = jsonError.getString("msg");
+                            Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("successresponceVolley", "" + e);
+                        }
+
+
+                    }
+
+                }
+
+            }
+        }){
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                Map<String,String> header = new HashMap<>();
+                header.put("auth-token",token);
+                return header;
+            }
+
+        };
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    public void getvenderdetails(String zipcode){
+
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        TextView textView = progressDialog.findViewById(R.id.text);
+        textView.setText("Retrive Delivery Name Please wait...");
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        progressDialog.setCancelable(false);
+
+        String delivery = AppUrl.get_driveragent+zipcode;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, delivery, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String code = jsonObject.getString("code");
+                    String err = jsonObject.getString("err");
+                    String msg = jsonObject.getString("msg");
+                    String data = jsonObject.getString("data");
+
+                    if(code.equalsIgnoreCase("200")){
+
+                        delivery_agent = new ArrayList<>();
+                        JSONArray jsonArray_data = new JSONArray(data);
+
+                        for (int i=0;i<jsonArray_data.length();i++){
+
+                            JSONObject jsonObject_data = jsonArray_data.getJSONObject(i);
+
+                            String location = jsonObject_data.getString("location");
+                            String accountDetails = jsonObject_data.getString("accountDetails");
+                            String fcm_id = jsonObject_data.getString("fcm_id");
+                            String availabilityStatus = jsonObject_data.getString("availabilityStatus");
+                            String _id = jsonObject_data.getString("_id");
+                            String name = jsonObject_data.getString("name");
+
+                            delivery_agent.add(name);
+                        }
+
+                        deliveryAgentAdapter = new ArrayAdapter(context, R.layout.spinneritem, delivery_agent);
+                        deliveryAgentAdapter.setDropDownViewResource(R.layout.spinnerdropdownitem);
+
+                        Log.d("hdudgib",delivery_agent.toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                progressDialog.dismiss();
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(context, "Please check Internet Connection", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    Log.d("successresponceVolley", "" + error.networkResponse.statusCode);
+                    NetworkResponse networkResponse = error.networkResponse;
+                    if (networkResponse != null && networkResponse.data != null) {
+                        try {
+                            String jError = new String(networkResponse.data);
+                            JSONObject jsonError = new JSONObject(jError);
+
+                            String data = jsonError.getString("msg");
+                            Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("successresponceVolley", "" + e);
+                        }
+
+
+                    }
+
+                }
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                Map<String,String> header = new HashMap<>();
+                header.put("auth-token",token);
+                return header;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
 
     }
 }

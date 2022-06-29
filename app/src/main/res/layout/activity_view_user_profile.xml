@@ -46,7 +46,7 @@
                 android:id="@+id/profile_image"
                 android:layout_width="@dimen/eighty"
                 android:layout_height="@dimen/eighty"
-                android:src="@drawable/wharehouseimage"/>
+                android:src="@drawable/finallogo" />
 
             <!-- <ImageView
                  android:id="@+id/imageview"

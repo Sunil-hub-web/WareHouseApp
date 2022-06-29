@@ -129,7 +129,7 @@ public class UserLogin extends AppCompatActivity {
 
                         SharedPrefManager.getInstance(UserLogin.this).userLogin(login_modelClass);
 
-                        Intent intent = new Intent(UserLogin.this, MainActivity.class);
+                        Intent intent = new Intent(UserLogin.this, ViewUserProfile.class);
                         startActivity(intent);
                     }
 
@@ -192,7 +192,7 @@ public class UserLogin extends AppCompatActivity {
         super.onStart();
         if (SharedPrefManager.getInstance(UserLogin.this).isLoggedIn()) {
 
-            Intent intent = new Intent(UserLogin.this, MainActivity.class);
+            Intent intent = new Intent(UserLogin.this, ViewUserProfile.class);
             startActivity(intent);
         }
     }

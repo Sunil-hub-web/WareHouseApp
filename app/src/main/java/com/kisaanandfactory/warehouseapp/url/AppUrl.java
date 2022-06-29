@@ -42,6 +42,13 @@ public class AppUrl {
 
     public static final String addVender = "https://kisaanandfactory.com/api/v1/adminapp/user/vendor/add";
 
+    public static final String update_status = "https://kisaanandfactory.com/api/v1/vendorapp/view/myOrders/status/update/";
+
+    public static final String get_driveragent = "https://kisaanandfactory.com/api/v1/warehouseapp/main/get-driver-agent?zipCode=";
+
+    public static final String acceptOrder = "https://kisaanandfactory.com/api/v1/adminapp/order/acceptOrder";
+
+
 
 
 

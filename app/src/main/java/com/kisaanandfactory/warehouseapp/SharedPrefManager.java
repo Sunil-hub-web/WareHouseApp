@@ -14,6 +14,7 @@ public class SharedPrefManager {
     private static final String KEY_mobile_number = "keymobile_number";
     private static final String KEY_token = "keytoken";
     private static final String KEY_password = "keypassword";
+
     private static SharedPrefManager mInstance;
     private static Context mCtx;
 
