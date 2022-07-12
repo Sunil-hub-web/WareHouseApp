@@ -1,12 +1,13 @@
 package com.kisaanandfactory.warehouseapp.fragment;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.icu.number.CompactNotation;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -54,8 +55,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static android.app.Activity.RESULT_OK;
 
 public class CreateProfile extends Fragment {
 
@@ -308,12 +307,16 @@ public class CreateProfile extends Fragment {
                     edit_IfcCode.setError("enter IFSC code");
                     edit_IfcCode.requestFocus();
 
+                }else if(TextUtils.isEmpty(edit_DrlinNumber.getText())){
+
+                    edit_IfcCode.setError("enter DL Number");
+                    edit_IfcCode.requestFocus();
+
                 }else if(panImage.equals("") || gstImage.equals("")){
 
                     Toast.makeText(getActivity(), "Select Your Image", Toast.LENGTH_SHORT).show();
 
                 }else{
-
 
                     str_UserName = edit_UserName.getText().toString().trim();
                     str_MobileNo = edit_MobileNo.getText().toString().trim();
@@ -333,8 +336,18 @@ public class CreateProfile extends Fragment {
                     str_City = edit_City.getText().toString().trim();
                     str_Street = edit_Street.getText().toString().trim();
 
-                    addVender(str_UserName,str_MobileNo,str_EmailId,str_Password,91,str_Location,str_Street,long_AccNumber,
-                            str_IfcCode,str_BankName,str_PanNumber,str_GstNumber,str_Locality,str_City,str_State,str_ZipCode,"10");
+                    String profilefor1 = profileFor.getSelectedItem().toString();
+
+                    if(profilefor1.equals("Vendor")){
+
+                        addVender(str_UserName,str_MobileNo,str_EmailId,str_Password,91,str_Location,str_Street,long_AccNumber,
+                                str_IfcCode,str_BankName,str_PanNumber,str_GstNumber,str_Locality,str_City,str_State,str_ZipCode,"20");
+                    }else{
+
+                        addDelivery(str_UserName,str_MobileNo,str_EmailId,str_Password,91,str_Location,str_Street,long_AccNumber,
+                                str_IfcCode,str_BankName,str_PanNumber,str_GstNumber,str_Locality,str_City,str_State,str_ZipCode,"20",str_DrlinNumber);
+
+                    }
 
                 }
 
@@ -389,6 +402,126 @@ public class CreateProfile extends Fragment {
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, AppUrl.addVender, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    String err = response.getString("err");
+
+                    if (err.equals("false")){
+
+                        String message = response.getString("msg");
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                progressDialog.dismiss ();
+
+                /*error.printStackTrace();
+                Log.d("Ranj_Login_error",error.toString());
+                Toast.makeText (UserLoginPage.this, ""+error+"User Name password Not Match", Toast.LENGTH_LONG).show ( );*/
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(getActivity(), "Please check Internet Connection", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Log.d("successresponceVolley", "" + error.networkResponse);
+                    NetworkResponse networkResponse = error.networkResponse;
+                    if (networkResponse != null && networkResponse.data != null) {
+                        try {
+                            String jError = new String(networkResponse.data);
+                            JSONObject jsonError = new JSONObject(jError);
+//                            if (error.networkResponse.statusCode == 400) {
+                            String data = jsonError.getString("msg");
+                            Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
+
+//                            } else if (error.networkResponse.statusCode == 404) {
+//                                JSONArray data = jsonError.getJSONArray("msg");
+//                                JSONObject jsonitemChild = data.getJSONObject(0);
+//                                String ms = jsonitemChild.toString();
+//                                Toast.makeText(RegisterActivity.this, ms, Toast.LENGTH_SHORT).show();
+//
+//                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("successresponceVolley", "" + e);
+                        }
+                    }
+                }
+
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                Map<String,String> header = new HashMap<>();
+                header.put("auth-token",token);
+                return header;
+            }
+
+        };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    public void addDelivery(String name,String mobile,String emailID,String password,int countryCode,
+                          String address,String street,long accountNum,String ifsc,String bankName,
+                          String panNumber,String gstNumber,String locality,String city,String state,
+                          String zip,String deliveryRadius,String drivingLisence){
+
+
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        TextView textView = progressDialog.findViewById(R.id.text);
+        textView.setText("Add details Please wait...");
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        progressDialog.setCancelable(false);
+
+        JSONObject jsonObject = new JSONObject();
+
+        try{
+
+            jsonObject.put("name",name);
+            jsonObject.put("mobile",mobile);
+            jsonObject.put("emailID",emailID);
+            jsonObject.put("password",password);
+            jsonObject.put("countryCode",countryCode);
+            jsonObject.put("address",address);
+            jsonObject.put("street",street);
+            jsonObject.put("accountNum",accountNum);
+            jsonObject.put("ifsc",ifsc);
+            jsonObject.put("bankName",bankName);
+            jsonObject.put("panNumber",panNumber);
+            jsonObject.put("panImage",panImage);
+            jsonObject.put("gstNumber",gstNumber);
+            jsonObject.put("gstImage",gstImage);
+            jsonObject.put("locality",locality);
+            jsonObject.put("city",city);
+            jsonObject.put("state",state);
+            jsonObject.put("zip",zip);
+            jsonObject.put("deliveryRadius",deliveryRadius);
+            jsonObject.put("drivingLisence",drivingLisence);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, AppUrl.addDelivery, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 

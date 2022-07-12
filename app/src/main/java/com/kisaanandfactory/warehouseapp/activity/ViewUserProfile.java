@@ -1,10 +1,5 @@
 package com.kisaanandfactory.warehouseapp.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,6 +16,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -326,6 +326,7 @@ public class ViewUserProfile extends AppCompatActivity {
                         edit_IfcCode.setEnabled(false);
 
                         sessionManager.setZipCode(zip);
+                        sessionManager.setUserId(_id);
 
 
                     }else{

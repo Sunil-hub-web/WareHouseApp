@@ -48,7 +48,9 @@ public class AppUrl {
 
     public static final String acceptOrder = "https://kisaanandfactory.com/api/v1/adminapp/order/acceptOrder";
 
+    public static final String addDelivery = "https://kisaanandfactory.com/api/v1/adminapp/user/delivery/add";
 
+    public static final String out_for_delivery = "https://kisaanandfactory.com/api/v1/adminapp/order/out-for-delivery/";
 
 
 

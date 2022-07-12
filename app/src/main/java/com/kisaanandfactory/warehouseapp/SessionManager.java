@@ -12,6 +12,7 @@ public class SessionManager {
     private static final String PREF_NAME="sharedcheckLogin";
     private static final String PREF_NAME2="sharedcheckLogin2";
     private static final String FCMId="FCMId";
+    private static final String USERID="userid";
     private static final String KEY_ZipCode = "zipcode";
 
     public SessionManager(Context context){
@@ -25,15 +26,26 @@ public class SessionManager {
 
     }
 
-    public void setFCMId(String number){
+    public String getUserId(){
+
+        return sharedprefernce.getString(FCMId,"");
+    }
+
+    public void setUserId(String number){
 
         editor.putString(FCMId,number);
         editor.commit();
     }
 
-    public String getFCMId(){
+    public String getUserId_Delivery(){
 
-        return sharedprefernce.getString(FCMId,"");
+        return sharedprefernce.getString(USERID,"");
+    }
+
+    public void setUserId_Delivery(String number){
+
+        editor.putString(USERID,number);
+        editor.commit();
     }
 
     public String getZipCode() {
@@ -46,6 +58,5 @@ public class SessionManager {
         editor.commit();
 
     }
-
 
 }

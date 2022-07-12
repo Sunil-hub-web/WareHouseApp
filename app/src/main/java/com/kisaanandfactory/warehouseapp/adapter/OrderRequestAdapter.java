@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ import com.android.volley.toolbox.Volley;
 import com.kisaanandfactory.warehouseapp.R;
 import com.kisaanandfactory.warehouseapp.SessionManager;
 import com.kisaanandfactory.warehouseapp.SharedPrefManager;
+import com.kisaanandfactory.warehouseapp.modelclass.DeliveryBoy_ModelClass;
 import com.kisaanandfactory.warehouseapp.modelclass.Image_ModelClass;
 import com.kisaanandfactory.warehouseapp.modelclass.OrderRequest_ModelClass;
 import com.kisaanandfactory.warehouseapp.url.AppUrl;
@@ -44,10 +46,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,7 +57,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
     int index;
     String token;
     SessionManager sessionManager;
-    ArrayList<String> delivery_agent = new ArrayList<>();
+    ArrayList<DeliveryBoy_ModelClass> delivery_agent = new ArrayList<>();
     ArrayAdapter deliveryAgentAdapter;
 
     public OrderRequestAdapter(FragmentActivity activity, ArrayList<OrderRequest_ModelClass> orderrequest) {
@@ -192,8 +191,6 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
             e.printStackTrace();
         }*/
 
-
-
         holder.btn_Accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,6 +227,30 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
 
             }
         });
+
+       holder.delivery_Agent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+               DeliveryBoy_ModelClass cate_data = (DeliveryBoy_ModelClass) parent.getSelectedItem();
+
+               String delivery_id = cate_data.getId();
+               String delivery_name = cate_data.getName();
+               Log.d("city_Id", delivery_id);
+
+               String orderId = order_request.getOrderId();
+               String wareHouseID = sessionManager.getUserId();
+
+               assignDelivery(orderId,wareHouseID,delivery_id);
+
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+
+           }
+       });
+
     }
 
     @Override
@@ -421,7 +442,13 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
                             String _id = jsonObject_data.getString("_id");
                             String name = jsonObject_data.getString("name");
 
-                            delivery_agent.add(name);
+                            sessionManager.setUserId_Delivery(_id);
+
+                            DeliveryBoy_ModelClass deliveryBoy_modelClass = new DeliveryBoy_ModelClass(
+                                    name,_id
+                            );
+
+                            delivery_agent.add(deliveryBoy_modelClass);
                         }
 
                         deliveryAgentAdapter = new ArrayAdapter(context, R.layout.spinneritem, delivery_agent);
@@ -479,5 +506,84 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
 
+    }
+
+    public void assignDelivery(String orderid,String wareHouse_Id,String Delivery_Id){
+
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        TextView textView = progressDialog.findViewById(R.id.text);
+        textView.setText("Assign Delivery Please wait...");
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        progressDialog.setCancelable(false);
+
+        String url = AppUrl.out_for_delivery+orderid;
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("warehouse_id",wareHouse_Id);
+            jsonObject.put("driver_id",Delivery_Id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                Toast.makeText(context, "Delivery Boy Assign SuccessFully", Toast.LENGTH_SHORT).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                progressDialog.dismiss();
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(context, "Please check Internet Connection", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    Log.d("successresponceVolley", "" + error.networkResponse.statusCode);
+                    NetworkResponse networkResponse = error.networkResponse;
+                    if (networkResponse != null && networkResponse.data != null) {
+                        try {
+                            String jError = new String(networkResponse.data);
+                            JSONObject jsonError = new JSONObject(jError);
+
+                            String data = jsonError.getString("msg");
+                            Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("successresponceVolley", "" + e);
+                        }
+
+
+                    }
+
+                }
+
+            }
+        }){
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                Map<String,String> header = new HashMap<>();
+                header.put("auth-token",token);
+                return header;
+            }
+
+        };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(jsonObjectRequest);
     }
 }
