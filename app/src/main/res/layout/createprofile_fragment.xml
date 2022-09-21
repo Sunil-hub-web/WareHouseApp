@@ -17,7 +17,7 @@
 
     </TextView>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:id="@+id/usertype"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,13 +61,13 @@
             android:textSize="@dimen/edittextsize"
             android:textStyle="normal" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:layout_below="@id/usertype">
+        android:layout_below="@+id/text">
 
         <LinearLayout
             android:layout_width="match_parent"

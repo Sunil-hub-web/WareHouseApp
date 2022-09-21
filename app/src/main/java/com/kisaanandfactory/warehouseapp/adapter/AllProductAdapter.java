@@ -54,6 +54,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
         holder.productName.setText(allProduct.getTitle());
         holder.stock.setText(allProduct.getInStock());
         holder.productType.setText(allProduct.getType());
+       // holder.refundable.setText(allProduct.getIsRefundable());
 
         ArrayList<Image_ModelClass> image_modelClass = allProduct.getImage_modelClasses();
         String image = "https://kisaanandfactory.com/static_file/"+image_modelClass.get(0);
@@ -94,7 +95,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView productName, stock, productType, datetime;
+        TextView productName, stock, productType, datetime,refundable;
         ImageView productImage;
 
         public ViewHolder(@NonNull View itemView) {
@@ -105,6 +106,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
             stock = itemView.findViewById(R.id.stock);
             productType = itemView.findViewById(R.id.productType);
             datetime = itemView.findViewById(R.id.datetime);
+            //refundable = itemView.findViewById(R.id.refundable);
 
         }
     }

@@ -174,7 +174,7 @@ public class OrderRequest extends Fragment {
                                 String description = jsonObject_product_pro.getString("description");
                                 String totalRating = jsonObject_product_pro.getString("totalRating");
                                 String inStock = jsonObject_product_pro.getString("inStock");
-                                String experience = jsonObject_product_pro.getString("experience");
+                                //String isRefundable = jsonObject_product_pro.getString("isRefundable");
                                 String subcategoryId = jsonObject_product_pro.getString("subcategoryId");
                                 String soldBy = jsonObject_product_pro.getString("soldBy");
                                 String createdAt = jsonObject_product_pro.getString("createdAt");
@@ -222,7 +222,7 @@ public class OrderRequest extends Fragment {
                                 }
 
                                 AllProduct_ModelClass allProduct_modelClass = new AllProduct_ModelClass(
-                                        discount,id,title,price,type,description,totalRating,"",inStock,experience,soldBy,productimage,productweight,createdAt
+                                        discount,id,title,price,type,description,totalRating,"",inStock,"",soldBy,productimage,productweight,createdAt,""
                                 );
 
                                 product.add(allProduct_modelClass);

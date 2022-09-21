@@ -108,7 +108,7 @@ public class ViewUserProfile extends AppCompatActivity {
         awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_BankName, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
         awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_State, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
         awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_City, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
-        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_Location, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
+        awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_Location, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.enterlocation);
         awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_Locality, "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.entername);
         awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_AccNumber, "^[0-9]{9,18}$", R.string.enterbankaccno);
         awesomeValidation.addValidation(ViewUserProfile.this, R.id.edit_ZipCode, "^[0-9]{6}$", R.string.enterzipcode);

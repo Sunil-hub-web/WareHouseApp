@@ -82,6 +82,8 @@ public class Product extends Fragment {
 
                 progressDialog.dismiss();
 
+                Log.d("gsvjbjhb", response);
+
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String err = jsonObject.getString("err");
@@ -106,11 +108,15 @@ public class Product extends Fragment {
                             String type = jsonObject_product.getString("type");
                             String description = jsonObject_product.getString("description");
                             String totalRating = jsonObject_product.getString("totalRating");
+                            String product_commision = jsonObject_product.getString("product_commision");
                             String inStock = jsonObject_product.getString("inStock");
-                            String experience = jsonObject_product.getString("experience");
+                            String categoryId = jsonObject_product.getString("categoryId");
                             String subcategoryId = jsonObject_product.getString("subcategoryId");
                             String soldBy = jsonObject_product.getString("soldBy");
                             String createdAt = jsonObject_product.getString("createdAt");
+                            //String metadata = jsonObject_product.getString("metadata");
+                            //String isRefundable = jsonObject_product.getString("isRefundable");
+                            //JSONObject jsonObject_metadatat = new JSONObject(metadata);
 
                             vegetableimage = new ArrayList<>();
 
@@ -154,7 +160,7 @@ public class Product extends Fragment {
                             }
 
                             AllProduct_ModelClass allProduct_modelClass = new AllProduct_ModelClass(
-                                   discount,id,title,price,type,description,totalRating,"",inStock,experience,soldBy,vegetableimage,vegetableweight,createdAt
+                                   discount,id,title,price,type,description,totalRating,"",inStock,"",soldBy,vegetableimage,vegetableweight,createdAt,""
                             );
 
                             vegetable.add(allProduct_modelClass);

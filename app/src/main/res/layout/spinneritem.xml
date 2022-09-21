@@ -13,7 +13,7 @@
     android:paddingRight="@dimen/twenty"
     android:textSize="@dimen/fifteen"
     android:drawableRight="@drawable/ic_keyboard_arrow_down_black_24dp"
-    android:background="@drawable/spinner_shape"
+    android:background="@drawable/edittextback"
     android:textColor="@color/black"/>
 
 <!--</RelativeLayout>-->

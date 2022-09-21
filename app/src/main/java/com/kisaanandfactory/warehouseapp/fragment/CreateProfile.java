@@ -88,9 +88,9 @@ public class CreateProfile extends Fragment {
         edit_UserName = view.findViewById(R.id.edit_UserName);
         edit_MobileNo = view.findViewById(R.id.edit_MobileNo);
         button_back = view.findViewById(R.id.button_back);
-        text_Delivery = view.findViewById(R.id.text_Delivery);
+       // text_Delivery = view.findViewById(R.id.text_Delivery);
         edit_State = view.findViewById(R.id.edit_State);
-        text_Vender = view.findViewById(R.id.text_Vender);
+        //text_Vender = view.findViewById(R.id.text_Vender);
         btn_AddVender = view.findViewById(R.id.btn_AddVenderDetails);
         edit_EmailId = view.findViewById(R.id.edit_EmailId);
         edit_Password = view.findViewById(R.id.edit_Password);
@@ -113,7 +113,7 @@ public class CreateProfile extends Fragment {
 
         token = SharedPrefManager.getInstance(getActivity()).getUser().getToken();
 
-        text_Vender.setOnClickListener(new View.OnClickListener() {
+        /*text_Vender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -138,7 +138,7 @@ public class CreateProfile extends Fragment {
                 text_Delivery.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
             }
         });
-
+*/
         text_panImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -320,6 +320,7 @@ public class CreateProfile extends Fragment {
 
                     str_UserName = edit_UserName.getText().toString().trim();
                     str_MobileNo = edit_MobileNo.getText().toString().trim();
+                    long long_MobileNO = Long.valueOf(str_MobileNo);
                     str_EmailId = edit_EmailId.getText().toString().trim();
                     str_Password = edit_Password.getText().toString().trim();
                     str_Location = edit_Location.getText().toString().trim();
@@ -340,7 +341,7 @@ public class CreateProfile extends Fragment {
 
                     if(profilefor1.equals("Vendor")){
 
-                        addVender(str_UserName,str_MobileNo,str_EmailId,str_Password,91,str_Location,str_Street,long_AccNumber,
+                        addVender(str_UserName,long_MobileNO,str_EmailId,str_Password,91,str_Location,str_Street,long_AccNumber,
                                 str_IfcCode,str_BankName,str_PanNumber,str_GstNumber,str_Locality,str_City,str_State,str_ZipCode,"20");
                     }else{
 
@@ -359,7 +360,7 @@ public class CreateProfile extends Fragment {
         return view;
     }
 
-    public void addVender(String name,String mobile,String emailID,String password,int countryCode,
+    public void addVender(String name,long mobile,String emailID,String password,int countryCode,
                           String address,String street,long accountNum,String ifsc,String bankName,
                           String panNumber,String gstNumber,String locality,String city,String state,
                           String zip,String deliveryRadius){
@@ -759,7 +760,7 @@ public class CreateProfile extends Fragment {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN =  "^[A-Z]{4,}0[A-Z0-9]{6,}$";
+        final String PASSWORD_PATTERN =  "^[a-zA-Z]{4,}0[A-Z0-9]{6,}$";
 
         pattern =  Pattern.compile (PASSWORD_PATTERN);
         matcher = pattern.matcher (ifsccode);

@@ -2,6 +2,8 @@ package com.kisaanandfactory.warehouseapp.url;
 
 public class AppUrl {
 
+    public static final String MAIN_URL = "https://kisaanandfactory.com/api/v1/";
+
     public static final String registerUser = "https://kisaanandfactory.com/api/v1/warehouseapp/auth/register";
 
     public static final String loginUser = "https://kisaanandfactory.com/api/v1/warehouseapp/auth/login";
@@ -18,9 +20,9 @@ public class AppUrl {
 
     public static final String updateProfileImage = "https://kisaanandfactory.com/api/v1/vendorapp/vendor/product/image/upload";
 
-    public static final String getCategory = "https://kisaanandfactory.com/api/v1/adminapp/product/category/all";
+    //public static final String getCategory = "https://kisaanandfactory.com/api/v1/adminapp/product/category/all";
 
-    public static final String getSubCategory = "https://kisaanandfactory.com/api/v1/adminapp/product/sub-category/all?CategoryId=";
+    //public static final String getSubCategory = "https://kisaanandfactory.com/api/v1/adminapp/product/sub-category/all?CategoryId=";
 
     public static final String paymenthistorys = "https://kisaanandfactory.com/api/v1/adminapp/payment/historys?";
 
@@ -38,7 +40,7 @@ public class AppUrl {
 
     public static final String getHomeDetails = "https://kisaanandfactory.com/api/v1/warehouseapp/main/get-home-data";
 
-    public static final String addProduct = "https://kisaanandfactory.com/api/v1/adminapp/product/add";
+    //public static final String addProduct = "https://kisaanandfactory.com/api/v1/adminapp/product/add";
 
     public static final String addVender = "https://kisaanandfactory.com/api/v1/adminapp/user/vendor/add";
 
@@ -51,6 +53,14 @@ public class AppUrl {
     public static final String addDelivery = "https://kisaanandfactory.com/api/v1/adminapp/user/delivery/add";
 
     public static final String out_for_delivery = "https://kisaanandfactory.com/api/v1/adminapp/order/out-for-delivery/";
+
+    public static final String getSupercategory = MAIN_URL+"adminapp/product/productSuperCategories";
+    public static final String getCategory = MAIN_URL+"vendorapp/vendor/product/category/all?superCategoryId=";
+    public static final String getSubCategory = MAIN_URL+"adminapp/product/sub-category/all?CategoryId=";
+
+    public static final String priceCalculator = MAIN_URL+"vendorapp/vendor/product/priceCalculator";
+
+    public static final String addProduct_url = MAIN_URL+"vendorapp/vendor/product/add";
 
 
 

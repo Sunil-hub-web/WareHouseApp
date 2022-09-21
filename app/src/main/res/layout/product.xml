@@ -18,7 +18,7 @@
             <ImageView
                 android:id="@+id/productImage"
                 android:layout_width="@dimen/sixty"
-                android:layout_height="@dimen/hundred"
+                android:layout_height="@dimen/hundred_twenty"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/ten"
                 android:layout_marginLeft="@dimen/ten"
@@ -163,6 +163,35 @@
                         android:textStyle="bold"></TextView>
 
                 </RelativeLayout>
+
+               <!-- <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/eight">
+
+                    <TextView
+                        android:id="@+id/isRefundable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fifteen"
+                        android:text="Refundable :"
+                        android:textColor="@color/some_color1"
+                        android:textSize="@dimen/textsize"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/refundable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/five"
+                        android:layout_toRightOf="@+id/isRefundable"
+                        android:text="Product"
+                        android:textColor="@color/some_color1"
+                        android:textSize="@dimen/textsize"
+                        android:textStyle="bold"></TextView>
+
+                </RelativeLayout>-->
 
             </LinearLayout>
 

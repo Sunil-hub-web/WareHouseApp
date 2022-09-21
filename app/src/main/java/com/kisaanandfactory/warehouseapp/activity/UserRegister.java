@@ -1,7 +1,5 @@
 package com.kisaanandfactory.warehouseapp.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -159,9 +159,12 @@ public class UserRegister extends AppCompatActivity {
                     String message = response.getString("msg");
                     Toast.makeText(UserRegister.this, message, Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(UserRegister.this, OtpVerification.class);
+                   /* Intent intent = new Intent(UserRegister.this, OtpVerification.class);
                     intent.putExtra("countryCode", "91");
                     intent.putExtra("mobile", mobileNo.toString());
+                    startActivity(intent);*/
+
+                    Intent intent = new Intent(UserRegister.this, UserLogin.class);
                     startActivity(intent);
 
                 } catch (JSONException e) {

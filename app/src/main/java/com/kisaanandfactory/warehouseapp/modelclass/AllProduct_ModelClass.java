@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class AllProduct_ModelClass {
 
-    String discount,id,title,price,type,description,totalRating,favid,inStock,experience,soldBy,createdAt;
+    String discount,id,title,price,type,description,totalRating,favid,inStock,experience,soldBy,createdAt,isRefundable;
     ArrayList<Image_ModelClass> image_modelClasses;
     ArrayList<Weight_ModelClass> weight_modelClasses;
 
     public AllProduct_ModelClass(String discount, String id, String title, String price, String type,
                                  String description, String totalRating, String favid, String inStock,
                                  String experience, String soldBy, ArrayList<Image_ModelClass> image_modelClasses,
-                                 ArrayList<Weight_ModelClass> weight_modelClasses,String createdAt) {
+                                 ArrayList<Weight_ModelClass> weight_modelClasses,String createdAt,String isRefundable) {
         this.discount = discount;
         this.id = id;
         this.title = title;
@@ -26,6 +26,7 @@ public class AllProduct_ModelClass {
         this.image_modelClasses = image_modelClasses;
         this.weight_modelClasses = weight_modelClasses;
         this.createdAt = createdAt;
+        this.isRefundable = isRefundable;
     }
 
     public String getDiscount() {
@@ -138,5 +139,13 @@ public class AllProduct_ModelClass {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getIsRefundable() {
+        return isRefundable;
+    }
+
+    public void setIsRefundable(String isRefundable) {
+        this.isRefundable = isRefundable;
     }
 }
