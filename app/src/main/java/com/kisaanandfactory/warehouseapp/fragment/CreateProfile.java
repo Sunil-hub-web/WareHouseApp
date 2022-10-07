@@ -1,16 +1,14 @@
 package com.kisaanandfactory.warehouseapp.fragment;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -25,6 +23,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -43,6 +45,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.kisaanandfactory.warehouseapp.R;
+import com.kisaanandfactory.warehouseapp.RealPathUtil;
 import com.kisaanandfactory.warehouseapp.SharedPrefManager;
 import com.kisaanandfactory.warehouseapp.activity.MainActivity;
 import com.kisaanandfactory.warehouseapp.url.AppUrl;
@@ -50,7 +53,9 @@ import com.kisaanandfactory.warehouseapp.url.AppUrl;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -59,36 +64,39 @@ import java.util.regex.Pattern;
 public class CreateProfile extends Fragment {
 
     Spinner profileFor;
-    TextView button_back,text_Delivery,text_Vender;
-    ImageView text_panImage,text_gstImage;
-    String [] profiletype = {"-Profile For-","Vendor","Delivery"};
-    EditText edit_UserName,edit_MobileNo,edit_EmailId,edit_Password,edit_Location,edit_Locality,edit_State,
-            edit_ZipCode,edit_PanNumber,edit_GstNumber,edit_AccNumber,edit_BankName,edit_IfcCode,edit_DrlinNumber,
-            edit_Street,edit_City;
-    String str_UserName,str_MobileNo,str_EmailId,str_Password,str_Location,str_Locality,str_State,
-            str_ZipCode,str_PanNumber,str_GstNumber,str_AccNumber,str_BankName,str_IfcCode,str_DrlinNumber,token,str_Street,str_City;
+    TextView button_back, text_Delivery, text_Vender;
+    ImageView text_ProfileImage, text_DlPhoto, text_AddressProff;
+    String[] profiletype = {"-Profile For-", "Vendor", "Delivery"};
+    EditText edit_UserName, edit_MobileNo, edit_EmailId, edit_Password, edit_Location, edit_Locality, edit_State,
+            edit_ZipCode, edit_PanNumber, edit_GstNumber, edit_AccNumber, edit_BankName, edit_IfcCode, edit_DrlinNumber,
+            edit_Street, edit_City;
+    String str_UserName, str_MobileNo, str_EmailId, str_Password, str_Location, str_Locality, str_State,
+            str_ZipCode, str_PanNumber, str_GstNumber, str_AccNumber, str_BankName, str_IfcCode, str_DrlinNumber, token, str_Street, str_City;
     Button btn_AddVender;
     private static final int REQUEST_PERMISSIONS = 100;
     public static final int IMAGE_CODE = 1;
-    Uri imageUri,selectedImageUri,selectedImageUri1;
-    Bitmap bitmap,bitmap1;
-    File f,f1;
-    String user_password,panImage = "",gstImage = "";
+    Uri imageUri, selectedImageUri, selectedImageUri1,selectedImageUri2,selectedImageUri3;
+    Bitmap bitmap, bitmap1,bitmap2;
+    File f, f1;
+    String user_password, profileImage = "", DlImage = "", Addressproff = "";
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull  LayoutInflater inflater,
-                             @Nullable  ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.createprofile_fragment,container,false);
+        View view = inflater.inflate(R.layout.createprofile_fragment, container, false);
 
         profileFor = view.findViewById(R.id.profileFor);
-        text_panImage = view.findViewById(R.id.text_panImage);
-        text_gstImage = view.findViewById(R.id.text_gstImage);
+        text_ProfileImage = view.findViewById(R.id.text_ProfileImage);
+        text_DlPhoto = view.findViewById(R.id.text_DlPhoto);
+        text_AddressProff = view.findViewById(R.id.text_AddressProff);
         edit_UserName = view.findViewById(R.id.edit_UserName);
         edit_MobileNo = view.findViewById(R.id.edit_MobileNo);
         button_back = view.findViewById(R.id.button_back);
-       // text_Delivery = view.findViewById(R.id.text_Delivery);
+        // text_Delivery = view.findViewById(R.id.text_Delivery);
         edit_State = view.findViewById(R.id.edit_State);
         //text_Vender = view.findViewById(R.id.text_Vender);
         btn_AddVender = view.findViewById(R.id.btn_AddVenderDetails);
@@ -139,7 +147,7 @@ public class CreateProfile extends Fragment {
             }
         });
 */
-        text_panImage.setOnClickListener(new View.OnClickListener() {
+        text_ProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -148,11 +156,20 @@ public class CreateProfile extends Fragment {
             }
         });
 
-        text_gstImage.setOnClickListener(new View.OnClickListener() {
+        text_DlPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 user_password = "2";
+                imageupload();
+            }
+        });
+
+        text_AddressProff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                user_password = "3";
                 imageupload();
             }
         });
@@ -170,153 +187,153 @@ public class CreateProfile extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(TextUtils.isEmpty(edit_UserName.getText())){
+                if (TextUtils.isEmpty(edit_UserName.getText())) {
 
                     edit_UserName.setError("Fill The Field");
                     edit_UserName.setFocusable(true);
                     edit_UserName.requestFocus();
 
-                }else if(!isValidUserName(edit_UserName.getText().toString().trim())){
+                } else if (!isValidUserName(edit_UserName.getText().toString().trim())) {
 
                     edit_UserName.setError("Fill The Field");
                     edit_UserName.setFocusable(true);
                     edit_UserName.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_MobileNo.getText())){
+                } else if (TextUtils.isEmpty(edit_MobileNo.getText())) {
 
                     edit_MobileNo.setError("Fill The Field");
                     edit_MobileNo.setFocusable(true);
                     edit_MobileNo.requestFocus();
 
-                }else if(!isValidMobile(edit_MobileNo.getText().toString().trim())){
+                } else if (!isValidMobile(edit_MobileNo.getText().toString().trim())) {
 
                     edit_MobileNo.setError("Fill The Field");
                     edit_MobileNo.setFocusable(true);
                     edit_MobileNo.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_EmailId.getText())){
+                } else if (TextUtils.isEmpty(edit_EmailId.getText())) {
 
                     edit_EmailId.setError("Fill The Field");
                     edit_EmailId.setFocusable(true);
                     edit_EmailId.requestFocus();
 
-                }else if(!isValidEmail(edit_EmailId.getText().toString().trim())){
+                } else if (!isValidEmail(edit_EmailId.getText().toString().trim())) {
 
                     edit_EmailId.setError("Fill The Field");
                     edit_EmailId.setFocusable(true);
                     edit_EmailId.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_Location.getText())){
+                } else if (TextUtils.isEmpty(edit_Location.getText())) {
 
                     edit_Location.setError("Fill The Field");
                     edit_Location.setFocusable(true);
                     edit_Location.requestFocus();
 
-                }else if(!isValidUserName(edit_Location.getText().toString().trim())){
+                } else if (!isValidUserName(edit_Location.getText().toString().trim())) {
 
                     edit_Location.setError("Fill The Field");
                     edit_Location.setFocusable(true);
                     edit_Location.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_Locality.getText())){
+                } else if (TextUtils.isEmpty(edit_Locality.getText())) {
 
                     edit_Locality.setError("Fill The Field");
                     edit_Locality.setFocusable(true);
                     edit_Locality.requestFocus();
 
-                }else if(!isValidUserName(edit_Locality.getText().toString().trim())){
+                } else if (!isValidUserName(edit_Locality.getText().toString().trim())) {
 
                     edit_Locality.setError("Fill The Field");
                     edit_Locality.setFocusable(true);
                     edit_Locality.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_Street.getText())){
+                } else if (TextUtils.isEmpty(edit_Street.getText())) {
 
                     edit_Street.setError("Fill The Field");
                     edit_Street.setFocusable(true);
                     edit_Street.requestFocus();
 
-                }else if(!isValidUserName(edit_Street.getText().toString().trim())){
+                } else if (!isValidUserName(edit_Street.getText().toString().trim())) {
 
                     edit_Street.setError("Fill The Field");
                     edit_Street.setFocusable(true);
                     edit_Street.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_State.getText())){
+                } else if (TextUtils.isEmpty(edit_State.getText())) {
 
                     edit_State.setError("Fill The Field");
                     edit_State.setFocusable(true);
                     edit_State.requestFocus();
 
-                }else if(!isValidUserName(edit_State.getText().toString().trim())){
+                } else if (!isValidUserName(edit_State.getText().toString().trim())) {
 
                     edit_State.setError("Fill The Field");
                     edit_State.setFocusable(true);
                     edit_State.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_City.getText())){
+                } else if (TextUtils.isEmpty(edit_City.getText())) {
 
                     edit_City.setError("Fill The Field");
                     edit_City.setFocusable(true);
                     edit_City.requestFocus();
 
-                }else if(!isValidUserName(edit_City.getText().toString().trim())){
+                } else if (!isValidUserName(edit_City.getText().toString().trim())) {
 
                     edit_City.setError("Fill The Field");
                     edit_City.setFocusable(true);
                     edit_City.requestFocus();
 
-                }else if(edit_ZipCode.getText().toString().trim().length()==0){
+                } else if (edit_ZipCode.getText().toString().trim().length() == 0) {
 
                     edit_ZipCode.setError("enter zipcode");
                     edit_ZipCode.requestFocus();
 
-                }else if(edit_ZipCode.getText().toString().trim().length()!=6){
+                } else if (edit_ZipCode.getText().toString().trim().length() != 6) {
 
                     edit_ZipCode.setError("zipcode must be 6 digit");
                     edit_ZipCode.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_BankName.getText())){
+                } else if (TextUtils.isEmpty(edit_BankName.getText())) {
 
                     edit_BankName.setError("enter BankName");
                     edit_BankName.requestFocus();
 
-                }else if(!isValidUserName(edit_BankName.getText().toString().trim())){
+                } else if (!isValidUserName(edit_BankName.getText().toString().trim())) {
 
                     edit_BankName.setError("enter BankName");
                     edit_BankName.requestFocus();
 
-                }else if(edit_AccNumber.getText().toString().trim().equals("")){
+                } else if (edit_AccNumber.getText().toString().trim().equals("")) {
                     edit_AccNumber.setError("enter account number");
                     edit_AccNumber.requestFocus();
 
-                }else if(edit_AccNumber.getText().toString().trim().length()<=10){
+                } else if (edit_AccNumber.getText().toString().trim().length() <= 10) {
                     edit_AccNumber.setError("enter account number");
                     edit_AccNumber.requestFocus();
 
-                }else if(edit_IfcCode.getText().toString().trim().equals("")){
+                } else if (edit_IfcCode.getText().toString().trim().equals("")) {
                     edit_IfcCode.setError("enter IFSC code");
                     edit_IfcCode.requestFocus();
 
-                }else if(edit_IfcCode.getText().toString().trim().length()<=10){
+                } else if (edit_IfcCode.getText().toString().trim().length() <= 10) {
                     edit_IfcCode.setError("enter IFSC code");
                     edit_IfcCode.requestFocus();
 
-                }else if(!isValidIfcCode(edit_IfcCode.getText().toString().trim())){
+                } else if (!isValidIfcCode(edit_IfcCode.getText().toString().trim())) {
 
                     edit_IfcCode.setError("enter IFSC code");
                     edit_IfcCode.requestFocus();
 
-                }else if(TextUtils.isEmpty(edit_DrlinNumber.getText())){
+                } else if (TextUtils.isEmpty(edit_DrlinNumber.getText())) {
 
                     edit_IfcCode.setError("enter DL Number");
                     edit_IfcCode.requestFocus();
 
-                }else if(panImage.equals("") || gstImage.equals("")){
+                } else if (profileImage.equals("") || DlImage.equals("") || Addressproff.equals("")) {
 
                     Toast.makeText(getActivity(), "Select Your Image", Toast.LENGTH_SHORT).show();
 
-                }else{
+                } else {
 
                     str_UserName = edit_UserName.getText().toString().trim();
                     str_MobileNo = edit_MobileNo.getText().toString().trim();
@@ -327,9 +344,10 @@ public class CreateProfile extends Fragment {
                     str_Locality = edit_Locality.getText().toString().trim();
                     str_State = edit_State.getText().toString().trim();
                     str_ZipCode = edit_ZipCode.getText().toString().trim();
+                    long long_zip = Long.valueOf(str_ZipCode);
                     str_PanNumber = edit_PanNumber.getText().toString().trim();
                     str_GstNumber = edit_GstNumber.getText().toString().trim();
-                    str_AccNumber= edit_AccNumber.getText().toString().trim();
+                    str_AccNumber = edit_AccNumber.getText().toString().trim();
                     long long_AccNumber = Long.valueOf(str_AccNumber);
                     str_BankName = edit_BankName.getText().toString().trim();
                     str_IfcCode = edit_IfcCode.getText().toString().trim();
@@ -339,14 +357,15 @@ public class CreateProfile extends Fragment {
 
                     String profilefor1 = profileFor.getSelectedItem().toString();
 
-                    if(profilefor1.equals("Vendor")){
+                    if (profilefor1.equals("Vendor")) {
 
-                        addVender(str_UserName,long_MobileNO,str_EmailId,str_Password,91,str_Location,str_Street,long_AccNumber,
-                                str_IfcCode,str_BankName,str_PanNumber,str_GstNumber,str_Locality,str_City,str_State,str_ZipCode,"20");
-                    }else{
+                        addVender(str_UserName, long_MobileNO, str_EmailId, str_Password, 91, str_Location, str_Street, long_AccNumber,
+                                str_IfcCode, str_BankName, str_PanNumber, str_GstNumber, str_Locality, str_City, str_State, long_zip);
 
-                        addDelivery(str_UserName,str_MobileNo,str_EmailId,str_Password,91,str_Location,str_Street,long_AccNumber,
-                                str_IfcCode,str_BankName,str_PanNumber,str_GstNumber,str_Locality,str_City,str_State,str_ZipCode,"20",str_DrlinNumber);
+                    } else {
+
+                        addDelivery(str_UserName, long_MobileNO, str_EmailId, str_Password, 91, "123456789", str_Street, str_AccNumber,
+                                str_IfcCode, str_BankName, str_PanNumber, "driv1234", str_Locality, str_City, str_State, long_zip, str_DrlinNumber);
 
                     }
 
@@ -355,15 +374,99 @@ public class CreateProfile extends Fragment {
             }
         });
 
+        // You can do the assignment inside onAttach or onCreate, i.e, before the activity is displayed
+        someActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            // There are no request codes
+                            Intent data = result.getData();
+
+                            try {
+
+                                if(data != null){
+
+                                    imageUri = data.getData();
+
+                                    if (user_password.equals("1")) {
+
+
+                                        //profile_image.setImageURI(imageUri);
+                                        String path = RealPathUtil.getRealPath(getContext(),imageUri);
+                                        File file = new File(path);
+                                        selectedImageUri1 = Uri.fromFile(file);
+                                        profileImage = selectedImageUri1.toString();
+
+                                        InputStream imageStream = getContext().getContentResolver().openInputStream(selectedImageUri1);
+                                        bitmap = BitmapFactory.decodeStream(imageStream);
+                                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                                        text_ProfileImage.setImageBitmap(bitmap);
+
+
+                                    }
+                                    else if (user_password.equals("2")) {
+
+                                        String path = RealPathUtil.getRealPath(getContext(),imageUri);
+                                        File file = new File(path);
+                                        selectedImageUri2 = Uri.fromFile(file);
+                                        DlImage = selectedImageUri2.toString();
+
+                                        InputStream imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                                        bitmap1 = BitmapFactory.decodeStream(imageStream);
+                                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                        bitmap1.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                                        text_DlPhoto.setImageBitmap(bitmap1);
+
+
+                                    }
+                                    else if (user_password.equals("3")) {
+
+                                        //imageUri = data.getData();
+                                        //profile_image.setImageURI(imageUri);
+
+                                        String path = RealPathUtil.getRealPath(getContext(),imageUri);
+                                        File file = new File(path);
+                                        selectedImageUri3 = Uri.fromFile(file);
+                                        Addressproff = selectedImageUri3.toString();
+
+                                        InputStream imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                                        bitmap2 = BitmapFactory.decodeStream(imageStream);
+                                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                        bitmap2.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                                        text_AddressProff.setImageBitmap(bitmap2);
+
+                                    }
+
+                                }else {
+
+                                    Toast.makeText(getActivity(), "Image Not SeleCted", Toast.LENGTH_SHORT).show();
+                                }
+
+
+                                Log.d("ImageDecode1", selectedImageUri1.toString());
+                                Log.d("ImageDecode2", selectedImageUri2.toString());
+                                Log.d("ImageDecode3", selectedImageUri3.toString());
+
+
+                            } catch (Exception e) {
+
+                                //Toast.makeText(getActivity(), "Please try again" + e, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                });
 
 
         return view;
     }
 
-    public void addVender(String name,long mobile,String emailID,String password,int countryCode,
-                          String address,String street,long accountNum,String ifsc,String bankName,
-                          String panNumber,String gstNumber,String locality,String city,String state,
-                          String zip,String deliveryRadius){
+    public void addVender(String name, long mobile, String emailID, String password, int countryCode,
+                          String address, String street, long accountNum, String ifsc, String bankName,
+                          String panNumber, String gstNumber, String locality, String city, String state,
+                          long zip) {
 
 
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
@@ -376,29 +479,24 @@ public class CreateProfile extends Fragment {
 
         JSONObject jsonObject = new JSONObject();
 
-        try{
+        try {
 
-            jsonObject.put("name",name);
-            jsonObject.put("mobile",mobile);
-            jsonObject.put("emailID",emailID);
-            jsonObject.put("password",password);
-            jsonObject.put("countryCode",countryCode);
-            jsonObject.put("address",address);
-            jsonObject.put("street",street);
-            jsonObject.put("accountNum",accountNum);
-            jsonObject.put("ifsc",ifsc);
-            jsonObject.put("bankName",bankName);
-            jsonObject.put("panNumber",panNumber);
-            jsonObject.put("panImage",panImage);
-            jsonObject.put("gstNumber",gstNumber);
-            jsonObject.put("gstImage",gstImage);
-            jsonObject.put("locality",locality);
-            jsonObject.put("city",city);
-            jsonObject.put("state",state);
-            jsonObject.put("zip",zip);
-            jsonObject.put("deliveryRadius",deliveryRadius);
+            jsonObject.put("emailID", emailID);
+            jsonObject.put("name", name);
+            jsonObject.put("mobile", mobile);
+            jsonObject.put("password", password);
+            jsonObject.put("address", address);
+            jsonObject.put("locality", locality);
+            jsonObject.put("state", state);
+            jsonObject.put("city", city);
+            jsonObject.put("zip", zip);
+            jsonObject.put("panNumber", panNumber);
+            jsonObject.put("gstNumber", gstNumber);
+            jsonObject.put("accountNum", accountNum);
+            jsonObject.put("bankName", bankName);
+            jsonObject.put("ifscCode", ifsc);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -411,7 +509,7 @@ public class CreateProfile extends Fragment {
                 try {
                     String err = response.getString("err");
 
-                    if (err.equals("false")){
+                    if (err.equals("false")) {
 
                         String message = response.getString("msg");
                         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
@@ -425,7 +523,7 @@ public class CreateProfile extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                progressDialog.dismiss ();
+                progressDialog.dismiss();
 
                 /*error.printStackTrace();
                 Log.d("Ranj_Login_error",error.toString());
@@ -435,7 +533,7 @@ public class CreateProfile extends Fragment {
 
                     Toast.makeText(getActivity(), "Please check Internet Connection", Toast.LENGTH_SHORT).show();
 
-                }else {
+                } else {
 
                     Log.d("successresponceVolley", "" + error.networkResponse);
                     NetworkResponse networkResponse = error.networkResponse;
@@ -463,26 +561,26 @@ public class CreateProfile extends Fragment {
 
 
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
 
-                Map<String,String> header = new HashMap<>();
-                header.put("auth-token",token);
+                Map<String, String> header = new HashMap<>();
+                header.put("auth-token", token);
                 return header;
             }
 
         };
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(jsonObjectRequest);
 
     }
 
-    public void addDelivery(String name,String mobile,String emailID,String password,int countryCode,
-                          String address,String street,long accountNum,String ifsc,String bankName,
-                          String panNumber,String gstNumber,String locality,String city,String state,
-                          String zip,String deliveryRadius,String drivingLisence){
+    public void addDelivery(String name, Long mobile, String emailID, String password, int countryCode,
+                            String regNumber, String street, String accountNum, String ifsc, String bankName,
+                            String panNumber, String driverid, String locality, String city, String state,
+                            long zip, String drivingLisence) {
 
 
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
@@ -495,30 +593,28 @@ public class CreateProfile extends Fragment {
 
         JSONObject jsonObject = new JSONObject();
 
-        try{
+        try {
 
-            jsonObject.put("name",name);
-            jsonObject.put("mobile",mobile);
-            jsonObject.put("emailID",emailID);
-            jsonObject.put("password",password);
-            jsonObject.put("countryCode",countryCode);
-            jsonObject.put("address",address);
-            jsonObject.put("street",street);
-            jsonObject.put("accountNum",accountNum);
-            jsonObject.put("ifsc",ifsc);
-            jsonObject.put("bankName",bankName);
-            jsonObject.put("panNumber",panNumber);
-            jsonObject.put("panImage",panImage);
-            jsonObject.put("gstNumber",gstNumber);
-            jsonObject.put("gstImage",gstImage);
-            jsonObject.put("locality",locality);
-            jsonObject.put("city",city);
-            jsonObject.put("state",state);
-            jsonObject.put("zip",zip);
-            jsonObject.put("deliveryRadius",deliveryRadius);
-            jsonObject.put("drivingLisence",drivingLisence);
+            jsonObject.put("emailID", emailID);
+            jsonObject.put("name", name);
+            jsonObject.put("mobile", mobile);
+            jsonObject.put("password", password);
+            jsonObject.put("locality", locality);
+            jsonObject.put("state", state);
+            jsonObject.put("city", city);
+            jsonObject.put("zip", zip);
+            jsonObject.put("accountNum", accountNum);
+            jsonObject.put("bankName", bankName);
+            jsonObject.put("ifscCode", ifsc);
+            jsonObject.put("driver_id", driverid);
+            jsonObject.put("countryCode", countryCode);
+            jsonObject.put("registrationNumber", regNumber);
+            jsonObject.put("drivingLisence", drivingLisence);
+            jsonObject.put("profilePhoto", profileImage);
+            jsonObject.put("DlPhoto", DlImage);
+            jsonObject.put("AddressProof", Addressproff);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -526,12 +622,18 @@ public class CreateProfile extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
 
+                Log.d("ghsvj",response.toString());
+
                 progressDialog.dismiss();
 
                 try {
                     String err = response.getString("err");
 
-                    if (err.equals("false")){
+                    if (err.equals("false")) {
+
+                        String message = response.getString("msg");
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                    }else{
 
                         String message = response.getString("msg");
                         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
@@ -545,7 +647,7 @@ public class CreateProfile extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                progressDialog.dismiss ();
+                progressDialog.dismiss();
 
                 /*error.printStackTrace();
                 Log.d("Ranj_Login_error",error.toString());
@@ -555,7 +657,7 @@ public class CreateProfile extends Fragment {
 
                     Toast.makeText(getActivity(), "Please check Internet Connection", Toast.LENGTH_SHORT).show();
 
-                }else {
+                } else {
 
                     Log.d("successresponceVolley", "" + error.networkResponse);
                     NetworkResponse networkResponse = error.networkResponse;
@@ -580,26 +682,24 @@ public class CreateProfile extends Fragment {
                         }
                     }
                 }
-
-
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
 
-                Map<String,String> header = new HashMap<>();
-                header.put("auth-token",token);
+                Map<String, String> header = new HashMap<>();
+                header.put("auth-token", token);
                 return header;
             }
 
         };
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(jsonObjectRequest);
 
     }
 
-    public void imageupload(){
+    public void imageupload() {
 
         if ((ContextCompat.checkSelfPermission(getContext(),
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) && (ContextCompat.checkSelfPermission(getContext(),
@@ -620,112 +720,26 @@ public class CreateProfile extends Fragment {
         }
     }
 
-    public void showFileChooser(){
+    public void showFileChooser() {
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "title"), IMAGE_CODE);
+        someActivityResultLauncher.launch(Intent.createChooser(intent, "title"));
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode,  Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        try {
-
-            if (requestCode == IMAGE_CODE && resultCode == RESULT_OK &&
-                    data != null && data.getData() != null) {
-
-
-                if(user_password.equals("1")){
-
-                    imageUri = data.getData();
-                    //profile_image.setImageURI(imageUri);
-
-                    String[] FILE = {MediaStore.Images.Media.DATA};
-
-
-                    Cursor cursor = getContext().getContentResolver().query(imageUri,
-                            FILE, null, null, null);
-
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(FILE[0]);
-                    panImage = cursor.getString(columnIndex);
-                    f = new File(panImage);
-                    selectedImageUri = Uri.fromFile(f);
-                    Log.d("selectedImageUri", selectedImageUri.toString());
-                    bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImageUri);
-
-                    text_panImage.setImageURI(imageUri);
-
-                    cursor.close();
-
-
-
-                }else if(user_password.equals("2")){
-
-
-                    imageUri = data.getData();
-                    //profile_image.setImageURI(imageUri);
-
-                    String[] FILE = {MediaStore.Images.Media.DATA};
-
-
-                    Cursor cursor = getContext().getContentResolver().query(imageUri,
-                            FILE, null, null, null);
-
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(FILE[0]);
-                    gstImage = cursor.getString(columnIndex);
-                    f1 = new File(gstImage);
-                    selectedImageUri1 = Uri.fromFile(f);
-                    Log.d("selectedImageUri", selectedImageUri1.toString());
-                    bitmap1 = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImageUri1);
-
-                    text_gstImage.setImageURI(imageUri);
-
-                    cursor.close();
-
-                }
-
-                Log.d("panImage", panImage);
-                Log.d("gstImage", gstImage);
-                Log.d("ImageDecode1", f.toString());
-                Log.d("ImageDecode2", selectedImageUri.toString());
-                Log.d("bitmap", bitmap.toString());
-
-
-
-
-            }
-        } catch (Exception e) {
-
-            Toast.makeText(getActivity(), "Please try again"+e, Toast.LENGTH_LONG).show();
-        }
-
-    }
-
-    /*public byte[] getFileDataFromDrawable(Bitmap bitmap) {
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
-    }*/
 
     public boolean isValidUserName(final String userName) {
 
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN =  "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
+        final String PASSWORD_PATTERN = "^[A-Za-z\\s]{5,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
 
-        pattern =  Pattern.compile (PASSWORD_PATTERN);
-        matcher = pattern.matcher (userName);
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(userName);
 
-        return matcher.matches ( );
+        return matcher.matches();
 
     }
 
@@ -734,12 +748,12 @@ public class CreateProfile extends Fragment {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN =  "^[0-9]{10}$";
+        final String PASSWORD_PATTERN = "^[0-9]{10}$";
 
-        pattern =  Pattern.compile (PASSWORD_PATTERN);
-        matcher = pattern.matcher (mobile);
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(mobile);
 
-        return matcher.matches ( );
+        return matcher.matches();
 
     }
 
@@ -760,12 +774,12 @@ public class CreateProfile extends Fragment {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN =  "^[a-zA-Z]{4,}0[A-Z0-9]{6,}$";
+        final String PASSWORD_PATTERN = "^[a-zA-Z]{4,}0[A-Z0-9]{6,}$";
 
-        pattern =  Pattern.compile (PASSWORD_PATTERN);
-        matcher = pattern.matcher (ifsccode);
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(ifsccode);
 
-        return matcher.matches ( );
+        return matcher.matches();
 
     }
 }

@@ -66,21 +66,21 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:layout_below="@+id/text">
+        android:layout_below="@+id/text"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_below="@id/details"
-            android:layout_margin="@dimen/twenty">
+            android:layout_margin="@dimen/twenty"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Profile For"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Profile For"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize">
 
@@ -106,8 +106,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize">
 
@@ -127,16 +127,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mobile No"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Mobile No"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -149,22 +149,22 @@
                 android:background="@drawable/edittextback"
                 android:drawablePadding="@dimen/twenty"
                 android:ems="10"
-                android:maxLength="10"
                 android:imeOptions="actionDone"
                 android:inputType="number"
+                android:maxLength="10"
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email_Id"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Email_Id"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -182,16 +182,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Password"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -209,16 +209,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Location"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -236,16 +236,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Locality"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Locality"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -263,16 +263,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Street"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Street"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -290,16 +290,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="State"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="State"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -317,16 +317,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="City"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="City"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -344,16 +344,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zip Code"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Zip Code"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -366,22 +366,22 @@
                 android:background="@drawable/edittextback"
                 android:drawablePadding="@dimen/twenty"
                 android:ems="10"
-                android:maxLength="6"
                 android:imeOptions="actionDone"
                 android:inputType="number"
+                android:maxLength="6"
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pan Number"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Pan Number"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -399,16 +399,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gst Number"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Gst Number"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -426,16 +426,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Account Number"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Account Number"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -453,16 +453,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bank Name"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Bank Name"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -480,16 +480,16 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ifsc Code"
+                android:layout_marginTop="@dimen/ten"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Ifsc Code"
                 android:textColor="@color/black"
-                android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:textSize="@dimen/textsize">
 
             </TextView>
 
@@ -507,16 +507,17 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/drive_text"
+                android:layout_marginTop="@dimen/ten"
                 android:text="Driving lisence Number"
-                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize"
-                android:layout_marginTop="@dimen/ten">
+                android:fontFamily="@font/poppins_semibold">
 
             </TextView>
 
@@ -534,17 +535,15 @@
                 android:paddingLeft="20dp"
                 android:textColor="#000000"
                 android:textSize="@dimen/edittextsize"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <LinearLayout
                 android:id="@+id/usertype1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_below="@+id/text"
-                android:layout_marginLeft="@dimen/twenty"
-                android:layout_marginRight="@dimen/twenty"
-                android:layout_marginTop="@dimen/twenty_size">
+                android:layout_marginTop="@dimen/twenty_size"
+                android:weightSum="3">
 
                 <!--<TextView
                     android:id="@+id/text_panImage"
@@ -582,52 +581,70 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="@dimen/hundred"
+                    android:layout_margin="@dimen/five"
+                    android:layout_weight="1"
                     android:elevation="@dimen/three"
-                    app:cardCornerRadius="@dimen/ten"
-                    android:layout_margin="@dimen/five">
+                    app:cardCornerRadius="@dimen/ten">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/text_panImage"
+                            android:id="@+id/text_ProfileImage"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/panimage" />
+                            android:scaleType="fitCenter"/>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="@dimen/hundred"
+                    android:layout_margin="@dimen/five"
+                    android:layout_weight="1"
                     android:elevation="@dimen/three"
-                    app:cardCornerRadius="@dimen/ten"
-                    android:layout_margin="@dimen/five">
+                    app:cardCornerRadius="@dimen/ten">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/text_gstImage"
+                            android:id="@+id/text_DlPhoto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/gstimage" />
+                            />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/hundred"
+                    android:layout_margin="@dimen/five"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/three"
+                    app:cardCornerRadius="@dimen/ten">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/text_AddressProff"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"></ImageView>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
 
-
             </LinearLayout>
-
 
             <Button
                 android:id="@+id/btn_AddVenderDetails"
@@ -639,7 +656,6 @@
                 android:text="Create Profile"
                 android:textColor="@color/white"
                 android:textSize="@dimen/edittextsize"></Button>
-
 
             <TextView
                 android:id="@+id/button_back"

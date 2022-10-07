@@ -84,14 +84,15 @@ public class CreateProduct extends Fragment {
     private final int PICK_IMAGE_CAMERA = 3, PICK_IMAGE_GALLERY = 4;
     private final File destination = null;
     private final String imgPath = null;
-    TextView addnewproductbtn,priceClc;
-    EditText productname, stock, weight, discount, retailprice, gst, description,servicecharges,
-            commission,totalpayment,dimention,color,quentity;
+    TextView addnewproductbtn, priceClc;
+    EditText productname, stock, weight, discount, retailprice, gst, description, servicecharges,
+            commission, totalpayment, dimention, color, quentity;
     Spinner categories_spinner, producttype_spinner, prodty_spinner, prodty1_spinner, supercategory,
             subcategory_spinner;
     String catname = "", photostr1 = "", photostr2 = "", photostr3 = "", photoselection = "",
             catid = "", subcatcatname = "", subcatcatid = "", typename = "", typeid = "", ttl = "",
-            des = "", sold = "", super_category = "",supercat = "",product_type = "",produ_Type = "",token = "",photoSelection = "";
+            des = "", sold = "", super_category = "", supercat = "", product_type = "", produ_Type = "",
+            token = "", photoSelection = "",charge = "";
     HashMap<String, String> hashCategories = new HashMap<String, String>();
     ArrayList<String> CategoriesArray = new ArrayList<>();
     HashMap<String, String> hashProducttype = new HashMap<String, String>();
@@ -99,7 +100,7 @@ public class CreateProduct extends Fragment {
     ArrayList<String> typeArray = new ArrayList<>();
     ImageView productimage1, productimage2, productimage3;
     ArrayList<String> typeArray1;
-    Map<String,String> type_Array;
+    Map<String, String> type_Array;
     ArrayList<String> ImageArray = new ArrayList<>();
     Uri photouri;
     boolean photoselected = false;
@@ -154,8 +155,8 @@ public class CreateProduct extends Fragment {
         typeArray1.add("Non-Refundable");
 
         type_Array = new HashMap<>();
-        type_Array.put("Refundable","true");
-        type_Array.put("Non-Refundable","false");
+        type_Array.put("Refundable", "true");
+        type_Array.put("Non-Refundable", "false");
 
         ArrayAdapter<String> typVehicle1 = new ArrayAdapter<String>(getActivity(),
                 R.layout.spinneritem, typeArray1);
@@ -177,6 +178,7 @@ public class CreateProduct extends Fragment {
                     //GetProductType();
 
                     getSubCategory(catid);
+                    extraCharge(catid);
 
                 }
             }
@@ -246,7 +248,7 @@ public class CreateProduct extends Fragment {
 
                 } else {
 
-                    Log.d("hshkjbsan",product_type);
+                    Log.d("hshkjbsan", product_type);
 
                     bool_productType = product_type.equalsIgnoreCase("Refundable");
 
@@ -269,11 +271,11 @@ public class CreateProduct extends Fragment {
 
                 super_category = supercategory.getItemAtPosition(supercategory.getSelectedItemPosition()).toString();
 
-                if(super_category.equalsIgnoreCase("Select SuperCategory")){
+                if (super_category.equalsIgnoreCase("Select SuperCategory")) {
 
                     supercat = "";
 
-                }else{
+                } else {
 
                     supercat = super_CategoryList.get(super_category);
 
@@ -327,11 +329,11 @@ public class CreateProduct extends Fragment {
                     retailprice.setError("enter product retail price");
                     retailprice.requestFocus();
 
-                }else if (discount.getText().toString().trim().length() == 0) {
+                } else if (discount.getText().toString().trim().length() == 0) {
                     discount.setError("enter discount price");
                     discount.requestFocus();
 
-                }else{
+                } else {
 
                     String str_gst = gst.getText().toString().trim();
                     String str_servicecharges = servicecharges.getText().toString().trim();
@@ -353,7 +355,7 @@ public class CreateProduct extends Fragment {
                     pricetot = tot_pric + gst + commi + coservic;
 
                     DecimalFormat df = new DecimalFormat("#.##");
-                    String pricetot1 =  df.format(pricetot);
+                    String pricetot1 = df.format(pricetot);
 
                     Log.d("ghghgh", pricetot1);
 
@@ -414,7 +416,7 @@ public class CreateProduct extends Fragment {
 
                     Toast.makeText(getActivity(), "Select Product Type", Toast.LENGTH_SHORT).show();
 
-                }else if (totalpayment.getText().toString().trim().length() == 0) {
+                } else if (totalpayment.getText().toString().trim().length() == 0) {
 
                     Toast.makeText(getActivity(), "Please select total price", Toast.LENGTH_SHORT).show();
 
@@ -436,9 +438,9 @@ public class CreateProduct extends Fragment {
 
                     jsonObject_metadata = new JSONObject();
                     try {
-                        jsonObject_metadata.put("color",str_color);
-                        jsonObject_metadata.put("dimension",str_dimention);
-                        jsonObject_metadata.put("quantity",int_quentity);
+                        jsonObject_metadata.put("color", str_color);
+                        jsonObject_metadata.put("dimension", str_dimention);
+                        jsonObject_metadata.put("quantity", int_quentity);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -457,7 +459,7 @@ public class CreateProduct extends Fragment {
 
                     Intent intent = result.getData();
 
-                    if(intent != null){
+                    if (intent != null) {
 
                         selectedImage = intent.getData();
 
@@ -694,14 +696,13 @@ public class CreateProduct extends Fragment {
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.setCancelable(false);
 
-        String path = RealPathUtil.getRealPath(getContext(),selectedImage);
+        String path = RealPathUtil.getRealPath(getContext(), selectedImage);
         File file = new File(path);
 
         RequestBody imageBode = RequestBody.create(MediaType.parse(getContext().getContentResolver().getType(selectedImage)), file);
         MultipartBody.Part partImage = MultipartBody.Part.createFormData("photo", "productimage.png", imageBode);
 
-        Log.d("fvsdz", ""+selectedImage);
-
+        Log.d("fvsdz", "" + selectedImage);
 
 
         Call<ImageResponse> call = new ApiToJsonHandler().uploadImage(token, partImage);
@@ -715,18 +716,18 @@ public class CreateProduct extends Fragment {
 
 
                     // get the path and save it to images array
-                    Log.d("fvsdzfvfc", ""+response.body().getMsg().getFilename());
-                    Log.d("fvsdzfvfc", ""+response.body().getMsg().getPath());
+                    Log.d("fvsdzfvfc", "" + response.body().getMsg().getFilename());
+                    Log.d("fvsdzfvfc", "" + response.body().getMsg().getPath());
 
-                    if(photoSelection.equalsIgnoreCase("1")){
+                    if (photoSelection.equalsIgnoreCase("1")) {
                         productimage1.setImageBitmap(bitmap);
                         photostr1 = response.body().getMsg().getFilename();
 
-                    }else if(photoSelection.equalsIgnoreCase("2")){
+                    } else if (photoSelection.equalsIgnoreCase("2")) {
                         productimage2.setImageBitmap(bitmap);
                         photostr2 = response.body().getMsg().getFilename();
 
-                    }else if(photoSelection.equalsIgnoreCase("3")){
+                    } else if (photoSelection.equalsIgnoreCase("3")) {
                         productimage3.setImageBitmap(bitmap);
                         photostr3 = response.body().getMsg().getFilename();
 
@@ -748,7 +749,7 @@ public class CreateProduct extends Fragment {
                 progressDialog.dismiss();
 
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("getMessage",t.getMessage());
+                Log.d("getMessage", t.getMessage());
             }
         });
     }
@@ -846,7 +847,7 @@ public class CreateProduct extends Fragment {
 
         String url = AppUrl.getSupercategory;
 
-        Log.d("dssjhbjh",url);
+        Log.d("dssjhbjh", url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, AppUrl.getSupercategory, new Response.Listener<String>() {
             @Override
@@ -885,6 +886,8 @@ public class CreateProduct extends Fragment {
                         dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
                         supercategory.setAdapter(dataAdapterVehicle);
 
+                        serviceCharge();
+
                     } else {
 
                         String message = jsonObject.getString("msg");
@@ -927,7 +930,7 @@ public class CreateProduct extends Fragment {
                 }
 
             }
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -952,18 +955,23 @@ public class CreateProduct extends Fragment {
         requestQueue.add(stringRequest);
     }
 
-    public void getCategory(String supercategoryId){
+    public void getCategory(String supercategoryId) {
 
 
         categoryList = new ArrayList<>();
         category_List = new HashMap<>();
 
-        String category = AppUrl.getCategory+supercategoryId;
+        categoryList.clear();
+        category_List.clear();
 
+        String category = AppUrl.getCategory + supercategoryId;
+
+        Log.d("hsfjhva", category);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, category, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -971,26 +979,53 @@ public class CreateProduct extends Fragment {
                     String code = jsonObject.getString("code");
                     String err = jsonObject.getString("err");
                     String msg = jsonObject.getString("msg");
-                    String data = jsonObject.getString("data");
 
                     if (code.equals("200")) {
 
-                        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                        if (jsonObject.has("data")) {
 
-                        JSONArray jsonArray_data = new JSONArray(data);
+                            String data = jsonObject.getString("data");
 
-                        for (int i = 0; i < jsonArray_data.length(); i++) {
+                            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
 
-                            JSONObject jsonObject_data = jsonArray_data.getJSONObject(i);
+                            JSONArray jsonArray_data = new JSONArray(data);
 
-                            String _id = jsonObject_data.getString("_id");
-                            String name = jsonObject_data.getString("name");
-                            String productType = jsonObject_data.getString("productType");
-                            String superCategoryId = jsonObject_data.getString("superCategoryId");
+                            for (int i = 0; i < jsonArray_data.length(); i++) {
 
-                            categoryList.add(name);
-                            category_List.put(name, _id);
+                                JSONObject jsonObject_data = jsonArray_data.getJSONObject(i);
+
+                                String _id = jsonObject_data.getString("_id");
+                                String name = jsonObject_data.getString("name");
+                                String productType = jsonObject_data.getString("productType");
+                                String superCategoryId = jsonObject_data.getString("superCategoryId");
+
+                                categoryList.add(name);
+                                category_List.put(name, _id);
+                            }
+
+                            categoryList.add(0, "Select Category");
+
+                            ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
+                                    R.layout.spinneritem, categoryList);
+                            dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
+                            categories_spinner.setAdapter(dataAdapterVehicle);
+
+                        } else {
+
+                            categoryList.add(0, "Select Category");
+
+                            ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
+                                    R.layout.spinneritem, categoryList);
+                            dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
+                            categories_spinner.setAdapter(dataAdapterVehicle);
+
+                            String message = jsonObject.getString("msg");
+                            Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
                         }
+
+
+                    } else {
 
                         categoryList.add(0, "Select Category");
 
@@ -998,8 +1033,6 @@ public class CreateProduct extends Fragment {
                                 R.layout.spinneritem, categoryList);
                         dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
                         categories_spinner.setAdapter(dataAdapterVehicle);
-
-                    } else {
 
                         String message = jsonObject.getString("msg");
                         Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
@@ -1041,7 +1074,7 @@ public class CreateProduct extends Fragment {
                 }
 
             }
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -1065,17 +1098,23 @@ public class CreateProduct extends Fragment {
 
     }
 
-    public void getSubCategory(String subCategoryId){
+    public void getSubCategory(String subCategoryId) {
+
 
         subcCategoryList = new ArrayList<>();
         subCategory_List = new HashMap<>();
 
-        String category = AppUrl.getSubCategory+subCategoryId;
+        subCategory_List.clear();
+        subcCategoryList.clear();
+
+
+        String category = AppUrl.getSubCategory + subCategoryId;
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, category, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -1083,38 +1122,65 @@ public class CreateProduct extends Fragment {
                     String code = jsonObject.getString("code");
                     String err = jsonObject.getString("err");
                     String msg = jsonObject.getString("msg");
-                    String data = jsonObject.getString("data");
 
                     if (code.equals("200")) {
 
-                        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                        if (jsonObject.has("data")) {
 
-                        JSONArray jsonArray_data = new JSONArray(data);
+                            String data = jsonObject.getString("data");
 
-                        for (int i = 0; i < jsonArray_data.length(); i++) {
+                            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
 
-                            JSONObject jsonObject_data = jsonArray_data.getJSONObject(i);
+                            JSONArray jsonArray_data = new JSONArray(data);
 
-                            String _id = jsonObject_data.getString("_id");
-                            String name = jsonObject_data.getString("name");
+                            for (int i = 0; i < jsonArray_data.length(); i++) {
+
+                                JSONObject jsonObject_data = jsonArray_data.getJSONObject(i);
+
+                                String _id = jsonObject_data.getString("_id");
+                                String name = jsonObject_data.getString("name");
                            /* String productType = jsonObject_data.getString("productType");
                             String superCategoryId = jsonObject_data.getString("superCategoryId");*/
 
-                            subcCategoryList.add(name);
-                            subCategory_List.put(name, _id);
+                                subcCategoryList.add(name);
+                                subCategory_List.put(name, _id);
 
+                            }
+
+                            subcCategoryList.add(0, "select SubCategory");
+
+                            ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
+                                    R.layout.spinneritem, subcCategoryList);
+                            dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
+                            subcategory_spinner.setAdapter(dataAdapterVehicle);
+
+                        } else {
+
+                            subCategory_List.clear();
+                            subcCategoryList.clear();
+
+                            String message = jsonObject.getString("msg");
+                            Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                            subcCategoryList.add(0, "select SubCategory");
+
+                            ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
+                                    R.layout.spinneritem, subcCategoryList);
+                            dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
+                            subcategory_spinner.setAdapter(dataAdapterVehicle);
                         }
-                        subcCategoryList.add(0,"select SubCategory");
-
-                        ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
-                                R.layout.spinneritem, subcCategoryList);
-                        dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
-                        subcategory_spinner.setAdapter(dataAdapterVehicle);
 
                     } else {
 
                         String message = jsonObject.getString("msg");
                         Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                        subcCategoryList.add(0, "select SubCategory");
+
+                        ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
+                                R.layout.spinneritem, subcCategoryList);
+                        dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
+                        subcategory_spinner.setAdapter(dataAdapterVehicle);
                     }
 
                 } catch (JSONException e) {
@@ -1153,7 +1219,7 @@ public class CreateProduct extends Fragment {
                 }
 
             }
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -1170,6 +1236,212 @@ public class CreateProduct extends Fragment {
                 Log.d("fvsDevbf", "" + params);
                 return params;
             }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
+
+    }
+
+    public void serviceCharge() {
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, AppUrl.serviceCharge, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+
+                    String code = jsonObject.getString("code");
+                    String err = jsonObject.getString("err");
+                    String msg = jsonObject.getString("msg");
+                    String data = jsonObject.getString("data");
+
+                    JSONArray jsonArray_data = new JSONArray(data);
+
+                    for (int i = 0; i < jsonArray_data.length(); i++) {
+
+                        JSONObject jsonObjec_data = jsonArray_data.getJSONObject(i);
+
+                        String charge = jsonObjec_data.getString("charge");
+                        String _id = jsonObjec_data.getString("_id");
+
+                    }
+
+                    servicecharges.setText(charge);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(getActivity().getApplicationContext(), "Please check Internet Connection", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    Log.d("successresponceVolley", "" + error.networkResponse.statusCode);
+                    NetworkResponse networkResponse = error.networkResponse;
+                    if (networkResponse != null && networkResponse.data != null) {
+                        try {
+                            String jError = new String(networkResponse.data);
+                            JSONObject jsonError = new JSONObject(jError);
+
+                            String data = jsonError.getString("msg");
+                            Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("successresponceVolley", "" + e);
+                        }
+
+
+                    }
+
+                }
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                String auth = SharedPrefManager.getInstance(getActivity()).getUser().getToken();
+                headers.put("auth-token", auth);
+                Log.d("fvsDevbf", "" + auth);
+                return headers;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                Log.d("fvsDevbf", "" + params);
+                return params;
+            }
+
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
+
+    }
+
+    public void extraCharge(String categoryID) {
+
+        // progressbar.showDialog();
+
+        String urlextraCharge = AppUrl.extraCharge + categoryID;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlextraCharge, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("hjdbiugs", response);
+
+                try {
+
+                    String crappyPrefix = "null";
+
+                    if (response.startsWith(crappyPrefix)) {
+                        response = response.substring(crappyPrefix.length());
+                    }
+
+                    JSONObject jsonObject = new JSONObject(response);
+
+                    String code = jsonObject.getString("code");
+                    String err = jsonObject.getString("err");
+                    String msg = jsonObject.getString("msg");
+                    String data = jsonObject.getString("data");
+
+                    if (code.equals("200")) {
+
+                        if (data.equals("null")) {
+
+                            commission.setText("0");
+                            gst.setText("0");
+
+                        } else {
+
+                            JSONObject jsonObject_data = new JSONObject(data);
+
+                            String commission1 = jsonObject_data.getString("commission");
+                            String refundCharge1 = jsonObject_data.getString("refundCharge");
+                            String gst1 = jsonObject_data.getString("gst");
+                            String categoryId1 = jsonObject_data.getString("categoryId");
+                            String _id1 = jsonObject_data.getString("_id");
+
+                            commission.setText(commission1);
+                            gst.setText(gst1);
+
+                            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                        }
+
+                    } else {
+
+                        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+
+                    Log.d("hsgzxuygjh", e.toString());
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(getActivity().getApplicationContext(), "Please check Internet Connection", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    Log.d("successresponceVolley", "" + error.networkResponse.statusCode);
+                    NetworkResponse networkResponse = error.networkResponse;
+                    if (networkResponse != null && networkResponse.data != null) {
+                        try {
+                            String jError = new String(networkResponse.data);
+                            JSONObject jsonError = new JSONObject(jError);
+
+                            String data = jsonError.getString("msg");
+                            Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("successresponceVolley", "" + e);
+                        }
+
+
+                    }
+
+                }
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                String auth = SharedPrefManager.getInstance(getActivity()).getUser().getToken();
+                headers.put("auth-token", auth);
+                Log.d("fvsDevbf", "" + auth);
+                return headers;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                Log.d("fvsDevbf", "" + params);
+                return params;
+            }
+
         };
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());

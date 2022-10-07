@@ -42,7 +42,7 @@ public class AppUrl {
 
     //public static final String addProduct = "https://kisaanandfactory.com/api/v1/adminapp/product/add";
 
-    public static final String addVender = "https://kisaanandfactory.com/api/v1/adminapp/user/vendor/add";
+    public static final String addVender = "https://kisaanandfactory.com/api/v1/warehouseapp/view/create-vendor-profile";
 
     public static final String update_status = "https://kisaanandfactory.com/api/v1/vendorapp/view/myOrders/status/update/";
 
@@ -50,17 +50,22 @@ public class AppUrl {
 
     public static final String acceptOrder = "https://kisaanandfactory.com/api/v1/adminapp/order/acceptOrder";
 
-    public static final String addDelivery = "https://kisaanandfactory.com/api/v1/adminapp/user/delivery/add";
+    public static final String addDelivery = "https://kisaanandfactory.com/api/v1/warehouseapp/view/create-driver-profile";
 
     public static final String out_for_delivery = "https://kisaanandfactory.com/api/v1/adminapp/order/out-for-delivery/";
 
     public static final String getSupercategory = MAIN_URL+"adminapp/product/productSuperCategories";
+
     public static final String getCategory = MAIN_URL+"vendorapp/vendor/product/category/all?superCategoryId=";
+    
     public static final String getSubCategory = MAIN_URL+"adminapp/product/sub-category/all?CategoryId=";
 
     public static final String priceCalculator = MAIN_URL+"vendorapp/vendor/product/priceCalculator";
 
     public static final String addProduct_url = MAIN_URL+"vendorapp/vendor/product/add";
+
+    public static final String serviceCharge = MAIN_URL+"adminapp/extraCharge/serviceCharge";
+    public static final String extraCharge = MAIN_URL+"adminapp/extraCharge/";
 
 
 

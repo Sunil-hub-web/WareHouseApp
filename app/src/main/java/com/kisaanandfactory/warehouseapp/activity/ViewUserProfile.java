@@ -70,7 +70,7 @@ public class ViewUserProfile extends AppCompatActivity {
     Uri imageUri,selectedImageUri;
     Bitmap bitmap;
     File f;
-    String token,user_password,ImageDecode;
+    String token,user_password,ImageDecode,message = "";
     AwesomeValidation awesomeValidation;
 
     SessionManager sessionManager;
@@ -140,20 +140,23 @@ public class ViewUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                edit_UserName.setEnabled(true);
-                edit_username.setEnabled(true);
-                edit_MobileNo.setEnabled(true);
-                edit_EmailId.setEnabled(true);
-                edit_Password.setEnabled(true);
-                edit_GstNumber.setEnabled(true);
-                edit_Location.setEnabled(true);
-                edit_Locality.setEnabled(true);
-                edit_City.setEnabled(true);
-                edit_State.setEnabled(true);
-                edit_ZipCode.setEnabled(true);
-                edit_AccNumber.setEnabled(true);
-                edit_BankName.setEnabled(true);
-                edit_IfcCode.setEnabled(true);
+                    edit_UserName.setEnabled(true);
+                    edit_username.setEnabled(true);
+                    edit_MobileNo.setEnabled(true);
+                    edit_EmailId.setEnabled(true);
+                    edit_Password.setEnabled(true);
+                    edit_GstNumber.setEnabled(true);
+                    edit_Location.setEnabled(true);
+                    edit_Locality.setEnabled(true);
+                    edit_City.setEnabled(true);
+                    edit_State.setEnabled(true);
+                    edit_ZipCode.setEnabled(true);
+                    edit_AccNumber.setEnabled(true);
+                    edit_BankName.setEnabled(true);
+                    edit_IfcCode.setEnabled(true);
+
+                    text_EditUserdata.setCompoundDrawablesWithIntrinsicBounds(R.drawable.diskette, 0, 0, 0);
+
             }
         });
 
@@ -327,6 +330,8 @@ public class ViewUserProfile extends AppCompatActivity {
 
                         sessionManager.setZipCode(zip);
                         sessionManager.setUserId(_id);
+
+                        text_EditUserdata.setCompoundDrawablesWithIntrinsicBounds(R.drawable.vector_editor, 0, 0, 0);
 
 
                     }else{
