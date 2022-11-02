@@ -25,10 +25,10 @@ public class DeliveryBoy_ModelClass {
         this.id = id;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "CategoryDetails_model{" +
                 name +
                 '}';
-    }
+    }*/
 }

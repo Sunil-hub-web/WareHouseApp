@@ -46,6 +46,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,8 +58,11 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
     int index;
     String token;
     SessionManager sessionManager;
-    ArrayList<DeliveryBoy_ModelClass> delivery_agent = new ArrayList<>();
+    ArrayList<DeliveryBoy_ModelClass> delivery_agentArray = new ArrayList<>();
     ArrayAdapter deliveryAgentAdapter;
+    HashMap<String, String> hashCategories = new HashMap<String, String>();
+    ArrayList<String> CategoriesArray = new ArrayList<>();
+    ArrayAdapter<String> dataAdapterVehicle;
 
     public OrderRequestAdapter(FragmentActivity activity, ArrayList<OrderRequest_ModelClass> orderrequest) {
 
@@ -83,9 +87,15 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
 
         OrderRequest_ModelClass order_request = orderRequest.get(position);
 
+        String amount = order_request.getTotalAmount();
+        float f_amount = Float.valueOf(amount);
+        DecimalFormat df = new DecimalFormat("#.##");
+        float total_Amount1 = Float.valueOf(df.format(f_amount));
+        String totalamount_t = String.valueOf(total_Amount1);
+
         holder.productName.setText(order_request.getTitle());
         holder.producr_qty.setText(order_request.getProductQuantity());
-        holder.total_price.setText(order_request.getTotalAmount());
+        holder.total_price.setText(totalamount_t);
         holder.stauesName.setText(order_request.getStatus());
         holder.text_weight.setText(order_request.getStr_weight());
 
@@ -98,7 +108,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
         holder.customerName.setText(order_request.getCoustomerName());
         holder.phoneNo.setText(order_request.getContacts());
         holder.paymentStatues.setText(order_request.getPaymentMethod());
-        holder.totalAmount.setText(order_request.getTotalAmount());
+        holder.totalAmount.setText(totalamount_t);
         holder.deliveryAddress.setText(order_request.getHouse()+","+order_request.getStreet()+","+order_request.getLocality()
                 +","+order_request.getCity()+","+order_request.getState()+","+order_request.getCountry()+","+order_request.getZip());
 
@@ -201,7 +211,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
 
                     orderStatuesChange(orderId);
 
-                    holder.btn_Accept.setVisibility(View.GONE);
+                    holder.btn_Accept.setText("Out For Delivery");
                     holder.btn_Reject.setText("Delete");
 
                 }else if(holder.btn_Accept.getText().toString().trim().equals("Out For Delivery")){
@@ -210,10 +220,117 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
 
                     String zipcode = sessionManager.getZipCode();
 
-                    getvenderdetails(zipcode);
+                    hashCategories.clear();
+                    CategoriesArray.clear();
 
-                    holder.delivery_Agent.setAdapter(deliveryAgentAdapter);
-                    holder.delivery_Agent.setSelection(-1, true);
+                    ProgressDialog progressDialog = new ProgressDialog(context);
+                    progressDialog.show();
+                    progressDialog.setContentView(R.layout.progress_dialog);
+                    TextView textView = progressDialog.findViewById(R.id.text);
+                    textView.setText("Retrive Delivery Name Please wait...");
+                    progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    progressDialog.setCancelable(false);
+
+                    String delivery = AppUrl.get_driveragent+zipcode;
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, delivery, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            progressDialog.dismiss();
+
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                String code = jsonObject.getString("code");
+                                String err = jsonObject.getString("err");
+                                String msg = jsonObject.getString("msg");
+                                String data = jsonObject.getString("data");
+
+                                if(code.equalsIgnoreCase("200")){
+
+                                    delivery_agentArray = new ArrayList<>();
+                                    JSONArray jsonArray_data = new JSONArray(data);
+
+                                    for (int i=0;i<jsonArray_data.length();i++){
+
+                                        JSONObject jsonObject_data = jsonArray_data.getJSONObject(i);
+
+                                        String location = jsonObject_data.getString("location");
+                                        String accountDetails = jsonObject_data.getString("accountDetails");
+                                        String fcm_id = jsonObject_data.getString("fcm_id");
+                                        String availabilityStatus = jsonObject_data.getString("availabilityStatus");
+                                        String _id = jsonObject_data.getString("_id");
+                                        String name = jsonObject_data.getString("name");
+
+                                        DeliveryBoy_ModelClass deliveryBoy_modelClass = new DeliveryBoy_ModelClass(
+                                                name,_id
+                                        );
+
+                                        hashCategories.put(name, _id);
+                                        CategoriesArray.add(name);
+
+                                        sessionManager.setUserId_Delivery(_id);
+
+                                        //delivery_agent.add(deliveryBoy_modelClass);
+                                    }
+
+                                    CategoriesArray.add(0, "select DeliveryBoy");
+
+                                    dataAdapterVehicle = new ArrayAdapter<String>(context,
+                                            R.layout.spinneritem, CategoriesArray);
+                                    dataAdapterVehicle.setDropDownViewResource(R.layout.spinnerdropdownitem);
+                                    holder.delivery_Agent.setAdapter(dataAdapterVehicle);
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            progressDialog.dismiss();
+
+                            if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                                Toast.makeText(context, "Please check Internet Connection", Toast.LENGTH_SHORT).show();
+
+                            } else {
+
+                                Log.d("successresponceVolley", "" + error.networkResponse.statusCode);
+                                NetworkResponse networkResponse = error.networkResponse;
+                                if (networkResponse != null && networkResponse.data != null) {
+                                    try {
+                                        String jError = new String(networkResponse.data);
+                                        JSONObject jsonError = new JSONObject(jError);
+
+                                        String data = jsonError.getString("msg");
+                                        Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        Log.d("successresponceVolley", "" + e);
+                                    }
+
+
+                                }
+
+                            }
+
+                        }
+                    }){
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+
+                            Map<String,String> header = new HashMap<>();
+                            header.put("auth-token",token);
+                            return header;
+                        }
+                    };
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,3,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    RequestQueue requestQueue = Volley.newRequestQueue(context);
+                    requestQueue.add(stringRequest);
 
                 }
             }
@@ -232,16 +349,31 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-               DeliveryBoy_ModelClass cate_data = (DeliveryBoy_ModelClass) parent.getSelectedItem();
+               String super_category = holder.delivery_Agent.getItemAtPosition(holder.delivery_Agent.getSelectedItemPosition()).toString();
 
-               String delivery_id = cate_data.getId();
-               String delivery_name = cate_data.getName();
-               Log.d("city_Id", delivery_id);
+               if (super_category.equalsIgnoreCase("select DeliveryBoy")) {
 
-               String orderId = order_request.getOrderId();
-               String wareHouseID = sessionManager.getUserId();
+                   String supercat = "";
 
-               assignDelivery(orderId,wareHouseID,delivery_id);
+               } else {
+
+                   String delivery_id = hashCategories.get(super_category);
+
+                  // String delivery_id = cate_data.getId();
+
+                   Log.d("city_Id", delivery_id);
+
+                   String orderId = order_request.getOrderId();
+                   String wareHouseID = sessionManager.getUserId();
+
+                   assignDelivery(orderId,wareHouseID,delivery_id);
+
+               }
+
+
+
+              // DeliveryBoy_ModelClass cate_data = (DeliveryBoy_ModelClass) parent.getSelectedItem();
+
 
            }
 
@@ -403,6 +535,9 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
 
     public void getvenderdetails(String zipcode){
 
+        hashCategories.clear();
+        CategoriesArray.clear();
+
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);
@@ -428,7 +563,7 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
 
                     if(code.equalsIgnoreCase("200")){
 
-                        delivery_agent = new ArrayList<>();
+                        delivery_agentArray = new ArrayList<>();
                         JSONArray jsonArray_data = new JSONArray(data);
 
                         for (int i=0;i<jsonArray_data.length();i++){
@@ -442,19 +577,24 @@ public class OrderRequestAdapter extends RecyclerView.Adapter<OrderRequestAdapte
                             String _id = jsonObject_data.getString("_id");
                             String name = jsonObject_data.getString("name");
 
-                            sessionManager.setUserId_Delivery(_id);
-
                             DeliveryBoy_ModelClass deliveryBoy_modelClass = new DeliveryBoy_ModelClass(
                                     name,_id
                             );
 
-                            delivery_agent.add(deliveryBoy_modelClass);
+                            hashCategories.put(name, _id);
+                            CategoriesArray.add(name);
+
+                            sessionManager.setUserId_Delivery(_id);
+
+                            //delivery_agent.add(deliveryBoy_modelClass);
                         }
 
-                        deliveryAgentAdapter = new ArrayAdapter(context, R.layout.spinneritem, delivery_agent);
-                        deliveryAgentAdapter.setDropDownViewResource(R.layout.spinnerdropdownitem);
+                        CategoriesArray.add(0, "select DeliveryBoy");
 
-                        Log.d("hdudgib",delivery_agent.toString());
+                       dataAdapterVehicle = new ArrayAdapter<String>(context,
+                                R.layout.spinnerdropdownitem, CategoriesArray);
+                        dataAdapterVehicle.setDropDownViewResource(R.layout.spinneritem);
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -1012,7 +1012,7 @@ public class CreateProduct extends Fragment {
 
                         } else {
 
-                            categoryList.add(0, "Select Category");
+                            //categoryList.add(0, "Select Category");
 
                             ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
                                     R.layout.spinneritem, categoryList);
@@ -1027,7 +1027,7 @@ public class CreateProduct extends Fragment {
 
                     } else {
 
-                        categoryList.add(0, "Select Category");
+                        //categoryList.add(0, "Select Category");
 
                         ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
                                 R.layout.spinneritem, categoryList);
@@ -1162,7 +1162,7 @@ public class CreateProduct extends Fragment {
                             String message = jsonObject.getString("msg");
                             Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
-                            subcCategoryList.add(0, "select SubCategory");
+                           // subcCategoryList.add(0, "select SubCategory");
 
                             ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
                                     R.layout.spinneritem, subcCategoryList);
@@ -1175,7 +1175,7 @@ public class CreateProduct extends Fragment {
                         String message = jsonObject.getString("msg");
                         Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
-                        subcCategoryList.add(0, "select SubCategory");
+                        //subcCategoryList.add(0, "select SubCategory");
 
                         ArrayAdapter<String> dataAdapterVehicle = new ArrayAdapter<String>(getActivity(),
                                 R.layout.spinneritem, subcCategoryList);
